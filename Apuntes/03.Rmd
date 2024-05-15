@@ -1,0 +1,32 @@
+---
+title: '03'
+author: "MARK"
+date: "2024-05-15"
+output: html_document
+---
+
+# crear varaibles
+
+nombre_variable = valor
+""->   valor
+valor<-
+
+```{r}
+nombre_variable = 2  #def variable
+```
+
+#crear funciones
+
+nombre_Funcion = function(variable){función}
+
+```{r}
+doble = function(x){2*x}  
+
+x = doble(2)
+```
+
+
+atención, para que funcione no debe terminar con una ultima instrucción en igualdad o asignacion, sino solo el valor con operacio para que actue como return
+
+para borrar variables se puede directo desde enviroment con la escoba o seleccionando
+
