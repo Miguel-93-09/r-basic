@@ -30,3 +30,13 @@ atención, para que funcione no debe terminar con una ultima instrucción en igu
 
 para borrar variables se puede directo desde enviroment con la escoba o seleccionando
 
+
+# avanzadas
+
+paste(a,s,s)  pega las cosas que estan dentro
+
+sprintf("%i $i",a,b) imprime los valores de a y b se poneentre comillas apra sea ocmo texto
+
+
+
+

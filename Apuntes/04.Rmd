@@ -1,0 +1,30 @@
+---
+title: '04'
+author: "MARK"
+date: "2024-05-15"
+output: html_document
+---
+
+# complejos
+
+a+bi
+complex(real=,imaginary=)
+complex(modulus=,argument=)
+
+
+sqrt(as.complex())  #para numero real negativo sin parte imaginaria
+Re(x)
+Im(x)
+Mod
+Arg
+Conj
+
+
+la raiz da la positiva, la otra s emultiplica por -1
+sqrt
+exp
+sin
+cos
+Mod
+Arg *va desde -pi hasta pi
+
