@@ -1,0 +1,30 @@
+---
+title: "1.Anaconda"
+author: "MARK"
+date: "2024-05-15"
+output: pdf_document
+---
+
+
+buscar donde esta instalado anaconda
+
+pip3 list
+
+instalar
+
+pip3 install nombre_paquete
+pip3 install nombre_paquete==version_especifica
+
+
+actualizar
+pip3 install --upgrade nombre_paquete
+
+desinstalar
+pip3 uninstall nombre_paquete
+
+para isntalar desde enviroments en anaconda
+dar click en desplegable luego uninstalled
+
+más info
+https://www.youtube.com/watch?v=SITtZ3jtorM&list=PLgE4H7mLwSa6xYsJQKKscmf-UO1lICGWW&index=136&ab_channel=ElBoli
+

@@ -1,0 +1,30 @@
+---
+title: "03-entradas salidas"
+author: "MARK"
+date: "2024-05-16"
+output: pdf_document
+---
+
+print("hola") para scripts
+
+x=7
+print(x)
+
+admite variable sy todo tipo de datos pero
+
+si se quieren combinar tipos de datos, todos deben ser str()
+
+print("Hola"+str(x))
+
+con el + se pegan datos
+
+
+meter datos
+
+texto = input("dale: ")
+
+con conversion de tipo
+
+texto = int(input("dale: "))
+
+

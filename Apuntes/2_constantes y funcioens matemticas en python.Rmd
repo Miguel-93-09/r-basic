@@ -1,0 +1,90 @@
+---
+title: "02 constantes python"
+author: "MARK"
+date: "2024-05-16"
+output: html_document
+---
+
+abiri jupiter en anaconda para los notebook
+
+shift enter  neuva celda
+
+alt enter ejecurtar celda
+
+# constantes
+
+import math as ""
+
+para cosntantes
+
+math.pi
+math.e
+math.tau
+math.inf
+-math.inf
+math.nan
+
+
+float('inf')  #8 bits precision
+float('nan')
+double()    #16 bits
+
+cualquier numero elevado a 0 da 1
+math.pow(math.nan,0)=1
+
+nan sigue ciertas reglas de matematicas
+
+#operaciones aritmeticas y redondeo
+
+2+2
+3-2
+3*5
+3/5
+
+math.ceil(3.2)=4
+math.floor(3.2)=3
+math.trunc()
+
+math.copysign(2,-1) = -2
+math.copysign(2,0) = 2
+math.copysign(2,-0.0) = 2
+
+math.fabs(-5)
+```{python}
+import math
+math.fabs(-5)
+```
+2**5 potencia
+math.factorial()
+
+math.fmod(7,3)=1  más preciso, usa definicion mejor para decimales
+
+7%3=1   con entero ni hay pedo
+
+7//3 cociente
+
+math.remainder(7,3) cociente mejor para decimales
+
+
+math.modf(-4.1)= (-0.1,-4.0) separa decimal de entero
+
+math.gcd(12,24)=12
+
+#devuelven booleanos
+
+math.isfinite
+math.isinf
+math.isnan
+
+math.isclose(math.sqrt(2)**2,2)   que tan cerca esta
+math.isclose(math.sqrt(2)**2,2,abs)  cuantos digitos
+math.isclose(math.sqrt(2)**2,2,rel)  toelrancia relativa
+
+
+
+
+
+
+
+
+
