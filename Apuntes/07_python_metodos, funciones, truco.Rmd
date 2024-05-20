@@ -1,0 +1,95 @@
+---
+title: "funciones pyhton"
+output:
+  pdf_document: default
+  html_document: default
+date: "2024-05-19"
+---
+
+# funciones
+
+def suma(x, y):
+  ...
+  ...
+  return x+y
+  
+
+para usar
+
+suma(2,3)
+
+  
+# metodos, clases
+
+class clase(object):
+  def suma(self,x,y):
+    self.resultado=x+y
+    return self.resultado
+    
+    
+para usar
+
+operacionsuma = clase()
+
+operacionsuma.suma()
+
+
+# sin retorno
+
+def saludar():
+  name = str(input("introduce tu nombre))
+  if name:
+    print("hola")
+  else:
+    print("nada")
+    
+
+no es necesario el return porque no queremos devolver nada
+
+# truco
+
+en la funcion anterior "if name" sera verdadero si no esta vació.
+
+
+# detener funcion con return, delver varios valores
+
+con return se puede parar la función por ejemplo en un condicional if
+
+se puede retornar una dupla o mas
+
+a los parametros se les pueden asignar valores por defecto.
+
+#muchas variables
+
+def suma(*args):
+  return sum(*args)
+  
+con el *args pueden ingresar objetos iterables como listas duplas, etc.
+
+# funciones lambda
+
+doble = lambda x:2*x
+cuadrado = lambda x:x**2
+
+cuadrado(5)=25
+
+# ejemplo lambda functools
+
+from functools import reduce
+
+filetered = list(filter(lambda x: (x*2>8) ,datos))
+
+maped = list(map(lambda x: x*2=,datos))
+
+reduced: reduce(lambda x, y: x+y ,data)
+
+
+
+
+
+
+
+
+
+
+
