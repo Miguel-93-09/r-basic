@@ -1,0 +1,26 @@
+---
+title: "chunks entre lineas"
+author: "MARK"
+date: "2024-05-20"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# chunks entre lineas
+
+la razi cuadrada de 64 es `r sqrt(2)`
+
+nota: dejar espacio entre formulas latex y chunks r
+
+
+# chunk oculto para hacer calculos que no se vean 
+
+```{r sigueinte, echo=FALSE, results='hide'}
+
+x=10+20
+
+```
+
+La suma es igual a `r x`
+
