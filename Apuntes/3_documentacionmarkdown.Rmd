@@ -1,0 +1,76 @@
+---
+title: "3_docuemtnacion R markdown"
+author: "MARK"
+date: "2024-05-21"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Título 1
+## titulo 2
+...
+###### titulo 6
+
+para que aprezan intro, tiene que haber
+
+dos intros.
+
+
+# listas no ordenadas
+
+*primer item
+*segundo
+  +sub 1.2
+  +sub1.3
+  
+#listas ordenadas
+
+1.a
+2.s
+    *a
+    *d
+
+
+cursiva: *cursiva*
+o bien: _cursiva_
+
+negrita: **negro*
+
+elevar indices:   nota^2^
+
+para tachar: ~~tachado~~
+
+
+
+
+
+guion corto: --
+gon largo: ---
+
+elipsis: ...
+
+ecuaciones en linea: $x^2$
+
+
+linea division corta
+
+***
+
+> citar en bloque citas largas textuales
+
+
+
+
+
+# enlaces
+
+[nombre que aparece](enlace)
+
+#imagen
+
+![](../../r-basic/ejercicios/ej2.png)
+
+con ../ se sube un nivel
+
+
