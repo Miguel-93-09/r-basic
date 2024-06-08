@@ -1,0 +1,89 @@
+---
+title: "2_funcion y orden de vectores"
+author: "MARK"
+date: "2024-05-22"
+output: html_document
+---
+
+# mapeos
+
+se pued edirectamne para operaciones sencillas
+
+si x es vector, basta con
+
+f(x), pe:
+
+```{r}
+x = 1:10
+
+x^2
+
+2^x
+
+x+2
+
+
+
+```
+para aplicar funciones a cada entrada vector
+
+
+sapply(vector, FUN = funcion)
+
+```{r}
+cd=function(x){summary(lm((1:4)~c(1:3,x)))$r.squared}
+cd(4)
+
+sapply(x, FUN = cd)
+
+```
+
+# OPERACIONES ENTRE DOS O MÁS VECTORES ELEMENTO A ELEMENTO
+
+```{r}
+1:10+1:10+1:10
+
+(1:10)^(1:10)^(1:10)
+
+```
+ MÁS COMPLEJAS, se aplican entrada a entrada
+ 
+```{r}
+n=1:100
+
+n^2+2
+
+```
+ 
+# Funciones utiles
+
+length(x)
+max()
+min()
+sum() tipo reduce
+prod() tipo  reduce 
+mean() promedio
+diff() diferencia entre numeros
+cumsum()  suma acumulada
+cumpord prod acumulado
+
+cummax va dejando el maximo hasta el momento
+cummin va dejando el minimo hasta e momento
+
+## orden
+sort() ordena de forma creciente
+rev()  inverte
+
+
+```{r}
+sort(n)
+```
+
+
+
+
+  
+
+
+
+

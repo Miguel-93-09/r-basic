@@ -1,0 +1,25 @@
+---
+title: "bin newton"
+author: "MARK"
+date: "2024-05-22"
+output: html_document
+---
+
+```{r}
+binomionewton2= function(a,b){
+  a^2+2*a*b+b^2
+}
+```
+
+para caso n general
+
+```{r}
+binomionewton = function(a,b,n){
+  c= c(0:n);
+  sum(choose(n,c)*a^(n-c)*b^(c))
+}
+
+binomionewton(2,1,2)
+
+```
+

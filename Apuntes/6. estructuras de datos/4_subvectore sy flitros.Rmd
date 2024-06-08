@@ -1,0 +1,98 @@
+---
+title: "subvectores"
+author: "MARK"
+date: "2024-05-23"
+output: html_document
+---
+
+# subvector
+
+indices enmpiezan en 1
+
+vector[i] donde i es un vector extrae esas posiciones
+
+vector[-i] todas menos la intrada i
+vector[-x] todas menos las posiciones del vector dado
+
+```{r}
+x=1:20
+
+x[-1]
+x[-c((1:10),12)]
+
+
+```
+ir a los ultimos
+
+x[length(x)]  penultimo
+x[length(x)-1] antepenultimo
+
+rescatar datos en orden inverso
+x[b:a] si v>a entonces va en sentido inverso
+
+de hecho se le pueden dar en cualquier orden
+
+```{r}
+x[c(5,7,2,3)]
+
+```
+
+
+
+#filtros
+
+elemtnos que buscan ciertas condiciones logicas
+
+
+recordar que 
+!= :significa distintos de
+| : significa o
+>=
+<=
+
+```{r}
+x[x>10]
+```
+
+# filtrador de posiciones
+
+which("x cumpe condicion") inidices de TODAS las entradas
+which.min()  la primera que cumple el minimo indice
+which.max() la primera que cumple el maximo indice
+which(x==min(x)) todas las que son iguales al minimo indices
+which(x==max(x)) todas las que son iguales al minimo indices
+
+```{r}
+y= c(1:10,1,1,1,10,10)
+which.min(y)  
+which.max(y) 
+which(y==min(y)) 
+which(y==max(y)) 
+
+```
+
+# como funciona, obteniendo vector false true, parece a un mapeo
+
+
+```{r}
+x%%2==0
+
+#si aplicamos x[x%%2] se queda con los TRUE 
+
+```
+# empleando dos vectores para filtar logicamente
+
+```{r}
+e1=1:10
+e1
+e2=seq(2,20,by=2)
+e2
+
+e1[e2%%2==1]
+
+e1[e2%%e1==0]
+
+
+```
+
+

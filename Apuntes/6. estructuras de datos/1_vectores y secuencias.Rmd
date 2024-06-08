@@ -1,0 +1,63 @@
+---
+title: "1_vectores"
+author: "MARK"
+date: "2024-05-22"
+output: html_document
+---
+
+
+vector, secuencia ordenada de datos
+
+tipos:
+-logicos TRUE FALSE
+-enteros
+-numeric :reales
+-complex
+-character: palabras
+
+todas entradas han de ser del mismo tipo
+
+```{r}
+c(1,2,3)
+#scan() entrada por teclado separadas por espacios y termina con doble enter
+#fix() modificar entrada puntualmente
+y=rep("x",7)   #vector con x en tiene entradas
+z=rep(y,2)
+z
+
+```
+
+parametro what = character, por ejemplo convierte entradas a caracter pro lo que ya no seria necesario agregarlas al ingresar datos
+
+#progresiones y secuencias
+
+secuencia: avanza en numero constante
+
+seq(a,b,by=d) del a al b de d en d pasos, si se pasa se queda en el ultimo dentro del rango, todos los nuemros pueden ser reales
+
+seq(b,a,by=-d) naturalmente b>a y es secuencia regresiva
+
+seq(a,b, legth.out=c)  c numeros a y b incluidos y 5 entre los mismos repartidos equidistantes
+
+```{r}
+# longitud paso x=(b-a)/(c-1)
+(35-4)/(6)
+
+```
+seq(a,by=d,lenght.out=c) empieza en a y crea sucesion de tamaño c incluyendo a, pero de d en d
+
+a:b   secuencia de numeros de uno en uno  todos funcionan en $\mathbb{Z}$
+b:a   si b>a entonces disminuye de uno en uno
+-a:b  igual que anterior pero desde -a
+-(a:b) primero hace lo mismo que el anterior y luego cada entrada se multiplica por -1
+
+```{r}
+seq(2,by =2,length.out=20)
+print(seq(17,98,length.out=30),digits = 4)
+```
+
+ 
+
+
+
+

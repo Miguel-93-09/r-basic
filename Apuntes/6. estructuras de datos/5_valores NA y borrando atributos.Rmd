@@ -1,0 +1,77 @@
+---
+title: "NA"
+author: "MARK"
+date: "2024-05-24"
+output: html_document
+---
+
+```{r}
+x=1:10
+
+x[3]=2
+x
+#se pueden sobreescribir posiciones como en fix
+```
+
+se puede expandir vectores
+```{r}
+x[11]=1
+x
+```
+se puede moificar varias entradas a la vez
+
+```{r}
+x[c(2,3,4)]=c(1,1,1)
+x
+```
+se pueden extender mucho más alla pero aparecen NA
+
+```{r}
+x[15]= NA
+x
+```
+se pueden eliminar NA, por ejemplo
+
+```{r}
+sum(x,na.rm=TRUE)
+
+```
+
+```{r}
+#which(x==NA) nos dara error no esta pensada para ello en su lugar se usa
+
+is.na(x)
+which(is.na(x)) # para ver posiciones
+x[which(is.na(x))]
+```
+# subvectores por filtro, ya sea vecor posiciones o por vector logico
+
+
+```{r}
+x[is.na(x)]
+```
+Podriamos entonces sustituir valores NA por otro más convenientes
+
+```{r}
+x[is.na(x)]= mean(x,na.rm=TRUE)
+x
+```
+podemos hacer operaciones de funciones que no permitian por parametro na.rm, como cumsum
+
+```{r}
+x=c(1:10,rep(NA,5))
+x
+
+cumsum(x[!is.na(x)])
+
+```
+
+#borrar atributos
+
+Hay una peligrosa que es "na.omit(x)" que quita los NA del vector, aveces util
+en la función señalada surgen atributos si queremos quitarlos
+
+attr(x,"atributo")=NULL
+
+
+
