@@ -8,36 +8,29 @@ date: "2024-05-13"
 
 # Cambiar directorio de trabajo de sesion
 
-session -> set working...
+session -\> set working...
 
-fies pane - significa a la carpeta que se encuentra en el navegador
-project - a la capeta general del proyecto
-source file location - a la ubicación donde esta este mismo archivo
+files pane - significa a la carpeta que se encuentra en el navegador project - a la capeta general del proyecto source file location - a la ubicación donde esta este mismo archivo
 
-# Guardar variable e historial 
+# Guardar variable e historial
 
-session -> save workspace as
-
+session -\> save workspace as
 
 # Comentar
 
-con # en parte de codigo
-
+con \# en parte de codigo
 
 #ayuda
 
-Help-> markdown quick reference  (ayuda rapida de markdown)
+Help-\> markdown quick reference (ayuda rapida de markdown)
 
 tambien cheatsheet de R markdown
 
-help() ayuda dentro va la funcion
-?** igual que anterior
+help() ayuda dentro va la funcion ?\*\* igual que anterior
 
 #instalar paquetes
 
-install.packages("nombrepquete", dep=TRUE)   ""instalar un paquete""
-library(nombre paquete)  "ya sin comillas"
-
+install.packages("nombrepquete", dep=TRUE) ""instalar un paquete"" library(nombre paquete) "ya sin comillas"
 
 Cada que se reinicia sesion hay que vovler a cargar librerias usada
 
@@ -47,14 +40,6 @@ si es descargado, entonces insttall from package files y elegirlo.
 
 siempre que aparezca compilacion decir que si, si no no hay tanto problema
 
-
 # Reiniciar R
 
-Si se atora entonces en session esta restart r
- tambien el boton rojo aborta tarea
- 
- 
-
-
-
-
+Si se atora entonces en session esta restart r tambien el boton rojo aborta tarea
