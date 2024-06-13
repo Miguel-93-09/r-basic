@@ -10,7 +10,7 @@ print("hola") para scripts
 x=7
 print(x)
 
-admite variable sy todo tipo de datos pero
+admite variables y todo tipo de datos pero
 
 si se quieren combinar tipos de datos, todos deben ser str()
 
