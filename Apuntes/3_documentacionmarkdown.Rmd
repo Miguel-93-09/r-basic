@@ -35,7 +35,7 @@ dos intros.
 cursiva: *cursiva*
 o bien: _cursiva_
 
-negrita: **negro*
+negrita: **negro**
 
 elevar indices:   nota^2^
 

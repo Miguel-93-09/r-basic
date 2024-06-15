@@ -28,7 +28,7 @@ os$listdir(".") # con $ se accede a metodos, funciones desde R, no el punto como
 # py_run_file("modulo")
 ```
 
-una ves hecho lo anterior se trabaja como si fuer auna funcion en R
+una ves hecho lo anterior se trabaja como si fuer auna funcion en R, creadas por uno mismo
 
 # importando funciones sin covnertir
 
