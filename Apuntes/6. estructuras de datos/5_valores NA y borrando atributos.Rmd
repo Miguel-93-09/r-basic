@@ -43,6 +43,7 @@ sum(x,na.rm=TRUE)
 is.na(x)
 which(is.na(x)) # para ver posiciones
 x[which(is.na(x))]
+x[is.na(x)]
 ```
 # subvectores por filtro, ya sea vecor posiciones o por vector logico
 
