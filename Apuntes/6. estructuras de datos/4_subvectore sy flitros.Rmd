@@ -77,7 +77,7 @@ which(y==max(y))
 ```{r}
 x%%2==0
 
-#si aplicamos x[x%%2] se queda con los TRUE 
+#si aplicamos x[x%%2==0] se queda con los TRUE 
 
 ```
 # empleando dos vectores para filtar logicamente
