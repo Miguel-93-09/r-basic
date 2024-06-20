@@ -1,0 +1,154 @@
+---
+title: "matrices"
+output: html_document
+date: "2024-06-20"
+---
+
+#matrices
+
+se crean usando
+matrix(vector, nrow=n,byrow=valor logico)
+
+nrow numero de filas
+byrow TRUE es por filas, sino por columnas , por defecto es FALSE, se ocontruye por columnas
+ 
+-son homogeneas
+
+```{r}
+matrix(1:12, nrow=4)
+
+matrix(1:12, nrow=4, byrow = TRUE)
+```
+
+si el numero filas no es divisor, entonces va a rellenar repitiendo los numeros en bucle
+
+```{r}
+matrix(1:12, nrow=7)
+
+matrix(1:12, nrow=7, byrow = TRUE)
+```
+
+
+#ejercicio, matriz cosntante
+
+```{r}
+matrix(rep(0,15), nrow=3)
+
+```
+
+```{r}
+M=matrix(1:12, nrow=3)
+```
+
+# construyendo matriz con vectores 
+
+rbind(vec1,vec2..)   las contruye por filas
+cbind(...)           contruye por columnas
+
+-vectores misma longitud
+-sirve para concatenar vectores a matriz, incluso matrices con matrices
+
+diag(vector) crea matriz diagonal
+si se le da un solo numero crea matriz identidad del orden del numero dado
+
+```{r}
+
+rbind(M,c(1,2,3,4))
+
+cbind(M,c(1,2,3))
+
+rbind(M,M)
+
+cbind(M,M)
+
+```
+
+```{r}
+diag(c(1,2,3))
+diag(5)
+
+```
+ 
+# submatrices
+
+matriz[i,j] elemento renglon i, columna j
+matriz[i,] toda la fila i
+matriz[,j]  toda columna j
+ 
+si i o j es un vector de indices, entonces obtenemos la submatiz con filas o columnas respectivamente, pertenecientes al vector i(j)
+
+
+```{r}
+M
+
+M[2,]
+M[,1]
+M[1:2,3:4]
+```
+
+se puede incluso reordenar la matriz con dichos indices
+
+```{r}
+M[c(2,1,3),]
+M[c(2,1,3),c(3,2,1)]
+```
+
+#funciones matrices
+
+diag()  si se le pasa una matriz ya creada, entonces saca su diagonal, incluso si no es cuadrada
+nrow()   numero renglones
+ncol()  numero de columnas
+dim()  dimension de la matriz, PRIMERO RENGLON, LUEGO COLUMNA
+
+```{r}
+dim(M)
+```
+sum()
+prod()
+mean()
+
+no cambian como si fueran vectores
+
+# funciones por renglones o columnas
+
+colSums()
+RowSums()
+colMeans()
+rowMeans()
+
+```{r}
+M
+colSums(M)
+rowSums(M)
+colMeans(M)
+rowMeans(M)
+```
+
+# APLICANDO FUNCIONES CREADAS POR USUARIO O ESPECFICAS
+
+apply(Matriz, MARGIN = 1, FUN = function(x){sqrt(x)})
+MARGIN si es 1 entonces sera aplicada por filas, si es 2 por columnas, y c(1,2) si es a cada elemento
+
+la logica es que primero aplica la funcion mas interna a cada elemento si no es de tipo de reduce, como el mapeo de vectores,
+y luego si hay algun tipo reduce entonces lo aplica a los datos
+
+PE DISTANCIA EUCLIDEANA AL ORGIEN
+
+```{r}
+M
+apply(M, MARGIN = 1, FUN = function(x){sqrt(sum((x^2)))})
+
+apply(M, MARGIN = 2, FUN = function(x){sqrt(sum((x^2)))})
+```
+
+
+
+importante, si la funcion que se aplica no es de tipo reduce, entonces se aplicara elemento a elemento como si fuera tipo c(1,2)
+
+```{r}
+M
+apply(M, MARGIN = 1, FUN = function(x){sqrt(x^2)})
+
+apply(M, MARGIN = 2, FUN = function(x){sqrt(x^2)})
+```
+

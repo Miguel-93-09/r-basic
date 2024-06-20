@@ -1,0 +1,89 @@
+---
+title: "operaciones de matrices"
+output: html_document
+date: "2024-06-20"
+---
+
+# operaciones
+
+t(Matriz) :La transpuesta
++         :sumar matrices
+*         :producto escalar
+%*%       :multiplicar matrices
+
+si se hace
+MATRIZ * MATRIZ, entonces se calula productor entrada por entrada, como si fuesen vectores
+
+mtx.exp(matriz,n)  :eleva la matriz a n
+del paquete Biodem, solo aproxima
+
+matriz %% escalar  :igual que el anterior
+del paquete expm
+
+```{r}
+a=c(2,0,2,1,2,3,0,1,3)
+b=c(3,2,1,1,0,0,1,1,1)
+
+A = matrix(a,nrow=3, byrow = TRUE)
+B = matrix(b,nrow=3, byrow = TRUE)
+
+
+A
+B
+
+A*B
+
+A%*%A
+mtx.exp(A,2)
+
+B%*%B%*%B
+mtx.exp(B,3)
+```
+#OPERACIONES, FUNCIONES DE MATRICES
+
+det(matriz)  calcula determinante
+qr()$rank    rango de matriz
+solve()      calcula inversa de matriz invertible
+
+esta ultima tambien resuelve sistemas de ec lineales se usa
+solve(matriz,b) donde b es vector de temrinos independientes
+ 
+## valores y vectores propios
+
+eigen(matriz)  calcula valroes (vaps) y vectores propios (veps)
+
+eigen()$values  da valores propios decreciente por su valor absoluto, repetidos por su multiplicidad
+eigen()$vectors   matriz cuyas columnas son veps de la matriz
+
+```{r}
+eigen(A)
+
+round(eigen(A)$values,2)
+round(eigen(A)$vectors,2)
+
+# se debe cumplir igualdad, donde M matriz original, D valores propios, P matriz vectores propios
+# P*D*P^{-1} = A
+
+round(eigen(A)$vectors %*% diag(eigen(A)$values) %*% solve(eigen(A)$vectors),2)
+
+#efectivamente
+
+round(eigen(A)$vectors %*% diag(eigen(A)$values) %*% solve(eigen(A)$vectors),2) == A
+
+
+
+```
+
+IMPROTANTE
+
+siempre se trata que los vectores propios sean linealmente independientes, pero no siempre se puede, entonces naturalmente no 
+se tendra una inversa
+
+#matrices complejas
+
+Para este caso, la mayoria de las funciones se aplican, pero el det por ejemplo, NO. entonces por algebra lineal sabemos que 
+el determinante es igual a producto de los valores propios, lo que implica que se puede calcular como
+
+prod(eigen(M)$values)
+
+
