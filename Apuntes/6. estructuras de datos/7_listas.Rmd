@@ -1,0 +1,51 @@
+---
+title: "lsitas"
+output: html_document
+date: "2024-06-20"
+---
+
+# list
+
+diferentes objetos, no del mismo necesariamente
+
+list()  crea una lsita
+
+para componente concreta 
+list$componente
+
+tambien podemos obtener el bojeto usando dobles corchetes, se obtiene el objeto mismo
+list[[]]
+
+```{r}
+x = c(1,2,3,4,1,2,3,4,1)
+
+l = list(nombre = "temperaturas", datos = x, media = mean(x), sumas = cumsum(x))
+
+l
+```
+```{r}
+l$sumas
+# se puede operar ya que obtenemos un vector
+l$sumas*2
+
+
+#similarmente
+l[[2]]*2
+```
+
+si solo se usa un corchete entonces se obtiene una lista y no se podra operar
+
+```{r}
+l[2]*2
+```
+# obteniendo informacion de la lista
+
+str(list)  estructura interna de la lista, más completo
+
+names(list)  nombres de las list
+
+```{r}
+str(l)
+names(l)
+```
+

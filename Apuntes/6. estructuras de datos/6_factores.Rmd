@@ -1,0 +1,108 @@
+---
+title: '6'
+output: pdf_document
+date: "2024-06-19"
+---
+
+#factor
+
+es como un vector, pero con atributos que clasifican, como "tags", cada factor se llama "level", por defecto estan ordenados en orden alfabetico
+
+para crear
+
+primero se crea un vector
+y luego se hace factor
+
+```{r}
+
+nombres = c("ad","me", "lo", "me", "ad")
+# creamos factor
+
+nombres_f = factor(nombres)
+nombres_f
+
+```
+tambien se puede usar "as.factor()"
+
+la diferencia esta en que esta ultima convierte el vector en factor, y toma lo que ya essta como factores, 
+escomo factor() pero sin modificiaciones
+
+factor() admite parametros:
+
+levels=  #especifica niveles, permite añadirlos sobre todo como prevision
+labels=  #cambia nombre de etiquetas
+
+levels(factor) #nos enlista los niveles del factor
+
+```{r}
+nombres_f2 = factor(nombres, levels= c("ad", "me", "lo", "as"))
+nombres_f2
+
+
+```
+cambiar etiquetas, intercambiandolas por las de levels en el orden dado por el vector
+
+```{r}
+nombres_f3 = factor(nombres, levels= c("ad", "me", "lo", "as"), labels = c("adq", "meq", "lsq", "loq"))
+nombres_f3
+
+
+```
+
+```{r}
+levels(nombres_f3)
+```
+
+levels() permite cambiar nombres del factor directamente
+
+```{r}
+levels(nombres_f3) = c("a","b","c","d")
+nombres_f3
+
+```
+se peuden repetir etiques para agrupar
+
+
+```{r}
+levels(nombres_f3) = c("a","a","a","d")
+nombres_f3
+
+```
+# factor ordenado
+niveles siguen un orden
+
+ordered(vector, labels=c())
+
+```{r}
+notas = c(1,4,3,2,3,2,4,3,1,2,3,4,2,3,4)
+
+ordered(notas, labels=c("min","med", "reg", "max"))
+
+
+```
+#improtante
+
+en ambos casos, tanto factor como ordered, se etiquetan acorde al orden natural de los numeros u orden alfabetico si solo se usa lables.
+
+
+```{r}
+notas = c("d","a","b","c", "a")
+
+ordered(notas, labels=c("min","med", "reg", "max"))
+
+factor(notas, labels=c("min","med", "reg", "max") )
+
+
+```
+tambien se puede forzar el orden
+
+```{r}
+ordered(notas, levels= c("b", "a", "d", "c"), labels = c("min","med", "reg", "max"))
+
+```
+añadiendo etiquetas como prevision
+
+```{r}
+ordered(notas, levels= c("b", "a", "d", "c", "f"), labels = c("min","med", "reg", "max", "super"))
+
+```
