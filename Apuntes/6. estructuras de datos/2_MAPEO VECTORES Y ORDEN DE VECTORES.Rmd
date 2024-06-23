@@ -65,7 +65,7 @@ prod() tipo  reduce
 mean() promedio
 diff() diferencia entre numeros
 cumsum()  suma acumulada
-cumpord prod acumulado
+cumprod prod acumulado
 
 cummax va dejando el maximo hasta el momento
 cummin va dejando el minimo hasta e momento
