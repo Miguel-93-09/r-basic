@@ -1,0 +1,12 @@
+---
+title: "crear proyecto en R con github"
+output: html_document
+date: "2024-06-23"
+---
+
+primero se crea el nuevo proyecto en github en linea 
+
+luego desde R se da en FILE - NEW PROJECT - VERSION CONTROL - SELECCION URL DEL
+REPOSITORIO CREADO importante: crearlo en la carpeta de github
+
+finalmente, se añade desde git desktop la carpeta del proyecto
