@@ -1,0 +1,49 @@
+---
+title: "texto y curvas a grafico"
+output: html_document
+date: "2024-07-19"
+---
+
+# TEXTO
+
+text(x,y,labels = "...") añade en las coordenadas x,y el tecto especificado, se pueden pasar vectores
+
+pos: indica la posicion del texto alrededor de las coordendas, con los valores:
+
+- 1:abajo
+- 2:izquierda
+- 3:arriba
+- 4:derecha
+- 5: en el centro del punto
+
+```{r}
+alumnos = c(1:9)
+calif = c(6,5,8,7,10,3,9,2,10)
+
+plot(alumnos,calif)
+text(alumnos,calif, labels = rep(c("S","A","B"), 3), pos = c(rep(2, 6),1,3,1) )
+
+```
+
+
+# LINEA
+
+lines(x,y) añade linea poligonal que une puntos x_i,y_i donde x,y, son vectores numericos
+curve(curva) : añade grafica de una curva a grafico existente, mdiante expresion algebraica o su nombre  si ha sido definida previamente.
+ - add= TRUE : o no se añade
+ 
+
+```{r}
+f = function(x){x^2}
+
+plot(f , xlim=c(-3,3))
+lines(-3:3, (c(-3:3))^2, lwd=2, lty="dotted", col="red")
+#para ver puntos por los que pasa
+points(-3:3, (c(-3:3))^2, pch = 19)
+curve(x^3, lty= 2, col = "blue", add=TRUE)
+
+# quieres modificar rango para que sea vea bien, se tiene que hacer en el plot, ya que las demas 
+#propiedades no modifican rangos ni nada del original
+
+```
+

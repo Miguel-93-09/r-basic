@@ -1,0 +1,50 @@
+---
+title: "plot"
+output: html_document
+date: "2024-07-19"
+---
+
+# PLOT
+
+grafico basico coordenadas (x,y)
+
+```{r}
+x = c(1,2,3,4,7)
+y = c(3,7,8,9,9)
+plot(x,y)
+```
+
+## fig.
+
+dar tab, salen varias opciones
+
+```{r, fig.cap = "Grafica 1", fig.align='center'}
+x = c(1,2,3,4,7)
+y = c(3,7,8,9,9)
+plot(x,y)
+```
+
+
+Por default si no se proporciona vector y, entonces el unico vector que se da sera y, x será vector 1:length(x)
+
+```{r, fig.cap = "Grafica 2", fig.align='center'}
+x = c(1,2,3,4,7)
+y = c(3,7,8,9,9)
+plot(x^y)
+```
+
+
+# representando funciones
+
+si se tiene una funcion f , entonces basta con hacer
+
+plot(f)
+
+```{r, fig.cap = "Grafica f", fig.align='center'}
+f = function(x){x^2}
+plot(f)
+```
+
+
+
+

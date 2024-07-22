@@ -1,0 +1,63 @@
+---
+title: "plots 2"
+output: html_document
+date: "2024-07-19"
+---
+
+# Parametros
+
+-   log = "y o x": modifica escala del eje señalado
+-   main("titulo") : titulo al grafico
+-   expression() : expresion en forma latex
+-   xlab("etiqueta"): titulo eje x
+-   ylab("etiqueta"): titulo eje y
+-   pch=n : cambiar forma del puntito por otros del 1 al 25
+-   cex="" : cambiar tamaño de dichos puntitos 1/2 es la mitad, 2 el doble
+-   col="nombre de color en R" color de los simbolos, consultar html
+-   bg="nombre color relleno" en el  caso de simbolos que aplique
+ 
+
+```{r}
+plot(exp(1:20), xlab = "indice", ylab = expression(e^{1:20}), main ="escala lineal")
+```
+
+## Escala log eje y
+
+```{r}
+plot(exp(1:20), log = "y", xlab = "indice", ylab = expression(e^{1:20}), main ="escala log")
+```
+
+## ejemplos fibonacci con formula
+
+el simbolo elegido 
+
+```{r}
+n = 1:20
+fib = (1/sqrt(5))*((1+sqrt(5))/2)^n - (1/sqrt(5))*((1-sqrt(5))/2)^n
+plot(fib, xlab ="n", ylab = expression(F[n]),main = "Fibonacci", pch = 22, cex = 1.5, col = "orchid2", bg = "orchid1")
+
+```
+
+
+
+# multicolumna
+
+par(mfrow = c(1,2)) = queire decir un renglon dos columnas
+
+```{r, fig.align='center'}
+n = 1:20
+fib = (1/sqrt(5))*((1+sqrt(5))/2)^n - (1/sqrt(5))*((1-sqrt(5))/2)^n
+
+par(mfrow = c(1,2)) #se inicia
+
+plot(fib, xlab ="n", ylab = expression(F[n]),main = "Fibonacci", pch = 22, cex = 1.5, col = "orchid2", bg = "orchid1")
+
+plot(fib, xlab ="n", log= "y",ylab = expression(F[n]),main = "Fibonacci log", pch = 22, cex = 1.5, col = "orchid2", bg = "orchid1")
+
+
+par(mfrow = c(1,1)) #se cierrra, reinicia formato
+```
+
+
+
+
