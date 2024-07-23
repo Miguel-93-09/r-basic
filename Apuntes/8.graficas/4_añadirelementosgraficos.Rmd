@@ -6,7 +6,7 @@ date: "2024-07-19"
  
 # puntos
 
-cuando se añade una capa grarifa a un grafico, el grafico ya no se puede modificar, se tinee uqe hace directamente sobre el original, 
+cuando se añade una capa grafica a un grafico, el grafico ya no se puede modificar, se tiene que hace directamente sobre el original, 
 
 points(x,y) : añade punto a la coordenada señalada. Si en x, y se dan vectores se añadira dicho conjunto de puntos.
 

@@ -36,7 +36,7 @@ curve(curva) : añade grafica de una curva a grafico existente, mdiante expresio
 ```{r}
 f = function(x){x^2}
 
-plot(f , xlim=c(-3,3))
+plot(f , xlim=c(-3,3),ylim = c(-10,10))
 lines(-3:3, (c(-3:3))^2, lwd=2, lty="dotted", col="red")
 #para ver puntos por los que pasa
 points(-3:3, (c(-3:3))^2, pch = 19)
