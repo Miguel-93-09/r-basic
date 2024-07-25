@@ -1,0 +1,71 @@
+---
+title: "segmentos flechas figuras"
+output: html_document
+date: "2024-07-23"
+---
+
+
+#segments
+
+segments(x_1,y_1,x_2,y_2)
+
+```{r}
+plot(x^2, type = "l")
+segments(1,0,3,2, lwd=2, col ="red")
+
+```
+
+
+# arrows
+
+similar a anterior pero angle indica que tan abierta es la flecha
+code = : 1 punta izqueirda, 2 punta a derecha, 3 doble punta
+length señala el largo de la punta de flecha
+
+```{r}
+plot(x^2, type = "l")
+
+arrows(1,0,3,2, lwd=2, col ="red", code = 2, length = 0.5, angle = 10)
+
+
+```
+
+
+
+# symbols
+
+estrella en el punto (3,25)
+
+cbind señala los angulos entre lineas de la figura, si se ponen 8, entonces tendremos estrella de 4 puntas, si son 10 , 5 etc
+inches señala que tan grande se quiere respecto al centro
+
+```{r}
+plot(x^2, type = "l")
+
+symbols(3, 25, stars = cbind(1,.5,1,.5,1,.5,1,.5,1,.5), lwd=2, col ="red", add = TRUE, inches = .5)
+symbols(3, 25, stars = cbind(1,.5,1,.5,1,.5,1,.5,1,.5), lwd=2, col ="red", add = TRUE, inches = 1)
+
+
+```
+
+
+
+# polygon
+
+
+```{r}
+plot(x^2, type = "l")
+
+polygon(c(2,3,2.5),c(2,2,10), lwd=2, col ="gold", lty = 1)
+
+#si queremos que quede con lineas rayadas se usa: donde angle es conrespecto a eje x
+
+
+polygon(c(4,5,4.5),c(2,2,10), lwd=2, col ="gold", lty = 3, density = 2, angle=90)
+
+```
+
+
+
+
+

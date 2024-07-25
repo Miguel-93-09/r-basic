@@ -1,0 +1,31 @@
+---
+title: "leyendas graficos"
+output: html_document
+date: "2024-07-23"
+---
+
+# añadir leyendas
+
+legend(posicion, 
+      col=c("...","...",...), 
+      lwd = $numero , 
+      legend = c("...","...",...))
+
+posicion se puede poner, 
+"bottom","bottomright","bottomleft"
+"top",...
+"center",...
+
+```{r}
+x = seq(0,2*pi,0.1)
+
+plot(x,sin(x),type = "l", col="blue")
+lines(x,cos(x),col="green")
+lines(x,tan(x),col="purple")
+legend("bottomleft",
+       col = c("blue","green","purple"), 
+       lwd = 2,
+       legend=c("seno","coseno","tangente"))
+
+```
+
