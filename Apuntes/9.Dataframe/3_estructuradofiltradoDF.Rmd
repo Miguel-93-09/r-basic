@@ -1,0 +1,102 @@
+---
+title: "estructuradoyfiltradodataframes"
+output: html_document
+date: "2024-07-26"
+---
+
+```{r}
+df = iris
+```
+# obteniendo nombres generales
+
+vector con identificadores de filas, siempre seran palabras por lo que salen entre comillas, es el numero más a la izquierda, en este caso el numerador de las observaciones 
+```{r}
+rownames(df)
+```
+
+
+
+vector con identificadores de columnas, es como names()
+```{r}
+colnames(df)
+```
+
+
+
+list con dos vectores, identificador de fila y nombre de columas, es decir, ambos anteriores
+```{r}
+dimnames(df)
+```
+
+
+
+
+# dimensiones dataframe
+
+numero de renglones, 
+numero de columnas,
+numero de filas y columnas
+
+```{r}
+nrow(df)
+ncol(df)
+dim(df)
+```
+
+# obteniendo informacion de dataframe
+
+se usa
+df$
+
+y con tab apareceran sus variables, a las que podemos acceder, en este caso son columnas.
+
+
+```{r}
+df$Sepal.Length
+df$Sepal.Length[1:10]
+```
+
+ademas las variables de DF no son varaibles propiamente por lo que no se puede aaceder a ellas, para ello deberian gaurdarse en una variable definida por nosotros, es decir, se trata de en DF como objeto completo, esto se conoce como variables internas.
+
+# subdataframes
+df[n,m]
+
+donde n y m se peuden trabajar como submatricez, extrayendo por
+intervalos
+condiciones
+numeros naturales
+nada
+vectores
+incluso para reordenar filas o columnas
+
+** importante notar que en el caso que se quieren todas columnas, no obviarlo, es decir poner coma y dejar en blanco la info de las columnas
+adempas, para filtrados la info a filtrar se pone en los renglones, y columnas tambien vacias**
+
+```{r}
+df[1:10,2:4]
+df[1:10,]
+df[1:10,c(5,1)]
+```
+
+tambien empleando filtrados
+
+```{r}
+df$Species == "setosa" & df$Sepal.Width > 4
+df[df$Species == "setosa" & df$Sepal.Width > 4,]
+```
+
+no olvidar que lo ultimo obtenido sigue siendo data frame, por ende, se puede volver a aplicar filtrado o seleccion, pe
+```{r}
+df[df$Species == "setosa" & df$Sepal.Width > 4,][c(3,2),c(5,1)]
+```
+
+
+incluso podemos obtener la tabla ya con columnas seleccionadas u ordenadas
+```{r}
+
+df[df$Species == "setosa" & df$Sepal.Width > 4,c(5,1)]
+```
+
+
+
+

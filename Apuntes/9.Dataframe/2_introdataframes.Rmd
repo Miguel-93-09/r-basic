@@ -1,0 +1,83 @@
+---
+title: "dataframes"
+output: html_document
+date: "2024-07-26"
+---
+
+# dataframes
+
+son tablas rectangulares y tienen varios sinonimos, cada columna puede tener un tipo dado de dato, por ende pueden ser diferentes. 
+
+## tipos
+
+con la intruccion:
+
+```{r}
+data()
+
+```
+
+podemos ver los que ya estan cargados por defector para usar como ejemplos.
+
+diferenciar que ls() solo lista las variables actuales. 
+
+para listar los relacionados con un solo paquete, es decir filtar, tenemos que hacer
+
+```{r}
+data(package = "ggplot2")
+```
+
+
+Para ver absolutamente toods y no solo los basicos
+
+```{r}
+data(package = .packages(all.available = TRUE))
+```
+
+
+
+consutlando dataframes
+```{r}
+?iris
+
+```
+
+
+si usamos uno que no sea nuestro mejor cargarlo en variable para recordarlo mas facilmente y no alterar el original
+
+```{r}
+df = iris
+df
+```
+
+## obteniendo info del dataframe 
+
+- head(df,n) : mostrar primeras n filas. por defecto son 6
+- tail(df,n) : como anterior pero ultimas
+- str(df)    : conocer structura global
+- names(df)  : producir vector con nombres de columnas
+
+```{r}
+head(df,5)
+```
+
+```{r}
+tail(df,5)
+```
+
+
+```{r}
+str(df) 
+names(df)
+```
+
+
+
+
+
+
+
+
+
+
+
