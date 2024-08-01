@@ -97,6 +97,13 @@ incluso podemos obtener la tabla ya con columnas seleccionadas u ordenadas
 df[df$Species == "setosa" & df$Sepal.Width > 4,c(5,1)]
 ```
 
+para arreglar el problema de los renglones mal numerados, puesto que conservan nombre de renglon anterior
 
+```{r}
+df5 = df[df$Species == "setosa" & df$Sepal.Width > 4,c(5,1)]
+rownames(df5) = c(1:length(df5$Species))
+df5
+rownames(df5)
+```
 
 

@@ -1,0 +1,54 @@
+---
+title: "guardar y carga df en distintos formatos"
+output: html_document
+date: "2024-07-26"
+---
+
+# mas parametros de read.table
+
+stringsAsFactors : R transforma por defecto las columnas de palabras en factores, es decir es TRUE, para evitar esto hay que hacerlo FALSE
+
+```{r}
+df2 = read.table("../../data/EnergyDrink", stringsAsFactors = FALSE)
+str(df2)
+head(df2)
+```
+
+por defecto
+
+```{r}
+df3 = read.table("../../data/EnergyDrink", stringsAsFactors = TRUE)
+str(df3)
+```
+
+
+## con url "https"
+instalar RCurl y cargarla
+
+usar comando
+read.table(textConnection(getURL("")),...)
+
+# distintos tipo de fichero
+
+read.csv()
+read.xls() o read.xlsx() : importar tipo excel u openofffice, pero es mejor csv
+read.mtb()  : importar de minitab. se necesita foreign
+read.spss() : tabla datos SPSS. paquete foreign
+
+## ayuda, notar que es distinto y sirve para buscar toda informacion relacionada a la palabra
+
+help.search("read")
+
+# Exportando datos a ficheros
+
+write.table(df, file="")  exportar un df a fichero, file es el nombre. parametros se pueden usar como sep o dec.
+
+```{r}
+write.table(df3, file = "./df3ejemplo.txt")
+df4 = read.table("df3ejemplo.txt", header = TRUE)
+head(df4)
+```
+
+
+
+

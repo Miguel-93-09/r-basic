@@ -1,0 +1,57 @@
+---
+title: "4_cargandodataframeR"
+output: html_document
+date: "2024-07-26"
+---
+
+# leyendo tabla
+
+para definir df desde tabla de datos contenida en un fichero:
+
+```{r}
+read.table()
+```
+
+puede estar en ordanador o en URL, se aplica al nombre del fichero o direccion entre comillas, ejemplo de URL
+
+## carga local
+
+```{r}
+df = read.table("data/bulls.dat")
+str(df)
+```
+
+### editando df
+
+header = TRUE  : si no tiene cabecera usar , por defecto es false
+
+col.names = c(...) : para especificar nombre de columas, todos en comillas
+
+
+```{r}
+df = read.table("data/bulls.dat",
+                header = FALSE,
+                col.names = c("breed", "sale_price", "shoulder", "f_free_body", "percent_ff_body","frame_scale", "back_fat", "sale_height","sale_weight"))
+head(df)
+
+```
+
+
+### modificando separador para lectura de archivos
+
+sep = "$simbolo" : por defecto "" sin espacio.
+dec = "$simbolo"           : para ver como se separan puntos decimales, por defecto "."
+
+# directo desde web
+
+solo copia el enlace, no funciona el enlace!
+```{r}
+df2 = read.table("https://www.public.iastate.edu/~maitra/stat501/satasets/morel.dat")
+```
+
+
+siempre hacer un head y un str para ver que todo este bien
+
+
+
+

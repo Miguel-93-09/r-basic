@@ -1,0 +1,98 @@
+---
+title: "6_consturidf"
+output: html_document
+date: "2024-07-28"
+---
+
+# contruir
+
+- data.frame(vec_1,vec_2,...) 
+
+de esta forma se crea el data frame, integrando las columnas de las tablas
+
+cada vector debe ser del mismo tipo, y se les asignan los nombre de la forma
+
+- nombre_variable = vector
+
+con rownames se especifican nombre de filas
+
+se puede usar el parametro stringAsFactors
+
+```{r}
+algebra = c(1,2,3)
+analysis = c(2,3,4)
+statistics = c(5,6,7)
+
+grades = data.frame(ALG = algebra, An = analysis, stat = statistics)
+str(grades)
+```
+
+otro ejemplo con rownames
+
+```{r}
+genero = c("H","M","H","M")
+edad = c(10,19,20,12)
+family = c(2,3,2,1)
+df5 = data.frame(genero, edad, family, stringsAsFactors = TRUE)
+
+row.names(df5) = c("P1","P2","P3","P4")
+df5
+
+# copia
+df6 = df5
+
+
+```
+
+3editando con fix
+
+```{r}
+fix(df5)
+```
+
+
+## añadir fila df
+
+df[numfila,] = c()
+
+- si no se añaden inmediatamente entonces crearan filas con NA
+- por lo anterior es mejor usar rbind()
+- como el vector se añade como del mismo tipo, entonces puede crear errores, notese en el siguiente ejemplo que todas las columnas se cambiaron a chr
+
+```{r}
+df6[5,] = c("H",10,2)
+df6
+```
+
+mejor hacerlo con rbind, aunque igual cambia la estructura de datos
+
+```{r}
+
+entry_5 = c("H",10,2)
+
+# es necesario hacer nuevamente la asignacion, ya que si no, no se guarda dicha fila nueva
+df5 = rbind(df5,entry_5)
+df5
+
+```
+
+# añadir columas
+
+se hace analogo al anterior pero con
+cbind(df,$nombre_columna = c())
+
+si elvector tiene un nombre se le añade dicho nombre a la columna
+# cambiando formato columna
+
+```{r}
+df5$genero = as.double(df5$genero)
+df5
+```
+
+# añadir columnas de otra forma sencilla
+
+```{r}
+df5$mascotas = c("S","N","N","S","N")
+df5
+```
+

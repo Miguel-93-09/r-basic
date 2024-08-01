@@ -1,0 +1,71 @@
+---
+title: "7_ filter  y subset df"
+output: html_document
+date: "2024-07-31"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# casting, cambiando tipos de datos
+
+as.character() as.integer() as.double() as.numeric() as.factor()
+
+## mas funciones
+
+```{r}
+
+genero = c("H","M","H","M")
+edad = c(10,19,20,12)
+family = c(2,3,2,1)
+df5 = data.frame(genero, edad, family, stringsAsFactors = TRUE)
+
+#supongamos que nos quedamos solo con hombres
+
+df6 = df5[df5$genero=="H",]
+
+# pero nos sigue saliendo el level M, para borrarlo hacemos los siguiente 
+str(df6)
+
+df_h = droplevels(df6)
+str(df_h)
+
+```
+
+### select, como filtrar columnas
+
+parecido a filtrar pero más intuitivo y funciona para filtrar columnas
+
+select(df, parametros) - starts_with("\$") : empieza con dicha palabra -
+ends_with("\$") - contains("\$")
+
+necesita tidyverse el paquete dplyr, para instalar tidyverse consultar
+documento en carpeta linux
+
+```{r}
+library(tidyverse)
+
+iris_petal = select(iris, starts_with("Petal"))
+iris_length = select(iris, ends_with("Length"))
+
+head(iris_petal)
+head(iris_length)
+
+
+```
+
+# filtrar por condicion de los datos
+
+subset(df, condicion, select = columnas)
+
+si se quiere todas filas no se pone condicion, es un poco absurdo si se
+quieren todas las columnas, no se pone select variables en condicion son
+directamente con el nombre de la misma, no como variable interna del df
+
+```{r}
+subset(iris, Species=="versicolor", select = c(1,3)) -> versicolor
+#renumerando filas
+rownames(versicolor) = 1:nrow(versicolor)  
+str(versicolor)
+head(versicolor)
+```
