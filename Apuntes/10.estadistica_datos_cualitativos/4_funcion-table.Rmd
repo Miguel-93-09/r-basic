@@ -1,0 +1,90 @@
+---
+title: "funcion_table"
+output: html_document
+date: "2024-08-06"
+---
+
+# Creando muestras aleatorias
+
+con sample se crea un vector, dando primero un vector del que se tomaran las muestras, replace significa con remplazo 
+
+```{r}
+x = sample(1:7 , size = 12, replace = TRUE)
+x
+```
+
+
+otro ejemplo, pero haciendo que el vector sea creado con niveles, es decir, como factor
+
+```{r}
+r = factor( sample(c("Si",'No') , size = 12, replace = TRUE) ) 
+r
+```
+
+
+
+# funcion table 
+
+lo que hace es crear una tabla de frencuencias absolutas unidimensional
+
+```{r}
+table(x)
+table(r)
+```
+
+notemos que en la primera tabla 6 no aparece como factor, podemos resolverlo especificando los levels con un vector
+
+
+```{r}
+x = factor(x, levels = c(1:7))
+table(x)
+
+```
+
+siempre que se requiera hay que especificar levels
+
+# entendiendo el objeto table
+
+este es un nuevo tipo de objeto, la cual es unidimensional y tecnicamente e suna tabla de contigencia
+
+podemos usar names(table(x)) para ver nombre de los niveles
+
+```{r}
+names(table(x))
+names(table(r))
+
+```
+
+
+para acceder se hace como un vector
+
+```{r}
+table(x)[1]
+```
+
+tambien se puede con el nombre del level
+
+```{r}
+table(x)['1']
+```
+
+se puede operar con las entradas
+
+```{r} 
+3*table(x)['1']
+```
+
+
+
+por ser un vector, se pueden operar todas sus entradas
+
+```{r}
+sum(table(x))
+
+sqrt(table(x))
+```
+
+
+
+
+
