@@ -1,0 +1,72 @@
+---
+title: "13_GRAFICO_MOSAICA"
+output: html_document
+date: "2024-08-13"
+---
+Las regiones rectangulares se dividen proporcionalmente,  horizontalmente respecto a primera variable, y verticalmente con respecto a respuesta
+se puede hacer usando plot de una table, o la mosaicplot, la ultima sirve para matrices
+
+```{r}
+resp = sample(c("S","N"), size = 10, replace = TRUE )
+sexo = sample(c("H","M"), size = 10, replace = TRUE )
+
+t = table(sexo,resp)
+
+plot(t)
+
+
+```
+
+
+las de tres dimensiones son mas dificles de leer, pero pueden hacerse, nota que las primeras dos variable se comportan como anteriormente, pero la tercera es como si fuese marginal
+
+
+
+```{r}
+resp = sample(c("S","N"), size = 10, replace = TRUE )
+sexo = sample(c("H","M"), size = 10, replace = TRUE )
+años = sample(1:2, size = 10 , replace = TRUE)
+
+t = table(sexo,años, resp)
+
+t
+plot(t, col = c("pink","lightblue"))
+
+
+```
+
+suele usarse el mosaico separando por variables "marginales" para entenderlo mejor, hay mas funciones que pueden usarse con
+help(mosaicplot)
+
+los paquetes vcd y vcdExtra, producen otras representaciones graficas de tablas tridimensionales interesantes,
+
+cotabplot de vcd hace las marginales de la tercera variable de golpe
+mosaic3d de vcdExtra phace uno tridimensional en ventana de aplicacion apra graficos 3d interactivos, es un cubo. Estos son algo antiguos, checar tidyverse en otro curso
+
+este ultimo tambien usa rgl
+
+** hay que instalarlos* 
+
+
+```{r}
+library(vcd)
+library(vcdExtra)
+library(rgl)
+
+cotabplot(t, col = c("pink","lightblue"))
+mosaic3d(t)
+
+
+```
+
+no funciona :c
+
+
+```{r}
+mosaic3d(t, type = "expected", box = TRUE, col = c("pink","lightblue"))
+
+```
+
+
+
+

@@ -1,0 +1,68 @@
+---
+title: "10_tablas_apartir_df_varaiblescualitativas"
+output: html_document
+date: "2024-08-12"
+---
+
+tabla con que se trabajara
+```{r}
+BE = read.table("../../data/EnergyDrink", header = T)
+head(BE)
+str(BE)
+```
+
+
+En el caso presente, no se muetran como factores, hay que modificarlo
+
+```{r}
+BE = read.table("../../data/EnergyDrink", header = T, stringsAsFactors = T)
+head(BE)
+str(BE)
+```
+
+Haciendo un resumen si todas son factor
+
+```{r}
+summary(BE)
+```
+
+solo sirve para ver info, no se puede rescatar muchos datos de la misma
+
+para calcular en un paso la table de cada variable podemos usar funcion apply:
+
+```{r}
+#MARGIN 2 es por columnas
+
+apply(BE , MARGIN = 2, FUN = table)
+
+```
+
+
+```{r}
+#MARGIN 2 es por columnas
+
+apply(BE , MARGIN = 2, FUN = table)[2]
+apply(BE , MARGIN = 2, FUN = table)$sexo
+
+```
+
+su table
+
+```{r}
+table(BE)
+
+```
+
+tambien podemos hacer tabla de ciertas variables, pe: 
+
+```{r}
+table(BE[c(1,3)])
+```
+
+
+
+
+
+
+
+

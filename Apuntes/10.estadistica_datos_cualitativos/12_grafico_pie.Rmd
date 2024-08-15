@@ -1,0 +1,35 @@
+---
+title: "12_grafico_circular"
+output: html_document
+date: "2024-08-13"
+---
+
+diagrama clasico, para variable cualitativa, se le debe pasar tambien tabla y no vector original
+
+```{r}
+sexo = sample(c("H","M","N"), size = 20 ,replace = T)
+
+pie(table(sexo), main = "Diagrama circular")
+```
+
+usar help(pie) para ver documentacion
+
+
+no es muy recomendable usarlo, ya que no se entienden muy bien las proporciones
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

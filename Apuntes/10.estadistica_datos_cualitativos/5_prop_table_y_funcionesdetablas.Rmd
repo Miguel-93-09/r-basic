@@ -1,0 +1,112 @@
+---
+title: "5_prop.table"
+output: html_document
+date: "2024-08-08"
+---
+
+prop.table()  sirve para calcular frecuencias relativas de una table, por ejemplo
+
+```{r}
+x = sample(1:7 , size = 12, replace = TRUE)
+x
+
+prop.table(table(x))
+
+```
+
+
+si se aplica a un vector de numeros entonces pensara que cada entrada es la frencua absoluta de un level, esto es
+
+
+```{r}
+x = sample(1:7 , size = 12, replace = TRUE)
+x
+
+prop.table(x)
+
+```
+
+
+otra forma es usando la formula, ya que tables es practicamente un vector
+
+
+```{r}
+table(x)/length(x)
+
+```
+
+
+# buscando levels cuya frecuencia sea igual a una condicion o numero
+
+```{r}
+table(x)
+
+# usamos which para obtener la posicion 
+
+which(table(x)==1)
+
+# con esto alimentamos a names para que muestre el nombre de dicho level
+
+names(which(table(x)==1))
+
+
+
+```
+```{r}
+r = factor( sample(c("Si",'No') , size = 12, replace = TRUE) ) 
+which(table(r)==max(table(r)))
+names(which(table(r)==max(table(r))))
+```
+
+
+
+buscando la moda
+
+```{r}
+
+names(which(table(x)==max(table(x))))
+
+```
+
+
+## ejercicio
+
+```{r}
+
+y = sample(c("H","M"), size = 20, replace = TRUE )
+
+table(y)
+
+table(y)/length(y)
+
+names(which(table(y)==max(table(y))))
+
+
+```
+
+
+## estableciendo moda como una funcion
+
+```{r}
+moda <- function(m){
+  names(which(table(m)==max(table(m))))
+}
+
+moda(x)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

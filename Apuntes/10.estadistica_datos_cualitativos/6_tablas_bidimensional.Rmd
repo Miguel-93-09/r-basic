@@ -1,0 +1,66 @@
+---
+title: "6_tablas_bidimensionales"
+output: html_document
+date: "2024-08-08"
+---
+
+cuando hay dos o mas variables cualitativas puede ser usada, añadiendo mas parametros a table
+
+```{r}
+resp = sample(c("S","N"), size = 20, replace = TRUE )
+sexo = sample(c("H","M"), size = 20, replace = TRUE )
+
+t = table(sexo,resp)
+
+table(resp,sexo)
+
+#transponiendo
+t(table(resp,sexo))
+
+```
+
+# accediendo a valores
+
+podemos hacerlo naturalmente mediante numero de fila y columna como si fuese una matriz, ya que de hecho lo es, o con el nombre de los levels, si se deja vacio se toma toda fila o columa
+
+```{r}
+
+t[1,2]
+
+t["H","S"]
+
+# en el siguiente caso se obtiene table unidimensional
+
+t[,"S"]
+
+```
+
+
+# prop.table
+
+globales son cada fracuencia con respecto a toda la muestra
+
+```{r}
+prop.table(table(sexo,resp))
+```
+
+
+
+marginales, si se elige una varaible dada, entonces la muestra se divide acorde a dicha varaible, y entonces la frencuecia relativa resulta respecto al tamaño del level
+
+el margin igual a 1 signfica respecto a primera varaible dada en table
+
+
+```{r}
+
+prop.table(table(sexo,resp))  #global
+
+prop.table(table(sexo,resp), margin = 1)
+
+prop.table(table(sexo,resp), margin = 2)
+
+
+
+```
+
+

@@ -1,0 +1,91 @@
+---
+title: "tabla_hair"
+output:
+  pdf_document: default
+  html_document: default
+date: "2024-08-12"
+---
+
+hay objetos que ya son tablas
+
+```{r}
+hec = HairEyeColor
+hec
+```
+
+se trabaja coo una table
+
+```{r}
+sum(hec)
+
+
+```
+
+ es decir, la muestra mide 592
+
+
+sacando marginales, una dimension
+
+```{r}
+prop.table(hec, margin = 3)
+
+
+```
+
+
+
+otra vista
+
+
+```{r}
+f_hec = ftable(prop.table(hec, margin = 3), col.vars = 3 )
+f_hec
+colSums(f_hec)
+
+
+```
+
+otra vista
+
+
+# cambiando orden de variables
+
+con funcion aperm
+
+```{r}
+aperm(hec , perm= c("Hair", "Sex", "Eye")) 
+
+```
+
+
+# diferente presentacion de datos
+
+```{r}
+#primero instalar
+library(kableExtra)
+
+kable(hec)
+```
+
+
+mustra como tabla, da uan representacion global, aunque en este caso no es tan practica
+
+
+# libreria xtable
+
+Esta libreria solo funciona con dimension 2
+
+```{r, results ='asis' }
+f3_hec = prop.table(hec, margin = 3)[, ,"Male"]
+
+#instalar primero
+library(xtable)
+xtable(f3_hec)
+
+```
+
+nos da tabla en formato latex, en pdf se ve bien, para ello , hay que agregar a formato de compilacion results ='asis'
+
+
+
+

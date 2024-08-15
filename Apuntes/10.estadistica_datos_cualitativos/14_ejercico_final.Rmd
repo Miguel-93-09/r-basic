@@ -1,0 +1,264 @@
+---
+title: "14_ejercico_final"
+output: html_document
+date: "2024-08-14"
+---
+
+primero hacemos tabla bidimensional sin tomar sexo, as.table() tranforma en table si no es una table
+
+```{r}
+hec = HairEyeColor
+
+hec
+
+hombres = hec[, , "Male"]
+mujeres = hec[, , "Female"]
+
+#vemos en values, que ambos son table, por ende
+
+data = hombres + mujeres
+
+data
+
+
+# mas directo
+
+data = hec[, , "Male"] + hec[, , "Female"]
+
+data
+
+```
+
+
+
+
+
+# cabiando nombres de etiquetas de  varaibles
+
+
+```{r}
+dimnames(hec)$Hair = c("Negro" , "Cafe" , "Rojo" , "Rubio")
+
+dimnames(hec)$Eye = c("Cafe" , "Azul" , "Claro" , "Verdes")
+dimnames(hec)$Sex = c("Hombre" , "Mujer")
+
+hec
+
+str(dimnames(hec))
+```
+
+
+Puesto que es una lista, como se ve al ultimo del codigo anterior,  lo que devuelve dimnames tambien podemos hacer l siguiente, que tambien cambia nombre de la variable
+
+```{r}
+dimnames(hec) = list(
+  Pelo = c("Negro" , "Cafe" , "Rojo" , "Rubio"),
+  Ojos = c("Cafe" , "Azul" , "Claro" , "Verdes"),
+  Sexo = c("Hombre" , "Mujer")
+  
+)
+```
+
+grafico mosaico
+
+```{r}
+#recalculamos tabla con nuevas etiquetas
+
+data = hec[, , "Hombre"] + hec[, , "Mujer"]
+
+data
+
+
+
+plot(data, col = c("lightblue", "pink"), main = "Diagrama frencuencias sin sexo")
+
+
+```
+
+calculando total
+
+```{r}
+sum(data)
+```
+
+```{r}
+rowSums(data) 
+colSums(data) 
+
+prop.table(rowSums(data))
+prop.table(colSums(data))
+
+```
+
+distinguir de rowsum y colsum, que son para otro tipo de datos, estas son para table
+
+
+otra forma
+
+
+```{r}
+apply(data, MARGIN = 1, FUN = sum) 
+apply(data, MARGIN = 2, FUN = sum) 
+
+
+f1 = prop.table(apply(data, MARGIN = 1, FUN = sum)) 
+f2 = prop.table(apply(data, MARGIN = 2, FUN = sum)) 
+
+f1
+f2
+
+#plicando round
+
+round(prop.table(apply(data, MARGIN = 1, FUN = sum)) , 3)
+
+```
+
+si margin es c(1,2) esto es, entrada a entrada se aplica la funcion, si se aplica sum() en dicho caso, esto no tiene sentido aunque clarmante no dara error
+
+para graficos de barras
+
+```{r}
+par(mfrow = c(1, 2))
+
+barplot(f2, col = c("brown" , "darkblue", "orange","lightgreen"), main = "frec rel /n color de ojos", ylim = c(0, 0.5))
+barplot(f1, col = c("black" , "brown", "red","yellow"), main = "frec rel /n color de pelo", ylim = c(0, 0.5))
+
+
+
+```
+
+# frencuencias globales y marginales
+
+```{r}
+rel = round(prop.table(data),3) 
+rel_pelo = round(prop.table(data, margin = 1),3) 
+rel_ojos = round(prop.table(data, margin = 2),3) 
+
+rel
+rel_pelo
+rel_ojos
+
+```
+
+
+diagrama de barras
+
+```{r}
+
+# aqui hay que hacer transpuesta porque se considera que segunda varaible es marginal de la primera
+
+barplot(t(rel_pelo), col =c("brown","blue","orange","lightgreen"), legend.text = T, main = "Frec rel ojo en cada color de cabello", beside = T)
+
+barplot(rel_ojos, col =c("black" , "brown", "red","yellow"), legend.text = T, main = "Frec rel cabello en cada color de ojos", beside = T, ylim = c(0,0.8))
+
+
+```
+
+el video esta mal, mirar que porcentajes suman mucho mas uqe uno
+
+
+
+
+## EJEMPLO ACCEDIENTO A ETIQUETAS y quieriendo sumar tables, no funciono
+
+```{r}
+dimnames(hec)
+dimnames(hec)[1]
+dimnames(hec)$Hair
+dimnames(hec)[1]$Hair[2]
+
+# se puede recorrer elementos de una lista como en python
+
+# notemos que unicamente el [1] señala el atributo
+
+names <- dimnames(hec)[1]$Hair
+for (x in names) {
+	print (x)
+}
+
+```
+
+seguimos creando la funcion ahora que podemos enlistar nombres de propiedades, vemos que funciona cuando hacemos x[, , "Male"] + x[, , "Female"] 
+donde x se sustituye por hec
+
+```{r}
+# se observa que a las funciones si les entran "palabras", pero a los filtro no, entonces hay que hacerlo por posicion ver:  dimnames(x)[y]
+simplificar <- function(x,y){
+  names <- dimnames(x)[y] 
+  for (i in names) {
+	hec_2 = x[, , "Male"] + x[, , "Female"]
+	return(hec_2)
+  } 
+}
+
+simplificar(hec, y = 2 )
+
+
+```
+
+
+No va a funcionar por que no podemos pasar los nombres al filtro ni despues de $, solo a funciones dentro de (), tenemos que buscar que se apor numero
+
+```{r}
+# sirve para sacar por ejemplo, numero levels tercera variable : length(hec[1,1,])
+
+simplificar <- function(x,y){
+  if (y==3){
+      table = x[ , , 1]
+      t = length(x[1,1,])
+      for (i in 2:t){
+        table = table + x[ , ,i]
+      } 
+      return(table)
+  }
+  
+} 
+
+
+simplificar(hec, y = 3)
+
+```
+ Es un borrador para que funcione hay que agregar casos y==1 y y==2, observando que solo funciona para df con 3 variables, se tendria que
+ hacer uno para cada caso.
+
+si pudiesemos hacer que el acceso a la variable con $ fuese posible entonces tendriamos un paso más. No podemos acceder a varaibles con \$ ya que es una table
+
+OBSERVEMOS primero que como al aplicar names a una lista, esta nos devuelve el nombre de varaibles de la lista, en este caso de la table. Además de esta forma podemos obtener el numero de varaibles de la table.
+
+
+```{r}
+# primero bsucamos posicion de ka variable llamada "Hair" o cualquier otra
+a = which(names(dimnames(hec)) == "Hair")
+a
+
+length(names(dimnames(hec)))
+
+#recrdemos que si solo hacemos L[2] entonces vemos otra lista en caso de que el vector tenga nombre, pero si hacemos L[[2]] accedemos a el vector mismo, de forma que podemos ver el numero de elementos de la variable en cuestion
+
+length(dimnames(hec)[[a]])
+
+
+```
+
+### solucion mucho más facil
+
+como queremos sumar por axis 3, en relacion al genero, es mejor usar c(1,2) es decir, las varaibles restantes, 
+
+```{r}
+
+
+apply(hec, MARGIN = c(1,2), FUN = sum)
+
+```
+
+
+```{r}
+hec
+
+apply(hec, MARGIN = 1, FUN = sum)
+
+```
+
+sigue en otro doc 14_2
+
+

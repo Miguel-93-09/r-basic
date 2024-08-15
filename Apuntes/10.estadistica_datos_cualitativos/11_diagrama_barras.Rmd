@@ -1,0 +1,112 @@
+---
+title: "11_diagramas barras"
+output: html_document
+date: "2024-08-12"
+---
+
+la forma mas sencilla es con 
+
+barplot()
+
+tiene que ser alimentado con tabla de frecuencias
+
+```{r}
+sexo = sample(c("H","M"), size = 20 ,replace = T)
+
+barplot(table(sexo))
+```
+
+se puede modificar un poco dicha tabla
+
+```{r}
+
+barplot(table(sexo), col = c("blue", "pink"), main ="  Diagrama de barras \n de la variable \"sexo\"  ")
+
+```
+
+
+tambien se puede hacer con prop.table
+
+```{r}
+
+
+barplot(prop.table(table(sexo)), col = c("blue", "pink"), main ="  Diagrama de frec. relativas \n de la variable \"sexo\"  ")
+
+```
+# parametros de barplot
+
+se admiten los que hacen snetido en plot, como xlab, ylab, main, con help(barplot) se consultan los mas usados
+
+```{r}
+par(mfrow = c(1,2))
+
+barplot(prop.table(table(sexo)), col = c("blue", "pink"), main ="  Diagrama de frec. relativas \n de la variable \"sexo\"  ")
+barplot(prop.table(table(sexo)), col = c("blue"), main ="  Diagrama de frec. relativas \n de la variable \"sexo\"  ")
+```
+los colores se aplican en bucle, es decir, si hay menos colores uqe barras se repiten en orden dado
+
+
+```{r}
+
+barplot(prop.table(table(sexo)),horiz = T, col = c("blue"), main ="  Diagrama de frec. relativas \n de la variable \"sexo\"  ")
+```
+
+
+Con tablas bidimensionales, pone en el eje la segunda variable, y la primera variable parecese del marginal de la segunda
+
+
+```{r}
+resp = sample(c("S","N"), size = 10, replace = TRUE )
+sexo = sample(c("H","M"), size = 10, replace = TRUE )
+
+t = table(sexo,resp)
+
+barplot(t, legend.text = T)
+
+
+```
+
+al reves
+
+```{r}
+resp = sample(c("S","N"), size = 10, replace = TRUE )
+sexo = sample(c("H","M"), size = 10, replace = TRUE )
+
+t = table(resp,sexo)
+
+barplot(t, legend.text = T)
+
+
+```
+
+legend.text, añade leyenda de primer variable
+
+
+## beside
+
+con este comano no se apilan las barras
+
+```{r}
+barplot(t, beside = T, legend.text = T)
+```
+
+EJEMPLO MAS ELABORADO
+
+```{r}
+barplot(t, beside = T, 
+        #VER COMO SE REPITEN COLORES
+        col = c("yellow", "pink", "blue") ,
+        #RENOMBRE DE SEGUNDA VARIABLE
+        names = c("Men", "Women") ,
+        #RENOMBRE DE PRIMERA VARIABLE
+        legend.text = c("NO","YES"))
+
+
+
+
+```
+
+CHECAR VIDEO DE LEGEND PARA VER COMO MODIFICARLA, ESTA EN PLOT.
+
+
+
