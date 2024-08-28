@@ -1,0 +1,166 @@
+---
+title: "12_config_parametros"
+output: html_document
+date: "2024-08-27"
+---
+
+observacion: notemos que al extraer info de df, para las columnas se puede hacer
+- df$va
+- df[#va]
+
+```{r}
+body = read.table("data/bodyfat.txt", header = T)
+head(body)
+
+body[2]
+
+body$Fat
+
+str(body[2])
+str(body$Fat)
+
+
+```
+sin embargo cuando se accede por numero, de nuevo tenemos un df, mientras que si es a la va, entonces tenemos un vector
+
+además, si queremos acceder por renglones, tenemos que hacer
+df[c() , c() ]
+
+
+```{r}
+body[c(1,3),c(2,1)]
+
+```
+finalmente, notemos la igualdad a la hora de filtrar df por columnas en la sigueintes sintaxis:
+
+```{r}
+body[,c(2,1)]
+body[c(2,1)]
+
+```
+
+# inicio clase
+
+Se puedne relaizar diagramas de caja de una variable en funcio nde parametros, los multidiagramas tienen sentido sobre todo cuando se comparan mismas unidades que es el caso, para ello la sintaxis esta dada por 
+
+boxplot(var_numerica ~ factor, data = df)
+
+
+```{r}
+df = Orange
+head(df)
+
+
+```
+
+supongamos que queremos comparar la circunferencia del arbol entre slos distintos tipos de arboles, igualemnte no es necesario cambiar tree como factor, si no que se interpreta automaticamente
+
+```{r}
+boxplot(circumference ~ Tree, data = df)
+```
+
+```{r}
+boxplot(age ~ Tree, data = df)
+```
+
+otrs ejemplos
+
+```{r}
+boxplot(Sepal.Length ~ Species , data = iris)
+
+
+```
+
+todos parametros que tengan snetido en plot tendran en boxplot
+
+el parametro notch = T , hace muescas para inferir si medianas son iguales o no, funciona como primera aprox
+
+```{r}
+boxplot(Sepal.Length ~ Species , data = iris , col = c("cyan", "pink" , "lightblue"),
+        notch = T , ylab = "anchura sétalo" , xlab = "Especie" , main = "box iris")
+
+```
+
+
+
+# poniendo la media en box plot
+
+```{r}
+boxplot(Sepal.Length ~ Species , data = iris , col = c("cyan", "pink" , "lightblue"),
+        notch = T , ylab = "anchura sétalo" , xlab = "Especie" , main = "box iris")
+
+#calculamos la media
+medias = aggregate(Sepal.Length ~ Species, data = iris, FUN = mean)
+
+#agregamos puntos
+points(medias, col = "red", pch =1)
+
+```
+
+## dif by y aggregate
+
+```{r}
+aggregate(Sepal.Length ~ Species, data = iris, FUN = mean)
+mena = by(iris$Sepal.Length, iris$Species , FUN = mean)
+
+
+#tambien funciona apra poner puntos
+
+boxplot(Sepal.Length ~ Species , data = iris , col = c("cyan", "pink" , "lightblue"),
+        notch = T , ylab = "anchura sétalo" , xlab = "Especie" , main = "box iris")
+
+#agregamos puntos
+points(mena, col = "red", pch =1)
+
+```
+
+# str boxplot
+
+esta funcion nos ayuda a acceder a ciertos valores, o bien verlos de manera numerica,
+
+stats devuelve 
+$$b_{\text{inf}} , Q_{.25},Q_{.5}  ,Q_{.75},  b_{\text{sup}} $$}
+
+out da valores atipicos, si hay varios en diversos graficos entonces los devolvera por group indicando a cual pertencen dichos puntos
+
+n nos da el numero de observaciones
+
+
+```{r}
+str(boxplot(Sepal.Length ~ Species , data = iris , col = c("cyan", "pink" , "lightblue"),
+        notch = T , ylab = "anchura sétalo" , xlab = "Especie" , main = "box iris"))
+
+```
+viendo las variables
+
+```{r}
+boxplot(Sepal.Length ~ Species , data = iris , col = c("cyan", "pink" , "lightblue"),
+       notch = T , ylab = "anchura sétalo" , xlab = "Especie" , main = "box iris")$stats
+
+boxplot(Sepal.Length ~ Species , data = iris , col = c("cyan", "pink" , "lightblue"),
+        notch = T , ylab = "anchura sétalo" , xlab = "Especie" , main = "box iris")$out
+
+
+```
+
+
+nota importante, str nos devuevle la estrcutura del objeto que le demos, en este sentido si queremos acceder a alguno de sus elementos debemos ingresar desde el elemento sin el str, ya que str no es en si la estructura si no solo una especie de "print"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

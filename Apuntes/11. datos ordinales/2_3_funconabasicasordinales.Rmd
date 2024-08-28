@@ -1,0 +1,80 @@
+---
+title: "2_ datos ordinales"
+output: html_document
+date: "2024-08-15"
+---
+tienen un orden natural que perite "acumular observaciones" , son como los cualitativos con la diferencia que pueden ser ordenados
+
+por esto se puede hablar de frencuencias acumuladas
+
+para su frencuencia absoluta, de igual forma se usa table()
+
+en lugar de factor, se crea ordered, de forma que al proporcionar levels, el orden que se los demos, sera de menor a mayor
+
+```{r}
+x = sample(c('S','A','N','E') , size = 20, replace = TRUE)
+
+notas = ordered(x, levels = c('S','A','N','E'))
+
+table(notas)
+```
+
+la frecuencia relativa acumulata sumara 1, mientras que la normal sera igual a muestra en el ultimo nivel, en este caso E
+
+A cada nivel de la variable ordinal que acumule las varibles ordinales menores o igual a la misma, sera llamada frecuencia absoluta acumulada del nivel 
+la frencuencia relativa acumulada de nivel es equivalente pero con las relativas,
+
+si se aplica cumsum() entonces calculara las frecuencias acumuladas de la table, necesario pasar table o dara error
+
+```{r}
+#ejemplo resultado de encuenta satisfaccion restaurante
+set.seed(2018)  #para tener mismos datos que video
+
+
+clientes = sample(1:5 , size = 50 , replace=TRUE)
+
+set.seed(NULL)
+
+satis = ordered(clientes, levels = 1:5)
+
+table(satis)
+
+cumsum(table(satis))
+
+```
+
+
+con frecuencias relativas es similar
+
+```{r}
+cumsum(prop.table(table(satis)))
+
+```
+
+
+se peud ehacer un barplot directamente ya que es una table
+
+```{r}
+barplot(cumsum(prop.table(table(satis))), main = "Diagrama ...")
+```
+
+la ser una table igual se puede calular dividiento
+
+```{r}
+cumsum(table(satis))/length(satis)
+
+# o bien
+cumsum(table(satis)/length(satis))
+
+```
+
+
+
+
+
+
+
+
+
+
+

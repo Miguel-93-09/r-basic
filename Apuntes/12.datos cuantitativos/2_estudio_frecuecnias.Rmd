@@ -1,0 +1,28 @@
+---
+title: "2.estudiodefrecuencias"
+output: html_document
+date: "2024-08-22"
+---
+
+es parecido a los ordinales o cuali, solo que aqui nos interesa unicamente la frecuencia de cada dato que se registra, no de lo que no, pe
+
+```{r}
+edad = sample(1:80 , size = 20 , replace = T)
+
+# solo interesa frecuencia, y se calcula con table igual
+table(edad)
+```
+
+el resto es igual a lo visto
+
+```{r}
+cumsum(table(edad))
+
+
+prop.table(table(edad))
+
+cumsum(prop.table(table(edad)))
+
+```
+
+

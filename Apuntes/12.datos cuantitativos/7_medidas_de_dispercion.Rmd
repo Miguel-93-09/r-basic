@@ -1,0 +1,38 @@
+---
+title: "medidas de dispersion"
+output: html_document
+date: "2024-08-24"
+---
+
+las mas populares son el rango, que es la diferencia entre el minimo y maximo valor
+
+rango intercuartilitico, que es la dif entre el $Q_{0.75}$ y $Q_{0.25}$
+
+la varianza denotada por $s^2$ es la media aritmetida de las diferencias de cuadrado entre datos $x_i$  y la media arimetica de las observaciones
+
+$$\frac {\sum_{j=1}^n  (x_j-\bar{x})^2}  {n} =
+\frac {\sum_{j=1}^n n_j (X_j-\bar{x})^2}  {n} =
+\sum_{j=1}^n f_i(X_j- \bar x)^2$$
+
+la variana muestral es igual pero hay que multiplicarla por 
+$$\frac {n} {n-1}$$
+
+o bien calcularla con
+$$\frac {\sum_{j=1}^n  (x_j-\bar{x})^2}  {n-1} $$
+
+la desviacion tipica no es más que la raiz cuadrada de la varianza
+
+esta tiene diferences porpiedades dentro de la que la mas util es la identidad
+
+$$s^2 = \frac {\sum x_j^2} {n} - \bar x ^2 $$
+
+
+podemos hacer un calculo como ejemplo
+
+```{r}
+datos = sample(1:10 , 20, replace = T)
+var = sum((datos)^2)/length(datos) - (mean(datos))^2
+
+
+```
+

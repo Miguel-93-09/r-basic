@@ -1,0 +1,96 @@
+---
+title: "5_analisis_datos_porfactor"
+output: html_document
+date: "2024-08-20"
+---
+
+creando valores, otra forma de usar el rep
+
+```{r}
+#x sera ordered, como anteriormente
+
+x = ordered(sample(c("muy.corto", "corto", "normal" , "largo", "muy.largo"), size = 100, replace = T), levels = c("muy.corto", "corto", "normal" , "largo", "muy.largo"))
+
+#zonas sera factor
+
+zonas = factor( rep(c("A","B","C","D") , c(30,25,35,10)))
+
+# en el siguien orden para que primera variable, factor, sea por filas
+jirafas = data.frame(zonas, x)
+
+head(jirafas)
+
+str(jirafas)
+
+```
+
+
+
+
+```{r}
+table(jirafas)
+
+
+```
+
+aplicando cumsum
+
+```{r}
+apply(table(jirafas) , MARGIN = 1, FUN = cumsum)
+
+
+```
+a veces se cambia el orden porque R quiere mantener cierta congruncia, por ende basta con transponerla 
+
+
+```{r}
+t(apply(table(jirafas) , MARGIN = 1, FUN = cumsum))
+
+
+```
+
+podemos hacer la prop.table, notemos por pasos como se hace
+
+
+```{r}
+
+#primero sacamos la prop.table de la tabla original
+prop.table(table(jirafas), margin = 1)
+
+# esta tabla de procesa de manera analoga a la anterior con apply
+t(apply( prop.table(table(jirafas), margin = 1) , MARGIN = 1, FUN = cumsum))
+```
+
+```{r}
+#otra forma de calcular marginal , primero accedemos ultima columna
+t(apply(table(jirafas) , MARGIN = 1, FUN = cumsum))
+t(apply(table(jirafas) , MARGIN = 1, FUN = cumsum))[, 5]
+
+#ahora dividimos la table entre dicha columna
+
+t(apply(table(jirafas) , MARGIN = 1, FUN = cumsum)) / t(apply(table(jirafas) , MARGIN = 1, FUN = cumsum))[, 5]
+
+
+```
+
+para graficar recordar que la primera variable esta en funcion de la segunda, por lo que para que se muestre por zonas nuestra barra, hay que usar la primera table sin transponer
+
+```{r}
+
+diagrama = apply( prop.table(table(jirafas), margin = 1) , MARGIN = 1, FUN = cumsum)
+diagrama
+
+barplot(diagrama, ,beside = T, legend = T, main = "DIAGRAMA FREC. REL. ACUM. LONGITUDES POR ZONAS",
+        args.legend = list(x="topleft", cex=.7)
+        )
+
+
+# args. legend ES PARA MODIFICAR LEGENDA, PRIMERO POSICION, LUEGO TAMAÑO
+
+
+
+
+```
+
+
+

@@ -1,0 +1,120 @@
+---
+title: "3 frecuecnias datos cuantitativos"
+output: html_document
+date: "2024-08-22"
+---
+
+sean $x_i$ las observaciones de una variable
+
+$$x_1,x_2,x_3,\ldots, x_n$$
+
+y sean $X_1,\ldots, X_n$ los valores "distintos" que aparecen en la lista de datos, que ademas estan ordenados
+
+$$X_1 < X_2 \ldots < X_n $$
+la frecuecnia absolita de $X_i$ es el total de observaciones, $n_i$ de dicha variable
+
+
+la fr rel, rel acum, y absoluta acum es como en cualitativos
+
+**recordando latex**
+
+$$\sum_{j=1}^{i}n_j$$
+
+# ejemplo dados
+
+```{r}
+
+set.seed(162017)
+resultados = sample(1:6 , size = 25, replace = T)
+resultados
+
+set.seed(NULL)
+
+# el set seed se hizo para coincidir datos pero no sali oigual
+```
+```{r}
+
+# funciones para sacar tablas mas rapido
+t_r_a <- function(x){
+  round(cumsum(prop.table(table(x))),2)
+}
+
+
+t_r <- function(x){
+  round(prop.table(table(x)),2)
+}
+
+t_a <- function(x){
+  cumsum(table(x))
+}
+
+
+```
+
+
+```{r}
+t_r_a(resultados)
+t_r(resultados)
+t_a(resultados)
+
+
+```
+
+# D.F.
+
+podemos crear un df para sintetizar toda la info, ay que poner as.vector para que funcione bien
+
+```{r}
+dados.df = data.frame(
+  Puntuacion = 1:6 ,
+  Fr.abs = as.vector(table(resultados)) ,
+  Fr.acu = as.vector(t_a(resultados)) ,
+  Fr.rel = as.vector(t_r(resultados)) ,
+  Fr.rela = as.vector(t_r_a(resultados))
+)
+
+dados.df
+
+```
+
+# ejercicio automatizar como funcion
+
+```{r}
+
+t_r_a <- function(x){
+  round(cumsum(prop.table(table(x))),2)
+}
+
+
+t_r <- function(x){
+  round(prop.table(table(x)),2)
+}
+
+t_a <- function(x){
+  cumsum(table(x))
+}
+
+
+df_frecuencia <- function(x){
+  df <- data.frame(
+  Puntuacion = 1:6 ,
+  Fr.abs = as.vector(table(x)) ,
+  Fr.acu = as.vector(t_a(x)) ,
+  Fr.rel = as.vector(t_r(x)) ,
+  Fr.rela = as.vector(t_r_a(x))
+  ) 
+  df
+}
+
+```
+
+```{r}
+df_frecuencia(resultados)
+```
+
+
+
+
+
+ 
+

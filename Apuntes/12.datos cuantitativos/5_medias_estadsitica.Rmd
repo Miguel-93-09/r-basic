@@ -1,0 +1,57 @@
+---
+title: "medias"
+output: html_document
+date: "2024-08-22"
+---
+
+la meida aritmetica es bien conocida
+
+$$\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$$
+
+```{r}
+dato = sample(1:20, size = 20, replace = T)
+
+n = length(dato)
+media = sum(dato)/n
+media
+```
+
+la mdia ponderada arimetica, se usa asignado pesos y dividiendoentre esto, puede ser vista como el culalo de mediana el df con los pesos siendo frec relativas, o bien fr absolutas
+
+$$\frac{\sum_{i=i}^n w_i\cdot X_i}{\sum_{i=i}^n w_i} $$
+
+```{r}
+#para calcularla con fr absolutas
+
+# primero realizamos la multiplicacion
+m_1 = as.numeric(names(table(dato))) * table(dato)
+m_1
+
+sum(m_1)/sum(table(dato))
+
+```
+
+# media geometrica
+
+$$\left( \prod_{i=1}^n x_i \right) ^ \frac{1}{n}$$
+
+```{r}
+prod(dato)^(1/n)
+
+
+```
+
+# media armonica
+
+$$\frac{n}{\sum_{i=1}^n \frac{1}{x_i} } $$
+
+```{r}
+n/sum(1/dato)
+
+
+```
+
+
+
+
+

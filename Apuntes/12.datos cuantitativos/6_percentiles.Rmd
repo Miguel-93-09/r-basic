@@ -1,0 +1,50 @@
+---
+title: "6_medidas de posicion"
+output: html_document
+date: "2024-08-22"
+---
+
+dado $p \in (0,1) $ el cuantil orden p, $Q_p$ es el valor más pequeño tal que su frecuencia relativa acumulada es mayor o igual a p.
+
+Esto implica por ejemplo que si $Q_{0.5} = 10$  entonces el 50 porciento de los valores de la variable cuantitativa seran menores o iguales quu 10, esto no implica que
+
+todos los valores a la izquierda del mismo sean menores, por lo que puede haber valores iguales, y tampoco implica que sea menor que los valores a la derecha. 
+
+Imaginemos una var cuantitativa en que todos los numeros son iguales, para ver más claramente.
+
+ESto solo implica que si tenemos 50 variables, entonces en la posicion 25+26/2 esta la mediana, esto nos da otra forma de calularlo como %bar[p * n]
+
+```{r}
+set.seed(260798)
+dado = sample(1:6,replace = T, size = 50)
+set.seed(NULL)
+
+```
+
+```{r}
+cumsum(prop.table(table(dado)))
+```
+vemos que la mediana es 3, ya que .50 el el menor numero, que es mayor a la frecuencia rel acum de 2,
+
+```{r}
+quantile(dado, 0.5)
+```
+
+si nos pidieran 0.1, entonces directamente sabemos que es 1, ya que no hay numeros más bajos
+si piden 0.3, entonces es 2
+
+otra forma de calcularlo estos
+```{r}
+dado[50 * 0.1]
+dado[50* 0.3]
+```
+
+esto es posible porque las numeraciones dan enteros dentro de los filtros
+
+hay muchas formas de hacer el calculo de cuantiles, por deffecto la funcion quantile usa type 7 y es simple como se realiza hace un momento
+
+```{r}
+quantile(dado, 0.1)
+```
+
+

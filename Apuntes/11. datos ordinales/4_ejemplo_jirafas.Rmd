@@ -1,0 +1,38 @@
+---
+title: "ejemplo jirafas"
+output: html_document
+date: "2024-08-20"
+---
+
+
+```{r}
+ x = sample(c("muy corto", "corto", "normal" , "largo", "muy largo"), size = 100, replace = T)
+
+# MEJOR METER EN LEVELS EL VECTOR, QUE LA MUESTRA, YA QUE SE REPETIRAN LOS LEVELS
+jir = ordered(x, levels = c("muy corto", "corto", "normal" , "largo", "muy largo"))
+
+# fr absoluta
+table(jir)
+
+#fr relativa
+prop.table(table(jir))
+
+#ACUMULADAS
+
+cumsum(table(jir))
+
+cumsum(prop.table(table(jir)))
+
+
+```
+
+** recordar que la cumsum de una table da una table que puede ser operada aritmenticamente **
+
+```{r}
+
+barplot(cumsum(prop.table(table(jir))), main = "diagrama frec rel")
+
+```
+
+
+

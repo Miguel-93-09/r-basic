@@ -1,0 +1,69 @@
+---
+title: "calcular dispersion"
+output: html_document
+date: "2024-08-24"
+---
+
+valores min y max
+```{r}
+# se puede con min o max
+
+datos = sample(1:10 , 20, replace = T)
+range(datos)
+
+
+```
+
+
+rango
+
+```{r}
+# se puede con min o max
+
+
+diff(range(datos))
+
+
+```
+
+
+
+rancointercuartílico
+
+```{r}
+# se debe añadir el type =, como en la funcion anterior para calcular cuaritels, por defecto es 7
+IQR(datos)
+
+```
+
+
+
+var muestral
+sd muestral
+
+```{r}
+var(datos)
+sd(datos)
+
+```
+
+
+var pobl
+sd pobl
+
+
+```{r}
+# hay que modificarla multiplicando como se señalo anteriormente
+
+var(datos)*((length(datos)-1)/length(datos))
+
+sd(datos)  *  sqrt( ((length(datos)-1)/length(datos)) )
+
+```
+
+notese que por defecto R, calcula var y sd muestrales
+
+
+
+
+

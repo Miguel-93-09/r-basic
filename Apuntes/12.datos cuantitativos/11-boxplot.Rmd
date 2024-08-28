@@ -1,0 +1,70 @@
+---
+title: '11 boxpot'
+output: html_document
+date: "2024-08-27"
+---
+
+diagrama de caja se trabaja facilmente, sol ose usa instruccion
+
+boxplot(va)
+
+el rectancolo representa rango intercuartilico, raya de en medio la mediana
+
+los bigotes son el inferior
+max{min(va), min(va)+1.5(IQR)}
+
+mientras que el max
+min(max(va),max(va)+1.5(IQR))
+
+los punto que salen son los outliers, o puntos aislados
+
+```{r}
+dados = sample(1:6, 100, replace = T)
+boxplot(dados)
+
+
+```
+
+
+incluso se puede hacer con varias va a la vez
+
+```{r}
+
+dados = sample(1:6, 100, replace = T)
+dados1 = sample(1:6, 100, replace = T)
+dados2 = sample(1:6, 100, replace = T)
+boxplot(dados, dados1, dados2)
+
+
+```
+
+
+
+si se hace una df entonces lo hara de cada variable porl oque hay que modificarlo un poco 
+
+```{r}
+body = read.table("data/bodyfat.txt", header = T)
+boxplot(body)
+
+```
+
+mejorado
+
+```{r}
+body[c(1,3)]
+
+boxplot(body[c(2,3)], col = "lightblue")
+
+```
+
+los parametros se asemejan a los visto para graficos, se pueden consultar
+
+```{r}
+?boxplot
+```
+
+
+```{r}
+boxplot(count ~ spray, data = InsectSprays, col = "lightgray")
+```
+

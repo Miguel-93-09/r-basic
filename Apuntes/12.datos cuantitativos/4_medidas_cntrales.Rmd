@@ -1,0 +1,136 @@
+---
+title: "4_medidas tendencia central"
+output: html_document
+date: "2024-08-22"
+---
+
+# funciones utiles 
+
+```{r}
+
+t_r_a <- function(x){
+  round(cumsum(prop.table(table(x))),4)
+}
+
+
+t_r <- function(x){
+  round(prop.table(table(x)),4)
+}
+
+t_a <- function(x){
+  cumsum(table(x))
+}
+
+
+df_frecuencia <- function(x){
+  df <- data.frame(
+  Puntuacion = 1:6 ,
+  Fr.abs = as.vector(table(x)) ,
+  Fr.acu = as.vector(t_a(x)) ,
+  Fr.rel = as.vector(t_r(x)) ,
+  Fr.rela = as.vector(t_r_a(x))
+  ) 
+  df
+}
+
+```
+
+
+
+
+
+hay tres mas importantes, media, mediana y moda, ya conocidos
+
+```{r}
+
+set.seed(162017)
+resultados = sample(1:6 , size = 25, replace = T)
+resultados
+
+set.seed(NULL)
+
+# el set seed se hizo para coincidir datos pero no sali oigual
+```
+
+media
+
+```{r}
+sum(resultados)/length(resultados)
+```
+
+mediana
+
+como es impar la variable, entonces
+```{r}
+sort(resultados)
+sort(resultados)[length(resultados)/2]
+```
+
+moda
+
+```{r}
+table(resultados)
+# no recuerdo como extrae la etiquta, que en este caso es uno
+```
+
+
+
+
+mediana par
+
+```{r}
+resultados_2 = sample(1:6 , size = 26, replace = T)
+
+(sort(resultados)[length(resultados)/2] + sort(resultados)[length(resultados)/2+1]) / 2
+
+```
+
+
+#media desde un df
+
+```{r}
+df_resultados_2 = df_frecuencia(resultados_2)
+df_resultados_2
+
+#calculando media
+sum(df_resultados_2$Fr.rel * df_resultados_2$Puntuacion)
+
+#verificando
+
+sum(resultados_2)/length(resultados_2)
+
+#la diferencia es por el round en nuestra funcion personal
+```
+
+# funciones de R
+
+todo se puede hcer automaticamente
+
+```{r}
+mean(resultados)
+
+median(resultados)
+
+
+```
+
+la solucion a la moda es esta, podemos definir funcion 
+
+```{r}
+moda <- function(x){
+  as.numeric(names(which(table(x)==max(table(x)))))
+}
+
+moda(resultados)
+```
+
+
+
+
+
+
+
+
+
+
+

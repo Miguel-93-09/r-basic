@@ -1,0 +1,29 @@
+---
+title: "insecticidas"
+output: html_document
+date: "2024-08-27"
+---
+
+carguemos un data set
+
+```{r}
+df = InsectSprays
+head(df)
+str(df)
+```
+
+veaos su resumen por factores de marca de insecticida
+
+```{r}
+by(df$count, df$spray , FUN = summary)
+```
+
+```{r}
+by(df$count, df$spray , FUN = sd)
+```
+```{r}
+boxplot(count~spray, data = df,
+        xlab ="tipo spray" , ylab= "insectos muertos",
+        col = "lightgreen")
+```
+
