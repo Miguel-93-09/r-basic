@@ -1,0 +1,19 @@
+# Datos cuantitativos agrupados
+
+los datos cuantitativos agrupados son un concepto relativamente natural, como cuando agrupamos la edad, decimos que algein tiene 20 años cuando esta en el rango de [20,21)
+
+hay varias razones para agruparlos, primero hace mas facil entender la informacion cuando hay muchos datos heterogeneos, o por ejemplo dado que los isntrumentos miden con precision discreta, tecnicamente se estan agrupando numeros reales. 
+
+existen tres razones en general en las uqe si nlugar a dudas conviene agrupar datos en intervalos, tambien llamados clases:
+
+- datos son continuos, ya por si mismo existe agrupamiento debido a inexistencia de precision infinita
+
+- datos son discretos, pero con numero considerablemente grande de posibles valores
+
+- muchisimos datos y estamos interesados en estudiar la frecuencia de sus valores
+
+
+
+
+
+

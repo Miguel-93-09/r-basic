@@ -1,0 +1,200 @@
+---
+title: "3_implementacion_clase_anterior"
+output: html_document
+date: "2024-08-29"
+---
+
+trabajamos con width de df crab
+
+```{r}
+crab = read.table("../../data/datacrab.txt", header= T)
+str(crab)
+```
+
+
+```{r}
+cw = crab$width
+```
+
+
+ahora calculamos el numero de clases
+
+```{r}
+n = length(cw)
+
+#regla raiz cuadrada
+k1 = ceiling(sqrt(n))
+
+#regla stiuges
+k2 = ceiling(1+log2(n))
+
+#regla scott
+k3 = 3.5 * sd(cw) * n^(-1/3)
+k3 = ceiling(diff(range(cw))/k3)
+
+#regla freedman-diaconis, notar que con names = F evitamos que sea cree una especie de tabala
+k4 = 2 * (quantile(cw,0.75,names = FALSE) - quantile(cw,0.25,names = FALSE) ) * n^(-1/3)
+k4 =  ceiling(diff(range(cw))/k4)
+
+```
+
+
+con `R` obtenemos
+
+```{r}
+nclass.Sturges(cw)
+nclass.scott(cw)
+nclass.FD(cw)
+
+
+
+
+```
+
+en este caso se obtiene lo mismo, pero puede no ser siempre así
+
+siguiendo ejemplo de Scott procedemos con intervalos
+
+```{r}
+A = diff(range(cw))/k3
+A
+
+
+```
+
+como no salio valor exacto redondeamos hacia arriba, con un decimal de precision
+
+```{r}
+A = 1.3
+
+```
+
+
+
+
+
+
+podriamos inverstigar como hacer ceiling hasta un dado numero de decimales, como idea, habria que multiplicar por 10^n donde n sea el numero de digitos de precision, luego se hace el ceiling y luego se vuelve a vividir por 10^n , esto en el caso que no se obtiene valor exacto con respecto a la precision, para ese caso, pordriamos hacer un if. si despues de que se realizo el proceso anterior, da igual sumamos 1 * -10 ^ n. 
+
+```{r}
+redondeo_amplitud <- function(x,d){
+  y = ceiling (x * 10 ^ d)
+  y = y *  10 ^ (-d) 
+  if (y==x){
+    return(x + 1 * ( 10 ^ (-d) ))
+  }
+  return(y)
+}
+```
+
+prueba:
+
+```{r}
+B = 1.26
+redondeo_amplitud(B,2)
+```
+Podriamos mejorarla, haciendo que no sea necesario el introducir la precicion, pero funciona bien.
+
+
+mejoramos esta version para que solo se pongan la variable, el numero de clases y la precision
+```{r}
+redondeo_amplitud <- function(x,k,p){
+  x = diff(range(x))/k
+  y = ceiling (x * 10 ^ p)
+  y = y *  10 ^ (-p) 
+  if (y==x){
+    return(x + 1 * ( 10 ^ (-p) ))
+  }
+  return(y)
+}
+
+redondeo_amplitud(cw,10,1)
+
+```
+
+
+
+siguiendo ejemplo anterior, podriamos hacer
+
+```{r}
+
+A = redondeo_amplitud(diff(range(cw))/k3   ,  1)
+A
+
+```
+
+# intervalos
+
+```{r}
+L1 = min(cw)- 1/2 * 0.1
+L = L1 + A* c(0:10)
+L
+
+
+```
+
+# marcas de clase
+
+```{r}
+X1 = (L[1]+L[2])/2
+X1
+X = X1 + A * c(0:9)
+X
+
+
+
+```
+
+otra forma, es tomar dos vectores donde uno esta desfacado con otro por indice respecto a uno, sumarlos, y luego dividir entre 2
+
+```{r}
+li =L[1:(length(L)-1)]
+ls =L[2:(length(L))]
+li 
+ls
+
+X = (ls+li) /2
+X
+
+```
+
+#tarea mejorada que el curso
+
+```{r}
+
+agrupar_cuantitativos <- function(x , k , p){
+  
+   z = diff(range(x))/k
+   y = ceiling (z * 10 ^ p)
+   y = y *  10 ^ (-p) 
+    if (y==z){
+      A = (z + 1 * ( 10 ^ (-p) ))
+    }
+   A = y
+
+   L1 = min(x) - 1/2 * 10 ^ (-p)
+   L = L1 + A * c(0:k)
+   
+   X1 = (L[1]+L[2])/2
+   X = X1 + A * c(0:(k-1))
+   
+   
+   return(list(Amplitud = A, Intervalos = L, Etiquetas = X))
+}
+```
+
+
+```{r}
+agrupar_cuantitativos(cw, 10, 1)
+
+```
+
+```{r}
+agrupar_cuantitativos(cw, 10, 1)$Intervalos
+```
+
+
+
+
+
+

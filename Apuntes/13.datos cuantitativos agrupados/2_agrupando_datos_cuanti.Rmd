@@ -1,0 +1,74 @@
+---
+title: "2_determinando clases"
+output: html_document
+date: "2024-08-29"
+---
+
+hay 4 pasos iniciales
+
+-   decidir numero de intervalos a utilizar (clases)
+-   decidir la amplitud de los intervalos
+-   acumular extremos de los intervalos
+-   calcular el valor representativo del intervalo, marca de clase
+
+cada forma de determinarlos podra sacar a la luz caracteristicas diferentes del grupo
+
+en `R` la funcion es `hist` que implemente los 4 pasos, se pueden indicar el vector de datos y numero de intervalos, o bien el metodo para determinarlos, esta funcion agrupa datos en numero de clases que hemos introducido. Pero sin elcontrol de ningun tipo por nuestra parte de los intervalos que produce.
+
+# estableciendo numero de clases
+
+todos son valos y habra que explorarlos para determinar cual es el mejor, las reglas mas populares son
+
+-   Regla de raiz cuadrada : $k = \left \lceil {\sqrt{n} } \right \rceil $
+
+-   Regla de Sturges : $k = \left \lceil {1 + \log_2(n)} \right \rceil $
+
+-   regla de Scott : primero calcula amplitud teorica de clases, donde $\bar{s}$ es la desv tipica muestral $$A_S = 3.5  \cdot \bar{s} \cdot n^{-1/3}$$ entonces: $$k = \left \lceil {\frac {\max(x) - \min(x)}  {A_S}}  \right \rceil $$ 
+
+-   Regla de Freedman-diaconis: analogo a anterior primero amplitud teorica, luego clases $$A_{FD} = 2  \cdot (Q_{.75} - Q_{.25}) \cdot n^{-1/3} $$ entonces: $$ k = \left \lceil {\frac {\max(x) - \min(x)}  {A_{FD}}}  \right \rceil$$
+
+
+Las primeras solo dependen de n mientras que las ultima tienen en cuenta dispersion de datos. sin embargo no hay mejor que otras, todas dependen
+
+hay 3 formas de calcularlas en R
+
+- nclass.Sturges
+- nclass.scott
+- nclass.FD
+
+puede ser que den resultados distintos nuestro calculos de los de R dependiendo de como hayn sido programadas
+
+# amplitud
+
+la amplitud A, puede darse como nos acomode, sin embargo, por defecto se utiliza que todos sean de la misma amplid A,
+
+para calcular simplemente s edivide el rango entre k y redondea por exceso a un valor de precision de la medida, por ejemplo se de trabaja con valores a demicales, se redondea en decimales hacia arriba.
+
+en caso que de valor entero, entonces directamente se suma una unidad de precision al mismo
+
+# Extremos de intervalos
+
+los intervalos seran cerrados por izquierda y abiertos por derecha por convencion
+$$(L_k,L_{k+1}]$$
+los mismos se calculan como
+
+$$ L_1 = \min(x) - \frac{1}{2} \cdot \text{medida de precision }$$
+$$L_k = L_1 +(k-1)A , \quad i=2,\ldots,k+1$$
+de forma rque garantizmaos que ningun extremo coincida con algun valor del vector por la precision mayor.
+
+# marcas de clase
+
+se calculan generlamente como el punto medio del intervalo para garantizar el menor error al utilizarlas como referencia
+
+$$X_i = \frac{L_i + L_{i+1}} {2}$$
+o de manera recursiva 
+
+$$X_i = X_1+ (i-1)A , \quad i=2,\ldots,k$$
+donde
+$$X_1 = \frac{L_1+L_2}{2} $$
+
+
+
+
+
+
