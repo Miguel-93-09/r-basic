@@ -119,14 +119,6 @@ redondeo_amplitud(cw,10,1)
 
 
 
-siguiendo ejemplo anterior, podriamos hacer
-
-```{r}
-
-A = redondeo_amplitud(diff(range(cw))/k3   ,  1)
-A
-
-```
 
 # intervalos
 

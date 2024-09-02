@@ -1,0 +1,100 @@
+---
+title: "5_funcion_cut"
+output: html_document
+date: "2024-09-01"
+---
+
+
+ala gurpar datos, lo que s eahce es convertir la variable cuantitativa en un factor, sus niveles son las clases en que s eha dividido, e identificamos cada datos con su clase
+
+podemos elegir 3 codificacion para etiquetar niveles
+
+- intervalos
+- marcas de clase
+- numero de orden de cada intervalo
+
+la funcion cut comple este proposito, la sintaxis basica es
+
+cut(x, breaks = c() o un numero k (R hace el corte pero es forzado) , labels = c() ,right = F o T )
+
+right simplemente señala si se incluye el lado derecho o no, en este caso es defecto T pero nosotros lo haremos F
+
+labels , por defecto se usan los intervlaos como etiqueta, si se iguala con F entonces dara el orden empezando por 1, es mejor poner nuestros intervalos como se hicieron en la clase anterior
+
+hay otro parametro
+include.lowest , esto hace el ultimo intervalo sea totalmente cerrado 
+
+
+# ejemplo
+
+primero usaremos nuestra funcio nanterior
+
+```{r}
+
+agrupar_cuantitativos <- function(x , k , p){
+  
+   z = diff(range(x))/k
+   y = ceiling (z * 10 ^ p)
+   y = y *  10 ^ (-p) 
+    if (y==z){
+      A = (z + 1 * ( 10 ^ (-p) ))
+    }
+   A = y
+
+   L1 = min(x) - 1/2 * 10 ^ (-p)
+   L = L1 + A * c(0:k)
+   
+   X1 = (L[1]+L[2])/2
+   X = X1 + A * c(0:(k-1))
+   
+   
+   return(list(Amplitud = A, Intervalos = L, Etiquetas = X))
+}
+```
+
+usemos petals
+```{r}
+petals = iris$Petal.Length
+#dividamos en 5 intervalos
+cut(petals, breaks = 5)
+str(cut(petals, breaks = 5))
+
+```
+
+# mejor forma
+```{r}
+#usamos regla raiz cuadrada
+cut(petals, breaks = ceiling(sqrt(length(petals))), right = F)
+
+```
+
+# modificando intervalos
+
+```{r}
+cut(petals, breaks = c(1,2,3,4,5,6,7), right = F)
+
+```
+
+# modificando labels
+
+```{r}
+cut(petals, breaks = c(1,2,3,4,5,6,7), right = F , labels = F)
+```
+
+
+```{r}
+cut(petals, breaks = c(1,2,3,4,5,6,7), right = F , labels = c("PEQ", "MED", "NORM", "GRAN", "MUYGRAN","SUPERGRAN") )
+```
+
+incluso podemos agregarselo como oclumna al df
+
+```{r}
+iris_2 = iris
+
+iris_2$div1 = cut(petals, breaks = c(1,2,3,4,5,6,7), right = F , labels = c("PEQ", "MED", "NORM", "GRAN", "MUYGRAN","SUPERGRAN") )
+
+iris_2
+
+```
+
+
