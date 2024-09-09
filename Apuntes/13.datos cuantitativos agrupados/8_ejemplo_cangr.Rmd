@@ -1,0 +1,61 @@
+---
+title: "8_ejemplo_crab"
+output: html_document
+date: "2024-09-03"
+---
+```{r}
+
+
+tabla_frecuencias <- function(x , k , p){
+
+# amplitud  
+   z = diff(range(x))/k
+   y = ceiling (z * 10 ^ p)
+   y = y *  10 ^ (-p) 
+    if (y==z){
+      A = (z + 1 * ( 10 ^ (-p) ))
+    }
+   A = y
+# Puntos de corte
+
+   L1 = min(x) - 1/2 * 10 ^ (-p)
+   L = L1 + A * c(0:k)
+   
+# marcas de clase
+   
+   X1 = (L[1]+L[2])/2
+   X = X1 + A * c(0:(k-1))
+   
+# estalbecemos como ordinal la variable cuantitativa
+   
+   x_cut = cut(x, breaks = L, right = F)
+   
+#obtenemos los intervalos para df
+   intervals = levels(x_cut)
+   
+#tablas de frecuencias
+   Fr_abs = as.vector(table(x_cut))
+   Fr_rel = as.vector(round(table(x_cut)/length(x),3))
+   Fr_acum = cumsum(Fr_abs)
+   Fr_rel_acum = cumsum(Fr_rel)
+   
+   tabla = data.frame(intervalos = intervals, mc = X , Fr.abs = Fr_abs, Fr_acum, Fr_rel, Fr_rel_acum)
+   
+   return(tabla)
+}
+```
+
+con cangrejos
+
+
+```{r}
+crab = read.table("data/datacrab.txt", header= T)
+cw = crab$width
+
+tabla_frecuencias(cw,10,1)
+
+
+```
+
+
+

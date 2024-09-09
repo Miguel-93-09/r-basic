@@ -1,0 +1,82 @@
+---
+title: "9_ejercicio_notas_bach"
+output: html_document
+date: "2024-09-04"
+---
+
+
+modo manual:
+
+```{r}
+notas = sample(1:10, 100, replace = T)
+L = c(0,5,7,9,10)
+I = cut(notas, breaks = L , right = F, include.lowest = T,)
+I
+
+MC = (L[1:(length(L)-1)] + L[2:(length(L))]) /2
+MC
+
+```
+
+PONGAMOS OTRAS LABELS
+
+```{r}
+
+I = cut(notas, breaks = L , right = F, include.lowest = T, labels = c("Repr" , "Aprob" , "Bien" , "Excelente"))
+
+fr.abs = as.vector(table(I))
+fr.acum = cumsum(fr.abs)
+fr.rel = as.vector(table(I)/length(notas))
+fr.rel.acum = cumsum(fr.rel)
+
+tabla = data.frame(Intervalos = levels(I) ,MC , fr.abs , fr.acum , fr.rel , fr.rel.acum)
+tabla
+
+
+```
+
+
+
+
+
+
+
+
+
+AUTOMATIZADO, MODIFICACION FUNCION ANTERIOR:
+notemos que se modifica L, puntos de corte, por lo que hay que meter la funcion en la otra funcion, o bien crea una funcion y fuer ay llamarla
+```{r}
+
+
+tabla_frecuencias_2 <- function(x , L , p, V = F){
+
+  
+# marcas de clase
+   
+   X1 = (L[1]+L[2])/2
+   X = (L[1:(length(L)-1)] + L[2:(length(L))]) /2
+   
+# estalbecemos como ordinal la variable cuantitativa
+   
+   x_cut = cut(x, breaks = L, right = F, include.lowest = V)
+   
+#obtenemos los intervalos para df
+   intervals = levels(x_cut)
+   
+#tablas de frecuencias
+   Fr_abs = as.vector(table(x_cut))
+   Fr_rel = as.vector(round(table(x_cut)/length(x),3))
+   Fr_acum = cumsum(Fr_abs)
+   Fr_rel_acum = cumsum(Fr_rel)
+   
+   tabla = data.frame(intervalos = intervals, mc = X , Fr.abs = Fr_abs, Fr_acum, Fr_rel, Fr_rel_acum)
+   
+   return(tabla)
+}
+```
+
+
+```{r}
+tabla_frecuencias_2(notas,L, 1, V =T)
+```
+

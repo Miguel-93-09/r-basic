@@ -1,0 +1,33 @@
+---
+title: "estadisticos_datos_agrupados"
+output: html_document
+date: "2024-09-04"
+---
+
+si tenemos la raw data, entonces debemos sacar los estadisticos de una va cuantitativa antes de agrupar, ya que en caso contrario se pierde info, no obstante existen ocaciones en las que solo contamos con los datos ya agrupados, en estos casos los estadisticos se calculan casi de la misma forma, pero sustituyendo la clase por su marca de clase y se multiplica por su frecuencia absoluta,
+
+$$\bar{x} = \frac{\sum_{j=1}^k n_j X_j} {n} $$
+$$s^2= \frac{\sum_{j=1}^k n_j X_j²} {n} - \bar{x}²$$
+para la var muestral se multiplica por n/(n-1) y las desviaciones tipicas siguen siendo la raiz cuadrada de las varianzas.
+
+# intervalo modal
+
+en este caso es la clase con mayor frecuencia 
+
+si el valor numerico es necesario se toma la marca de clase
+
+# mediana
+
+el intervalo critio para la medianta es el primer intervalo, $[L_C,L_{C+1})$ donde la frecuencia rel acum sea mayor o igual que 0.5
+sea $n_c$ la frecuencia absoluta de dicho intervalo, $A_C$ su amplitud y $N_{C-1}$ la frec. acum. del intervalo inmediatamente anterior.
+
+si L_C es el primer intervalo, entonces N sera igual a cero naturalmente. Y así M sera una aproximacion a la mediana de los datos "reales" partiendo de los datos agrupados
+
+$$ M = L_C + A_C \cdot \frac {n/2 - N_{C-1}} {n_C} $$ 
+## aproximacion cuantiles
+
+La formula anterior es una generalizacion cuando P = 0.5 en Q_p que es la estiamcion del cuantil Q_p 
+
+$$ M = L_p + A_p \cdot \frac {n*p - N_{p-1}} {n_p} $$
+
+

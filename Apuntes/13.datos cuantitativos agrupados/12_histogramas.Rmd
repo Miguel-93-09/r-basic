@@ -1,0 +1,36 @@
+---
+title: "histogramas"
+output: html_document
+date: "2024-09-07"
+---
+
+los histogramas son de datos cuantitativos, mientras que los diagramas de barras son de datos cualitativos u ordinales, ademas en los histogramas las barras no tienen espacios entre si.
+
+si todas las clases tienen la misma amplitud, las alturas seran proporcionales a la frecuencia de su clase
+
+si no es asi entonces las alturas no representan correctamente la frecuencias de las clases
+
+en el ultimo caso las alturas no son proporcionales a la frecuencias de las clases, entonce sn otiene sentido marcr frecuencias en el eje vertical, de esto s einfiere que su area sera equivalente a su frecuencia y no su altura.
+
+para datos acumulados las alturas representan frecuencias independiemiente de la base, debido a que deben ir creciendo
+
+en el caso de distintas bases es mejor representar la densidad de las barras en el eje vertical
+
+la altura, densidad, de cada barra es el valor encesario apra que el area sea igual a la frecuencia relativa de su clase, es decir se puede entender en la formula
+
+
+
+$$\text{fr. rel} = \text{densidad} \cdot \text{intervalo} $$
+
+o visto de otra forma
+$$ \text{densidad}  = \frac{\text{fr. rel}} {\text{intervalo}}$$
+
+
+tal como se señalo en los hsitogramas de frecuencia acumulada, la altura son iguales a las frecuencias acumuladas de las clases, independientemente de su amplitud
+
+no es conveniente que aparezcan clases con frec nula, salbo que sea para representar apoblacionesmuy diferentes sin individuos intermedios
+
+si aparecen es conveniente suar menor numeros de clases, o unir las vacias con las adyacentes, pero de esta forma romperiamos el trabajar con clases de la misma amplitud.
+
+
+

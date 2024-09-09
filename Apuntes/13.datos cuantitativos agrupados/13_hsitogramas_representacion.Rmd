@@ -1,0 +1,111 @@
+---
+title: "13_histogramas_representacion"
+output: html_document
+date: "2024-09-07"
+---
+
+se empleara funcion hist
+
+hist(x, breaks = , freq = , right = , ...)
+
+se recomienda poner como breaks siempre nuestro intervalo determinado
+
+freq = T, por defecto produce frecuecnias absolutas, si todos los intervalos son de la misma amplitud, caso contrario sera de frec relativas. 
+
+tambein existe include.lowest
+
+se peuden usar parametro de plot que tengan sentido
+
+hay que usar main para poner titilo, por defecto pone "histrogram of"
+
+al igualar plot a F , no se dibuja pero tiene informacion por si mismo:
+- breaks
+- mids : puntos medios
+- counts : fr absolutas
+- density : densidades de intervalos, son las alturas de barras de histograma
+
+# funcion para calcular histrogramas absolutas
+
+```{r}
+histAbs = function(x,L){
+  h = hist(x, breaks = L, right = F, freq = F, include.lowest = T,
+           xaxt = "n" , yaxt ="n" , col = "lightgray",
+           main = "Histograma de frecuencias absolutas",
+           xlab = "Intervalos y marcas de clase" ,
+           ylab = "Frecuencias absolutas"
+           )
+  axis(1, at = L)
+  text(h$mids, h$density /2, labels = h$counts, col = "black" ) 
+  #xaxt y yaxt = "n" sirve para que quitar ejes x y y por ahora
+  #axis, el 1 señala eje x y 2 eje y, con at se ponen los cortes de los intervalos
+  #text() , primero se pone la ubacion eje x, luego eje y, luego las etiquetas que aparecen y por ultimo el color de las mismas
+}
+
+```
+
+prueba con intervalos no iguales
+
+```{r}
+notas = sample(1:10, 100, replace = T)
+histAbs(notas, L = c(0 ,5, 7, 9, 10))
+
+```
+en este caso se aunque se ha dicho que es de frecuencias absolutas pusimos freq = F , porque quitmaos el eje y, y por ende no importa.
+en cambio esto sirivio, ya que h$density las alturas nos han servido para colocar las labels, veamos que pasaria si no fuese asi
+
+```{r}
+histAbs2 = function(x,L){
+  h = hist(x, breaks = L, right = F, freq = T, include.lowest = T,
+           xaxt = "n" , col = "lightgray",
+           main = "Histograma de frecuencias absolutas",
+           xlab = "Intervalos y marcas de clase" ,
+           ylab = "Frecuencias absolutas"
+           )
+  axis(1, at = L)
+  text(h$mids, h$counts /2, labels = h$counts, col = "black" ) 
+  #xaxt y yaxt = "n" sirve para que quitar ejes x y y por ahora
+  #axis, el 1 señala eje x y 2 eje y, con at se ponen los cortes de los intervalos
+  #text() , primero se pone la ubacion eje x, luego eje y, luego las etiquetas que aparecen y por ultimo el color de las mismas
+}
+
+notas = sample(1:10, 100, replace = T)
+histAbs2(notas, L = c(0 ,5, 7, 9, 10))
+
+
+```
+
+notemos que el warning, nos señala que las areas del hsit son errorenas, lo cual se percibe claramante, entonces a diferencias de lo que señala el video, si los intervalos son distintos en tamaña , aun asi se forzara a hacer el polot de freq absolutas
+
+# acumulados
+
+```{r}
+#nos ayudamos con plot = F y luego con plot mismo para graficar
+histAbsAcum = function(x,L){
+  h = hist(x, breaks = L, right = FALSE, plot = FALSE)
+  
+  #aqui esta la clave
+  h$density = cumsum(h$density)
+  
+  #aqui se pone freq = F , para no tener problema con las areas
+  
+  plot(h, freq =F, xaxt = "n" , yaxt = "n" , col = "lightgray",
+       main = "Histograma freq abs acum" , 
+       xlab = "intervalos" , ylab = "Frac. abs. acum"
+  )
+  
+  axis(1, at =L)
+  text(h$mids, h$density/2, labels = cumsum(h$counts), col = "black")
+  
+  
+}
+
+
+
+```
+
+
+```{r}
+histAbsAcum(notas, L= c(0,5,7,9,10))
+```
+
+

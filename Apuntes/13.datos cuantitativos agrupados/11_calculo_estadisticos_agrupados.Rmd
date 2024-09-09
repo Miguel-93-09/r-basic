@@ -1,0 +1,195 @@
+---
+title: "11_estadisticos_calculo"
+output: html_document
+date: "2024-09-06"
+---
+
+funcion que ayuda
+
+tenemos que modificar el cut de la funcion con el parametro dig.lab , ya que de otra forma se redondean los numeros a menos digitos
+
+```{r}
+
+
+tabla_frecuencias <- function(x , k , p){
+
+# amplitud  
+   z = diff(range(x))/k
+   y = ceiling (z * 10 ^ p)
+   y = y *  10 ^ (-p) 
+    if (y==z){
+      A = (z + 1 * ( 10 ^ (-p) ))
+    }
+   A = y
+# Puntos de corte
+
+   L1 = min(x) - 1/2 * 10 ^ (-p)
+   L = L1 + A * c(0:k)
+   
+# marcas de clase
+   
+   X1 = (L[1]+L[2])/2
+   X = X1 + A * c(0:(k-1))
+   
+# estalbecemos como ordinal la variable cuantitativa
+   #aqui modificamos, tenemos que restar 1 para ser exactos, debido a que el punto se cuenta como char, pero no hay problema al parecer si se dan numeros de más
+   
+   d =  nchar(as.character(L[1]))
+   
+   x_cut = cut(x, breaks = L, right = F , dig.lab = d)
+   
+#obtenemos los intervalos para df
+   intervals = levels(x_cut)
+   
+#tablas de frecuencias
+   Fr_abs = as.vector(table(x_cut))
+   Fr_rel = as.vector(round(table(x_cut)/length(x),5))
+   Fr_acum = cumsum(Fr_abs)
+   Fr_rel_acum = cumsum(Fr_rel)
+   
+   tabla = data.frame(intervalos = intervals, mc = X , Fr.abs = Fr_abs, Fr_acum, Fr_rel, Fr_rel_acum)
+   
+   return(tabla)
+}
+```
+
+# Media
+
+$$\bar{x} = \frac{\sum_{j=1}^k n_j X_j} {n} $$
+
+```{r}
+crab = read.table("../../data/datacrab.txt" , header = T)
+cw = crab$width
+tabla = tabla_frecuencias(cw, 10, p = 1)
+n = length(cw)
+
+```
+
+```{r}
+media = sum(tabla$mc * tabla$Fr.abs) /n
+media
+```
+
+
+
+# varianza y dt
+
+$$s^2= \frac{\sum_{j=1}^k n_j X_j²} {n} - \bar{x}²$$
+
+
+```{r}
+
+var = sum(tabla$mc ^ 2 * tabla$Fr.abs)  /n - media ^ 2
+dt = sqrt(var)
+
+var
+dt
+
+```
+
+# intervalo modal
+
+```{r}
+tabla$intervalos[which(tabla$Fr.abs == max(tabla$Fr.abs))]
+
+```
+
+
+# calculando intervalo critico para mediana
+
+```{r}
+which( tabla$Fr_rel_acum  >= 0.5)
+I.critic = tabla$intervalos[which( tabla$Fr_rel_acum  >= 0.5)]
+#el primero de todos
+I.critic[1]
+
+```
+
+## calculando cuantil , vamos a hacerlo dentro de nuestra funcion anterior
+
+$$ M = L_C + A_C \cdot \frac {n/2 - N_{C-1}} {n_C} $$ 
+mejor haremos con la generalizacion
+
+$$ M = L_p + A_p \cdot \frac {n*p - N_{p-1}} {n_p} $$
+```{r}
+
+
+tabla_frecuencias_cuantil<- function(x , k , p , q){
+
+# amplitud  
+   z = diff(range(x))/k
+   y = ceiling (z * 10 ^ p)
+   y = y *  10 ^ (-p) 
+    if (y==z){
+      A = (z + 1 * ( 10 ^ (-p) ))
+    }
+   A = y
+# Puntos de corte
+
+   L1 = min(x) - 1/2 * 10 ^ (-p)
+   L = L1 + A * c(0:k)
+   
+# marcas de clase
+   
+   X1 = (L[1]+L[2])/2
+   X = X1 + A * c(0:(k-1))
+   
+# estalbecemos como ordinal la variable cuantitativa
+   #aqui modificamos
+   
+   d =  nchar(as.character(L[1]))
+   
+   x_cut = cut(x, breaks = L, right = F , dig.lab = d)
+   
+#obtenemos los intervalos para df
+   intervals = levels(x_cut)
+   
+   
+#tablas de frecuencias
+   Fr_abs = as.vector(table(x_cut))
+   Fr_rel = as.vector(table(x_cut)/length(x))
+   Fr_acum = cumsum(Fr_abs)
+   Fr_rel_acum = cumsum(Fr_rel)
+   
+   tabla = data.frame(intervalos = intervals, mc = X , Fr.abs = Fr_abs, Fr_acum, Fr_rel, Fr_rel_acum)
+   
+# calculamos mediana   
+   
+   LC = which( tabla$Fr_rel_acum  >= q)[1]
+   L_C = L[LC]
+   A_C =  L[LC+1] - L[LC]  
+   n = length(x)
+   n_C = tabla$Fr.abs[LC]
+   N_C = tabla$Fr_acum[LC - 1]
+   
+   M = L_C + A_C * (n * q - N_C) / n_C
+   
+   
+   
+   return(list(tabla,M))
+}
+```
+
+```{r}
+
+tabla_frecuencias_cuantil(cw, k = 10, p = 1, q = 0.5)
+```
+
+
+```{r}
+
+tabla_frecuencias_cuantil(cw, k = 10, p = 1, d = 4, q = 0.25)
+```
+
+```{r}
+
+tabla_frecuencias_cuantil(cw, k = 10, p = 1, d = 4, q = 0.75)
+```
+
+
+
+
+
+
+
+

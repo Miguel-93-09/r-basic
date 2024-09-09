@@ -1,0 +1,190 @@
+---
+title: "funciones"
+output: html_document
+date: "2024-09-07"
+---
+
+
+
+Se distinguen dos casos
+
+# intervalos del mismo tamaño
+
+## tabla de frecuencias
+
+```{r}
+ 
+
+tabla_frecuencias <- function(x , k , p){
+
+# amplitud  
+   z = diff(range(x))/k
+   y = ceiling (z * 10 ^ p)
+   y = y *  10 ^ (-p) 
+    if (y==z){
+      A = z + ( 10 ^ (-p) )
+    } else {A = y}
+   A = y
+# Puntos de corte
+
+   L1 = min(x) - 1/2 * 10 ^ (-p)
+   L = L1 + A * c(0:k)
+   
+# marcas de clase
+   
+   X1 = (L[1]+L[2])/2
+   X = X1 + A * c(0:(k-1))
+   
+# estalbecemos como ordinal la variable cuantitativa
+   #aqui modificamos, tenemos que restar 1 para ser exactos, debido a que el punto se cuenta como char, pero no hay problema al parecer si se dan numeros de más
+   
+   d =  nchar(as.character(L[1]))
+   
+   x_cut = cut(x, breaks = L, right = F , dig.lab = d)
+   
+#obtenemos los intervalos para df
+   intervals = levels(x_cut)
+   
+#tablas de frecuencias
+   Fr_abs = as.vector(table(x_cut))
+   Fr_rel = as.vector(round(table(x_cut)/length(x),5))
+   Fr_acum = cumsum(Fr_abs)
+   Fr_rel_acum = cumsum(Fr_rel)
+   
+   tabla = data.frame(intervalos = intervals, mc = X , Fr.abs = Fr_abs, Fr_acum, Fr_rel, Fr_rel_acum)
+   
+   return(tabla)
+}
+```
+
+
+## Calculo de estadisticos
+
+```{r}
+
+
+lista_frecuencias_asist <- function(x , k , p){
+
+# amplitud  
+   z = diff(range(x))/k
+   y = ceiling (z * 10 ^ p)
+   y = y *  10 ^ (-p) 
+   if (y==z){
+      A = z + ( 10 ^ (-p) )
+    } else {A = y}
+   
+# Puntos de corte
+
+   L1 = min(x) - 1/2 * 10 ^ (-p)
+   L = L1 + A * c(0:k)
+   
+# marcas de clase
+   
+   X1 = (L[1]+L[2])/2
+   X = X1 + A * c(0:(k-1))
+   
+# estalbecemos como ordinal la variable cuantitativa
+   #aqui modificamos, tenemos que restar 1 para ser exactos, debido a que el punto se cuenta como char, pero no hay problema al parecer si se dan numeros de más
+   
+   d =  nchar(as.character(L[1]))
+   
+   x_cut = cut(x, breaks = L, right = F , dig.lab = d)
+   
+#obtenemos los intervalos para df
+   intervals = levels(x_cut)
+   
+#tablas de frecuencias
+   Fr_abs = as.vector(table(x_cut))
+   Fr_rel = as.vector(round(table(x_cut)/length(x),5))
+   Fr_acum = cumsum(Fr_abs)
+   Fr_rel_acum = cumsum(Fr_rel)
+
+   #aqui conviene mas devolver una lista   
+   lista = list(intervalos = intervals, mc = X , Fr.abs = Fr_abs, Fr.acum = Fr_acum, Fr.rel = Fr_rel, Fr.rel.acum = Fr_rel_acum, L = L )
+   
+   return(lista)
+}
+```
+
+
+```{r}
+notas = sample(0:10, 100, replace = T)
+lista_frecuencias_asist(notas, k = 10, p= 0)
+```
+
+
+
+
+```{r}
+
+# necesaria para el rename pero no usamos aqui : library(dplyr)
+
+
+funcion_estadisticos<- function(x , k , p , q){
+
+   lista = lista_frecuencias_asist(x,k,p)
+   
+# calculo media
+   n = length(x)
+   media = sum(lista$mc * lista$Fr.abs) /n
+   
+# varianza y dt
+   var = sum(lista$mc ^ 2 * lista$Fr.abs)  /n - media ^ 2
+   dt = sqrt(var)
+   
+# intervalo modal
+   
+   Modal = lista$intervalos[which(lista$Fr.abs == max(lista$Fr.abs))]
+   
+# calculamos cuantil  
+   
+   if(lista$Fr.rel.acum[1] >= q){
+     LC = 1
+     N_C = 0
+   } else{
+     LC = which( lista$Fr.rel.acum  >= q)[1]
+     N_C = lista$Fr.acum[LC - 1]
+   }
+   
+     L_C = lista$L[LC]
+     A_C =  lista$L[LC+1] - lista$L[LC]  
+     n_C = lista$Fr.abs[LC]
+     cuantil = L_C + A_C * (n * q - N_C) / n_C
+   
+    # asignando nombre a variables de forma automatica, no funciono pero tenerlo en cuenta
+    # assign(paste("cuantil", q , sep = ""), mediana)
+   
+    #lo siguiente funciona parcialmente
+    # names(cuantil) = paste("cuantil", q * 100 , sep = "_")
+     
+          #otra forma
+     #df %>% 
+       #rename(paste("cuantil", q * 100 , sep = "_") = cuantil) %>% 
+
+     
+     df = data.frame(Media = media, Varianza = var, Desv.tip = dt, I.modal = Modal, cuantil)
+     
+     # esta si funciono
+     name = paste("cuantil", q * 100 , sep = "_")
+     colnames(df)[grep("cuantil", colnames(df))] <- name
+     
+   
+     return(df)
+}
+```
+
+
+
+
+```{r}
+funcion_estadisticos(notas, 10, p=0 , q = 0.59)
+
+```
+
+
+```{r}
+tabla_frecuencias(notas, 10, p = 0)
+```
+
+
+
