@@ -27,8 +27,8 @@ al igualar plot a F , no se dibuja pero tiene informacion por si mismo:
 # funcion para calcular histrogramas absolutas
 
 ```{r}
-histAbs = function(x,L){
-  h = hist(x, breaks = L, right = F, freq = F, include.lowest = T,
+histAbs = function(x,L ,  i.l = F){
+  h = hist(x, breaks = L, right = F, freq = F, include.lowest = i.l,
            xaxt = "n" , yaxt ="n" , col = "lightgray",
            main = "Histograma de frecuencias absolutas",
            xlab = "Intervalos y marcas de clase" ,
@@ -80,8 +80,8 @@ notemos que el warning, nos señala que las areas del hsit son errorenas, lo cua
 
 ```{r}
 #nos ayudamos con plot = F y luego con plot mismo para graficar
-histAbsAcum = function(x,L){
-  h = hist(x, breaks = L, right = FALSE, plot = FALSE)
+histAbsAcum = function(x,L , i.l = F){
+  h = hist(x, breaks = L, right = FALSE, plot = FALSE , include.lowest = i.l)
   
   #aqui esta la clave
   h$density = cumsum(h$density)

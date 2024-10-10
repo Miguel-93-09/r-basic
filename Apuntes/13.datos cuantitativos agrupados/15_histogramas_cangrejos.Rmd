@@ -1,0 +1,224 @@
+---
+title: "15_ejemplo_cangrejos"
+output: html_document
+date: "2024-09-11"
+---
+
+```{r}
+
+
+lista_frecuencias_asist <- function(x , k , p){
+
+# amplitud  
+   z = diff(range(x))/k
+   y = ceiling (z * 10 ^ p)
+   y = y *  10 ^ (-p) 
+   if (y==z){
+      A = z + ( 10 ^ (-p) )
+    } else {A = y}
+   
+# Puntos de corte
+
+   L1 = min(x) - 1/2 * 10 ^ (-p)
+   L = L1 + A * c(0:k)
+   
+# marcas de clase
+   
+   X1 = (L[1]+L[2])/2
+   X = X1 + A * c(0:(k-1))
+   
+# estalbecemos como ordinal la variable cuantitativa
+   #aqui modificamos, tenemos que restar 1 para ser exactos, debido a que el punto se cuenta como char, pero no hay problema al parecer si se dan numeros de más
+   
+   d =  nchar(as.character(L[1]))
+   
+   x_cut = cut(x, breaks = L, right = F , dig.lab = d)
+   
+#obtenemos los intervalos para df
+   intervals = levels(x_cut)
+   
+#tablas de frecuencias
+   Fr_abs = as.vector(table(x_cut))
+   Fr_rel = as.vector(round(table(x_cut)/length(x),5))
+   Fr_acum = cumsum(Fr_abs)
+   Fr_rel_acum = cumsum(Fr_rel)
+
+   #aqui conviene mas devolver una lista   
+   lista = list(intervalos = intervals, mc = X , Fr.abs = Fr_abs, Fr.acum = Fr_acum, Fr.rel = Fr_rel, Fr.rel.acum = Fr_rel_acum, L = L )
+   
+   return(lista)
+}
+```
+
+
+```{r}
+notas = sample(0:10, 100, replace = T)
+lista_frecuencias_asist(notas, k = 10, p= 0)
+asis
+```
+
+
+
+
+```{r}
+cw = read.table("data/datacrab.txt" , header = T)
+cw = cw$width
+cw
+
+
+
+
+```
+
+
+
+
+```{r}
+asis = lista_frecuencias_asist(cw,10,p=1)
+```
+
+# frecuencias normal
+
+```{r}
+hist(cw, breaks = asis$L , right = F, main = "Histrograma de anchuras de los cangrejos"  )
+```
+
+Observemos que tiene hist varios atributos
+
+```{r}
+hist(cw, breaks = asis$L , right = F, main = "Histrograma de anchuras de los cangrejos" , plot = FALSE )
+```
+
+# CON nuestras funciones
+
+```{r}
+histAbs = function(x,L){
+  h = hist(x, breaks = L, right = F, freq = F, include.lowest = T,
+           xaxt = "n" , yaxt ="n" , col = "lightgray",
+           main = "Histograma de frecuencias absolutas",
+           xlab = "Intervalos y marcas de clase" ,
+           ylab = "Frecuencias absolutas"
+           )
+  axis(1, at = L)
+  text(h$mids, h$density /2, labels = h$counts, col = "black" ) 
+  #xaxt y yaxt = "n" sirve para que quitar ejes x y y por ahora
+  #axis, el 1 señala eje x y 2 eje y, con at se ponen los cortes de los intervalos
+  #text() , primero se pone la ubacion eje x, luego eje y, luego las etiquetas que aparecen y por ultimo el color de las mismas
+}
+
+```
+
+```{r}
+histAbs(cw, asis$L)
+```
+
+```{r}
+#nos ayudamos con plot = F y luego con plot mismo para graficar
+histAbsAcum = function(x,L , i.l = F){
+  h = hist(x, breaks = L, right = FALSE, plot = FALSE , include.lowest = i.l)
+  
+  #aqui esta la clave
+  h$density = cumsum(h$density)
+  
+  #aqui se pone freq = F , para no tener problema con las areas
+  
+  plot(h, freq =F, xaxt = "n" , yaxt = "n" , col = "lightgray",
+       main = "Histograma freq abs acum" , 
+       xlab = "intervalos" , ylab = "Frac. abs. acum"
+  )
+  
+  axis(1, at =L)
+  text(h$mids, h$density/2, labels = cumsum(h$counts), col = "black")
+  
+  
+}
+
+
+
+```
+
+
+```{r}
+histAbsAcum(cw, asis$L, i.l = T)
+```
+
+## con rug y jitter
+
+```{r}
+histAbsAcum(cw, asis$L, i.l = T)
+rug(cw)
+```
+
+
+```{r}
+histAbsAcum(cw, asis$L, i.l = T)
+rug(jitter(cw))
+```
+
+# hist rel
+
+```{r}
+histRel <- function(x, L){
+  h = hist(x, breaks = L, right= F, plot = F)
+  # lo siguiente es unicamnete para que aparezca tanto la linea como barras de relativas, se sara en ylim
+  t = round(1.1 * max(density(x)$y   , h$density   ) , 2)
+  plot(h, freq = F, col = "lightgray",
+       main = " hist. frec. rel y \ncurva de densidad",
+       xaxt= "n" , ylim = c(0,t) , xlab = "Intervalos" , ylab = "densidades")
+  axis(1, at = L)
+  text(h$mids, h$density / 2, labels = round(h$counts / length(x) , 2) )
+  lines(density(x), col = "purple" , lwd= 2)
+  
+}
+
+
+```
+
+
+
+```{r}
+histRel(cw, asis$L)
+
+```
+
+
+# finalmente podemos comparar con una campana gauss
+
+```{r}
+histRel(cw, asis$L)
+curve(dnorm(x  ,mean(cw),sd(cw)) , col ="cyan4" , lty = 4, lwd =2, add= T)
+legend("topright" , lwd = c(2,2), lty = c (1,4) , col = c("purple","cyan4"), legend = c("densidad", "densidad normal"))
+
+```
+
+
+```{r}
+
+histRelAcum <- function(x, L){
+  h = hist(x, breaks = L, right= F, plot = F)
+  h$density = cumsum(h$counts) / length(x)
+  # lo siguiente es unicamnete para que aparezca tanto la linea como barras de relativas, se sara en ylim
+  t = round(1.1 * max(density(x)$y   , h$density   ) , 2)
+  plot(h, freq = F, col = "lightgray",
+       main = " hist. frec. rel y \ncurva de densidad",
+       xaxt= "n" , ylim = c(0,t) , xlab = "Intervalos" , ylab = "frec. rel. acum")
+  
+  axis(1, at = L)
+  text(h$mids, h$density / 2, labels = round(h$density,2)  )
+    # densidad
+  
+  dens.x = density(x)
+  # si lo siguiente se hace solo con el cumsum sin la multiplicacion no aparece la linea, seguro se ira mucho mas arriba
+  dens.x$y = cumsum(dens.x$y) * (dens.x$x[2] - dens.x$x[1])
+  lines(dens.x, col = "purple" , lwd= 2)
+
+}
+
+
+```
+
+
+```{r}
+histRelAcum(cw, asis$L)
+```
+

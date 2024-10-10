@@ -19,17 +19,17 @@ dos intros.
 
 # listas no ordenadas
 
-*primer item
-*segundo
-  +sub 1.2
-  +sub1.3
+* primer item
+* segundo
+  + sub 1.2
+  + sub1.3
   
 #listas ordenadas
 
-1.a
-2.s
-    *a
-    *d
+1. a
+2. s
+    * a
+    * d
 
 
 cursiva: *cursiva*

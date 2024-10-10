@@ -15,7 +15,7 @@ Se distinguen dos casos
 ```{r}
  
 
-tabla_frecuencias <- function(x , k , p){
+tabla_frecuencias <- function(x , k , p , i.l = F){
 
 # amplitud  
    z = diff(range(x))/k
@@ -40,7 +40,7 @@ tabla_frecuencias <- function(x , k , p){
    
    d =  nchar(as.character(L[1]))
    
-   x_cut = cut(x, breaks = L, right = F , dig.lab = d)
+   x_cut = cut(x, breaks = L, right = F , dig.lab = d, include.lowest = i.l)
    
 #obtenemos los intervalos para df
    intervals = levels(x_cut)
@@ -63,7 +63,7 @@ tabla_frecuencias <- function(x , k , p){
 ```{r}
 
 
-lista_frecuencias_asist <- function(x , k , p){
+lista_frecuencias_asist <- function(x , k , p , i.l = F){
 
 # amplitud  
    z = diff(range(x))/k
@@ -88,7 +88,7 @@ lista_frecuencias_asist <- function(x , k , p){
    
    d =  nchar(as.character(L[1]))
    
-   x_cut = cut(x, breaks = L, right = F , dig.lab = d)
+   x_cut = cut(x, breaks = L, right = F , dig.lab = d , include.lowest = i.l)
    
 #obtenemos los intervalos para df
    intervals = levels(x_cut)
@@ -109,7 +109,7 @@ lista_frecuencias_asist <- function(x , k , p){
 
 ```{r}
 notas = sample(0:10, 100, replace = T)
-lista_frecuencias_asist(notas, k = 10, p= 0)
+lista_frecuencias_asist(notas, k = 10, p= 1 , i.l = T)
 ```
 
 
@@ -120,9 +120,9 @@ lista_frecuencias_asist(notas, k = 10, p= 0)
 # necesaria para el rename pero no usamos aqui : library(dplyr)
 
 
-funcion_estadisticos<- function(x , k , p , q){
+funcion_estadisticos<- function(x , k , p , q , i.d = F){
 
-   lista = lista_frecuencias_asist(x,k,p)
+   lista = lista_frecuencias_asist(x,k,p, i.d)
    
 # calculo media
    n = length(x)
@@ -177,7 +177,7 @@ funcion_estadisticos<- function(x , k , p , q){
 
 
 ```{r}
-funcion_estadisticos(notas, 10, p=0 , q = 0.59)
+funcion_estadisticos(notas, 10, p=0 , q = 0.59, i.d = T)
 
 ```
 

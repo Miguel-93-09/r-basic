@@ -10,7 +10,7 @@ más pensada para html
 
 ```{r}
 library(reticulate)
-use_python("/Users/Miguel/anaconda3/python.exe")   #configurar la direccion que se usara de python
+#use_python("/")   #configurar la direccion que se usara de python
 #py_install("nombre paquete")  #se instalara en la versio nde python seleccionada anteriormente
 
 sea <- import("seaborn") 

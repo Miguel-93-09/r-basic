@@ -28,7 +28,7 @@ plot(x,y,pch=23,cex=1.5,col = "springgreen", type="s")
 
 par(mfrow = c(1,1))
 
-plot(x,y,pch=23,cex=1.5,col = "springgreen", type="n")
+plot(x,y,pch=23,cex=1.5,col = "springgreen", type="h")
 
 
 

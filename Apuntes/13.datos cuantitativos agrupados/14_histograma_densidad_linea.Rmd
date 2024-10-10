@@ -1,0 +1,82 @@
+---
+title: "14_densidades_funciones_dist"
+output: html_document
+date: "2024-09-10"
+---
+
+Es como las funciones de distribucio nde probabildiad, solo que de las frecuencias relativas
+
+# histogramas frecuecinas rel
+
+```{r}
+histRel <- function(x, L){
+  h = hist(x, breaks = L, right= F, plot = F)
+  # lo siguiente es unicamnete para que aparezca tanto la linea como barras de relativas, se sara en ylim
+  t = round(1.1 * max(density(x)$y   , h$density   ) , 2)
+  plot(h, freq = F, col = "lightgray",
+       main = " hist. frec. rel y \ncurva de densidad",
+       xaxt= "n" , ylim = c(0,t) , xlab = "Intervalos" , ylab = "densidades")
+  axis(1, at = L)
+  text(h$mids, h$density / 2, labels = round(h$counts / length(x) , 2) )
+  lines(density(x), col = "purple" , lwd= 2)
+  
+}
+
+
+```
+
+
+```{r}
+datos = sample(0:10, 100, replace = T)
+```
+
+
+
+
+```{r}
+histRel(datos, c(0,2,4,6,8,10))
+```
+
+
+# histogramas frecuecinas rel acum
+
+
+
+```{r}
+
+histRelAcum <- function(x, L){
+  h = hist(x, breaks = L, right= F, plot = F)
+  h$density = cumsum(h$counts) / length(x)
+  # lo siguiente es unicamnete para que aparezca tanto la linea como barras de relativas, se sara en ylim
+  t = round(1.1 * max(density(x)$y   , h$density   ) , 2)
+  plot(h, freq = F, col = "lightgray",
+       main = " hist. frec. rel y \ncurva de densidad",
+       xaxt= "n" , ylim = c(0,t) , xlab = "Intervalos" , ylab = "frec. rel. acum")
+  
+  axis(1, at = L)
+  text(h$mids, h$density / 2, labels = h$density  )
+    # densidad
+  
+  dens.x = density(x)
+  # si lo siguiente se hace solo con el cumsum sin la multiplicacion no aparece la linea, seguro se ira mucho mas arriba
+  dens.x$y = cumsum(dens.x$y) * (dens.x$x[2] - dens.x$x[1])
+  lines(dens.x, col = "purple" , lwd= 2)
+
+}
+
+
+```
+
+
+```{r}
+histRelAcum(datos, c(0,2,4,6,8,10))
+
+```
+
+
+
+
+
+
+
+

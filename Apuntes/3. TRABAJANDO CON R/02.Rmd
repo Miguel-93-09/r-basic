@@ -40,7 +40,7 @@ atan()
 solo da los valores en un detemrinado rango,
 
 
-sinpi()   % sin(pi/2)
+sinpi()   % sin(pi*x) es mejor para calcular mitades de pi
 
  
 # coma flotante
