@@ -15,7 +15,7 @@ alt enter ejecurtar celda
 
 import math as ""
 
-para cosntantes
+para constantes
 
 math.pi
 math.e
@@ -80,7 +80,7 @@ math.isclose(math.sqrt(2)**2,2)   que tan cerca esta
 math.isclose(math.sqrt(2)**2,2,abs)  cuantos digitos
 math.isclose(math.sqrt(2)**2,2,rel)  toelrancia relativa
 
-
+y
 
 
 

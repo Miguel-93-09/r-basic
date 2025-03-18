@@ -3,8 +3,8 @@ title: "1_ chunks markdown"
 author: "MARK"
 date: "2024-05-20"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 en este caso, la chunk no tiene nombre, se imprime el código y resultado

@@ -139,6 +139,7 @@ M
 apply(M, MARGIN = 1, FUN = function(x){sqrt(sum((x^2)))})
 
 apply(M, MARGIN = 2, FUN = function(x){sqrt(sum((x^2)))})
+
 ```
 
 
@@ -147,8 +148,12 @@ importante, si la funcion que se aplica no es de tipo reduce, entonces se aplica
 
 ```{r}
 M
+
 apply(M, MARGIN = 1, FUN = function(x){sqrt(x^2)})
 
 apply(M, MARGIN = 2, FUN = function(x){sqrt(x^2)})
+
+apply(M, MARGIN = c(1,2) , FUN = function(x){sqrt(x^2)})
+
 ```
 
