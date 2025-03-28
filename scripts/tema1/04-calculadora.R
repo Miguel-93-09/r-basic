@@ -182,7 +182,7 @@ suma5 <- function(numero){
   numero = suma1(numero);
   numero = suma1(numero);
   numero = suma1(numero);
-  numero = suma1(numero);
+  numero = suma1(numero);    # si termina en asignacion y no en operacion entonces n odevuelve nada,
   suma1(numero)
 }
 
@@ -192,9 +192,9 @@ ls()
 
 rm(product)
 
-ls()
+ls()  #lsita variables' , es un objeto de tipo lista de hecho
 
-rm(list = ls())
+rm(list = ls())   #se remueve dicho objeto  lista
 
 class(3+2i)
 
@@ -241,3 +241,9 @@ z2
 Mod(z2)
 Arg(z2)
 pi/2
+
+q = -5 +0i
+sqrt(q)
+
+
+
