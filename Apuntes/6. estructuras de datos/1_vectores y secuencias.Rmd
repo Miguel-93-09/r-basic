@@ -27,7 +27,7 @@ z
 
 ```
 
-parametro what = character, por ejemplo convierte entradas a caracter pro lo que ya no seria necesario agregarlas al ingresar datos
+parametro en scan, what = character, por ejemplo convierte entradas a caracter pro lo que ya no seria necesario agregarlas al ingresar datos
 
 #progresiones y secuencias
 

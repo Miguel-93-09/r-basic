@@ -67,7 +67,7 @@ cbind(M,M)
 diag(c(1,2,3))
 diag(5)
 
-```
+``` 
  
 # submatrices
 

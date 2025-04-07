@@ -36,7 +36,9 @@ l[[2]]*2
 si solo se usa un corchete entonces se obtiene una lista y no se podra operar
 
 ```{r}
-l[2]*2
+l[2]
+
+l[2]$datos*2
 ```
 # obteniendo informacion de la lista
 

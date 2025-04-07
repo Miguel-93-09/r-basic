@@ -67,7 +67,7 @@ se peuden repetir etiques para agrupar
 levels(nombres_f3) = c("a","a","a","d")
 nombres_f3
 
-```
+``` 
 # factor ordenado
 niveles siguen un orden
 
