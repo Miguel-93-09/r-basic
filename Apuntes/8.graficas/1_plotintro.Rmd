@@ -1,4 +1,4 @@
----
++---
 title: "plot"
 output: html_document
 date: "2024-07-19"
@@ -16,7 +16,7 @@ plot(x,y)
 
 ## fig.
 
-dar tab, salen varias opciones
+dar tab al  fig. , salen varias opciones
 
 ```{r, fig.cap = "Grafica 1", fig.align='center'}
 x = c(1,2,3,4,7)
@@ -43,6 +43,7 @@ plot(f)
 ```{r, fig.cap = "Grafica f", fig.align='center'}
 f = function(x){x^2}
 plot(f)
+
 ```
 
 
