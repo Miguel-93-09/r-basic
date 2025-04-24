@@ -74,6 +74,9 @@ names(df)
 
 
 
+```{r}
+names(df)[2]
+```
 
 
 

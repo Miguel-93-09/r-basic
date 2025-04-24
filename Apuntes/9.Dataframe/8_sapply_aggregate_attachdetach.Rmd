@@ -21,6 +21,7 @@ f = function(x){sqrt(sum(x^2))}
 sapply( iris[,1:4], f)
 
 ```
+
 ```{r}
 df = data.frame(C1 = c(1,2,NA,4),C2 = c(1,NA,2,3))
 
@@ -93,13 +94,18 @@ attach(mtcars)
 
 mpg
 
-detach(mtcars)
+detach(mtcars)   #no queda muy claro porque se puede seguir accediendo a sus variables internas, si ya se desactivo
 
-mpg = c(1,2)
 
-attach(mtcars)
+#attach(mtcars)
+
 ```
 
+```{r}
+
+mpg
+
+```
 
 
 

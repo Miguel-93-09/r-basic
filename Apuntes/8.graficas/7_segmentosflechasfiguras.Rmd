@@ -23,9 +23,13 @@ code = : 1 punta izqueirda, 2 punta a derecha, 3 doble punta
 length señala el largo de la punta de flecha
 
 ```{r}
-plot(x^2, type = "l")
+f = function(x){x^2}
 
-arrows(1,0,3,2, lwd=2, col ="red", code = 2, length = 0.5, angle = 10)
+x = seq(0,5,length.out=30)
+
+plot(x, f(x) , type = "l")
+
+arrows(1.5,10,2,f(2), lwd=2, col ="red", code = 2, length = 0.1, angle = 30)
 
 
 ```

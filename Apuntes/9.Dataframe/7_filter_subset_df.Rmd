@@ -69,3 +69,14 @@ rownames(versicolor) = 1:nrow(versicolor)
 str(versicolor)
 head(versicolor)
 ```
+```{r}
+#combinando subset  y select
+
+
+
+select(subset(iris, Species=="versicolor",), starts_with("Petal"))
+
+
+
+```
+

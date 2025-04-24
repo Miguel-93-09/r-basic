@@ -9,7 +9,7 @@ date: "2024-07-26"
 stringsAsFactors : R transforma por defecto las columnas de palabras en factores, es decir es TRUE, para evitar esto hay que hacerlo FALSE
 
 ```{r}
-df2 = read.table("../../data/EnergyDrink", stringsAsFactors = FALSE)
+df2 = read.table("~/Documentos/GitHub/r-basic/data/EnergyDrink", stringsAsFactors = FALSE)
 str(df2)
 head(df2)
 ```
@@ -17,7 +17,7 @@ head(df2)
 por defecto
 
 ```{r}
-df3 = read.table("../../data/EnergyDrink", stringsAsFactors = TRUE)
+df3 = read.table("~/Documentos/GitHub/r-basic/data/EnergyDrink", stringsAsFactors = TRUE)
 str(df3)
 ```
 

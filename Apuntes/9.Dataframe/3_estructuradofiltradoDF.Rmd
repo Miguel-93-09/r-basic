@@ -5,7 +5,7 @@ date: "2024-07-26"
 ---
 
 ```{r}
-df = iris
+df = iris 
 ```
 # obteniendo nombres generales
 
@@ -101,7 +101,8 @@ para arreglar el problema de los renglones mal numerados, puesto que conservan n
 
 ```{r}
 df5 = df[df$Species == "setosa" & df$Sepal.Width > 4,c(5,1)]
-rownames(df5) = c(1:length(df5$Species))
+
+rownames(df5) = c(1:nrow(df5))
 df5
 rownames(df5)
 ```

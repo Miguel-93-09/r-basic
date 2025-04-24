@@ -17,7 +17,7 @@ puede estar en ordanador o en URL, se aplica al nombre del fichero o direccion e
 ## carga local
 
 ```{r}
-df = read.table("data/bulls.dat")
+df = read.table("~/Documentos/GitHub/r-basic/data/bulls.dat")
 str(df)
 ```
 
@@ -29,9 +29,11 @@ col.names = c(...) : para especificar nombre de columas, todos en comillas
 
 
 ```{r}
-df = read.table("data/bulls.dat",
+df = read.table("~/Documentos/GitHub/r-basic/data/bulls.dat",
                 header = FALSE,
-                col.names = c("breed", "sale_price", "shoulder", "f_free_body", "percent_ff_body","frame_scale", "back_fat", "sale_height","sale_weight"))
+                col.names = c("breed", "sale_price", "shoulder", "f_free_body", "percent_ff_body","frame_scale", "back_fat", "sale_height","sale_weight"),
+                sep = "")
+                    
 head(df)
 
 ```
