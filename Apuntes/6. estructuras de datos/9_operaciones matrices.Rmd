@@ -21,6 +21,8 @@ matriz %% escalar  :igual que el anterior
 del paquete expm
 
 ```{r}
+library(Biodem)
+
 a=c(2,0,2,1,2,3,0,1,3)
 b=c(3,2,1,1,0,0,1,1,1)
 
@@ -61,7 +63,7 @@ eigen(A)
 round(eigen(A)$values,2)
 round(eigen(A)$vectors,2)
 
-# se debe cumplir igualdad, donde M matriz original, D valores propios, P matriz vectores propios
+# se debe cumplir igualdad, donde A matriz original, D valores propios, P matriz vectores propios
 # P*D*P^{-1} = A
 
 round(eigen(A)$vectors %*% diag(eigen(A)$values) %*% solve(eigen(A)$vectors),2)

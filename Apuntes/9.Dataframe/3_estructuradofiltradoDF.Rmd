@@ -26,6 +26,9 @@ colnames(df)
 list con dos vectores, identificador de fila y nombre de columas, es decir, ambos anteriores
 ```{r}
 dimnames(df)
+
+dimnames(df)[1]
+dimnames(df)[[1]]
 ```
 
 
@@ -41,6 +44,8 @@ numero de filas y columnas
 nrow(df)
 ncol(df)
 dim(df)
+
+dim(df)[2]
 ```
 
 # obteniendo informacion de dataframe
@@ -78,7 +83,7 @@ df[1:10,]
 df[1:10,c(5,1)]
 ```
 
-tambien empleando filtrados
+tambien empleando filtrados, notemos que el resultado es por renglon
 
 ```{r}
 df$Species == "setosa" & df$Sepal.Width > 4

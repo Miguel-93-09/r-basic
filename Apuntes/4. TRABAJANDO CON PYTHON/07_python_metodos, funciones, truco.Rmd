@@ -79,9 +79,9 @@ from functools import reduce
 
 filetered = list(filter(lambda x: (x*2>8) ,datos))
 
-maped = list(map(lambda x: x*2=,datos))
+maped = list(map(lambda x: x*2,datos))
 
-reduced: reduce(lambda x, y: x+y ,data)
+reduced = reduce(lambda x, y: x+y ,data)
 
 
 

@@ -59,7 +59,7 @@ math.factorial()
 
 math.fmod(7,3)=1  más preciso, usa definicion mejor para decimales
 
-7%3=1   con entero ni hay pedo
+7%3=1   con entero no hay problema
 
 7//3 cociente
 

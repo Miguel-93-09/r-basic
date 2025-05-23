@@ -45,7 +45,7 @@ cambiar etiquetas, intercambiandolas por las de levels en el orden dado por el v
 ```{r}
 nombres_f3 = factor(nombres, levels= c("ad", "me", "lo", "as"), labels = c("adq", "meq", "lsq", "loq"))
 nombres_f3
-
+# notemos que esto de darle labels, cambia los nombre propiamente
 
 ```
 
@@ -59,6 +59,7 @@ levels() permite cambiar nombres del factor directamente
 levels(nombres_f3) = c("a","b","c","d")
 nombres_f3
 
+#esto tambien cambio los nombres del vector 
 ```
 se peuden repetir etiques para agrupar
 
@@ -68,6 +69,25 @@ levels(nombres_f3) = c("a","a","a","d")
 nombres_f3
 
 ``` 
+# nota
+
+es importante que los levels sean igual que los elementos del vecotor, o no los detectara.
+
+```{r}
+notas = rep(c("1","2","3") , 7)
+
+notas 
+
+ejemplo1 = factor(notas, levels = c("1","2","3"), labels = c("a","b", "c"))   
+
+ejemplo1
+
+
+```
+
+
+
+
 # factor ordenado
 niveles siguen un orden
 
@@ -78,7 +98,7 @@ notas = c(1,4,3,2,3,2,4,3,1,2,3,4,2,3,4)
 
 ordered(notas, labels=c("min","med", "reg", "max"))
 
-
+notas
 ```
 #improtante
 
@@ -97,7 +117,9 @@ factor(notas, labels=c("min","med", "reg", "max") )
 tambien se puede forzar el orden
 
 ```{r}
-ordered(notas, levels= c("b", "a", "d", "c"), labels = c("min","med", "reg", "max"))
+ordenado = ordered(notas, levels= c("b", "a", "d", "c"), labels = c("min","med", "reg", "max"))
+ordenado
+notas
 
 ```
 añadiendo etiquetas como prevision

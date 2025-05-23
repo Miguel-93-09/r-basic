@@ -10,14 +10,14 @@ math.pow(x,y) = x^y
 math.expm1(x)= e^x-1
 math.log(x)= ln(x)
 math.log(x,n)= log_n(x)
-math.exp1p(x)= ln(x)+1
+math.exp1p(x)= e^(x)+1
 math.sqrt()
 math.cos()
 ...
 
 
 math.degrees() radian a grados
-math.radians()  reve´s
+math.radians()  reversa
 
 math.hypot(x,y) saca la hipotenusa
 

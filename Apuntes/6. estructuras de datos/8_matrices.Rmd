@@ -38,6 +38,7 @@ matrix(rep(0,15), nrow=3)
 
 ```{r}
 M=matrix(1:12, nrow=3)
+M
 ```
 
 # construyendo matriz con vectores 

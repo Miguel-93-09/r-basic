@@ -37,9 +37,9 @@ curve(curva) : añade grafica de una curva a grafico existente, mdiante expresio
 f = function(x){x^2}
 
 plot(f , xlim=c(-3,3),ylim = c(-10,10))
-lines(-3:3, (c(-3:3))^2, lwd=2, lty="dotted", col="red")
+lines(-3:3, (-3:3)^2, lwd=2, lty="dotted", col="red")
 #para ver puntos por los que pasa
-points(-3:3, (c(-3:3))^2, pch = 19)
+points(-3:3, (-3:3)^2, pch = 19)
 curve(x^3, lty= 2, col = "blue", add=TRUE)
 
 # quieres modificar rango para que sea vea bien, se tiene que hacer en el plot, ya que las demas 

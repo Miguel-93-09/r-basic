@@ -21,7 +21,7 @@ sqrt(2) - 2
 eval= TRUE  :muestra resultado
 
 ```{r segundo, eval=FALSE}
-sqrt(2) - 2
+y = sqrt(2) - 2
 ```
 
 message: False  por defecto, no muestra mensajes de ejecucio nde R
