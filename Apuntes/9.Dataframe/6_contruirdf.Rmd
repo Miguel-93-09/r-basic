@@ -73,7 +73,7 @@ entry_5 = c("H",10,2)
 # es necesario hacer nuevamente la asignacion, ya que si no, no se guarda dicha fila nueva
 df5 = rbind(df5,entry_5)
 df5
-
+ 
 ```
 
 # añadir columas

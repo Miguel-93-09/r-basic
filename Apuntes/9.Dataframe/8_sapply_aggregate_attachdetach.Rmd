@@ -67,7 +67,9 @@ aggregate(Sepal.Length  ~ Species, data = iris, FUN = sd)
 # no podemos aplicarlo para el filtro directamente como en python, pero una vez visto que setosa no cumple, podemos fitlar el df manualmente
 aggregate(Sepal.Length  ~ Species, data = iris, FUN = sd)$Sepal.Length > 0.5
 
-iris[df$Species == "setosa" | df$Species  == "virginica", ]
+iris
+
+iris[iris$Species == "setosa" | iris$Species  == "virginica" ]
 
 
 
