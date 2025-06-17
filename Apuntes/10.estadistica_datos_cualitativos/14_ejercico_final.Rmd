@@ -6,6 +6,8 @@ date: "2024-08-14"
 
 primero hacemos tabla bidimensional sin tomar sexo, as.table() tranforma en table si no es una table
 
+el siguiente ejercicio busca juntar a las poblaciones de hombre y mujeres, eliminar el genero pero sin filtrar, juntandolos 
+
 ```{r}
 hec = HairEyeColor
 
@@ -154,24 +156,24 @@ barplot(rel_ojos, col =c("black" , "brown", "red","yellow"), legend.text = T, ma
 
 ```
 
-el video esta mal, mirar que porcentajes suman mucho mas uqe uno
+el video esta mal, mirar que porcentajes suman mucho mas uqe uno, nosotros lo tenemos corregido
 
 
 
 
-## EJEMPLO ACCEDIENTO A ETIQUETAS y quieriendo sumar tables, no funciono
+## EJEMPLO ACCEDIENTO A ETIQUETAS y quieriendo sumar tables
 
 ```{r}
 dimnames(hec)
 dimnames(hec)[1]
-dimnames(hec)$Hair
-dimnames(hec)[1]$Hair[2]
+dimnames(hec)$Pelo
+dimnames(hec)[1]$Pelo[2]
 
 # se puede recorrer elementos de una lista como en python
 
 # notemos que unicamente el [1] señala el atributo
 
-names <- dimnames(hec)[1]$Hair
+names <- dimnames(hec)[1]
 for (x in names) {
 	print (x)
 }
@@ -181,17 +183,22 @@ for (x in names) {
 seguimos creando la funcion ahora que podemos enlistar nombres de propiedades, vemos que funciona cuando hacemos x[, , "Male"] + x[, , "Female"] 
 donde x se sustituye por hec
 
+se pretende a continuacion automatizar el juntado de tablas pero no parece muy util
+
 ```{r}
 # se observa que a las funciones si les entran "palabras", pero a los filtro no, entonces hay que hacerlo por posicion ver:  dimnames(x)[y]
+
+hec
+
 simplificar <- function(x,y){
   names <- dimnames(x)[y] 
   for (i in names) {
-	hec_2 = x[, , "Male"] + x[, , "Female"]
+	hec_2 = x[, , "Hombre"] + x[, , "Mujer"]
 	return(hec_2)
   } 
 }
 
-simplificar(hec, y = 2 )
+simplificar(hec, y = 3)
 
 
 ```
@@ -226,9 +233,12 @@ si pudiesemos hacer que el acceso a la variable con $ fuese posible entonces ten
 OBSERVEMOS primero que como al aplicar names a una lista, esta nos devuelve el nombre de varaibles de la lista, en este caso de la table. Además de esta forma podemos obtener el numero de varaibles de la table.
 
 
+
+
+
 ```{r}
 # primero bsucamos posicion de ka variable llamada "Hair" o cualquier otra
-a = which(names(dimnames(hec)) == "Hair")
+a = which(names(dimnames(hec)) == "Pelo")
 a
 
 length(names(dimnames(hec)))
