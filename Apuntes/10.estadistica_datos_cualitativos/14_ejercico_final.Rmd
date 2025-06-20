@@ -147,6 +147,8 @@ diagrama de barras
 
 ```{r}
 
+data
+
 # aqui hay que hacer transpuesta porque se considera que segunda varaible es marginal de la primera
 
 barplot(t(rel_pelo), col =c("brown","blue","orange","lightgreen"), legend.text = T, main = "Frec rel ojo en cada color de cabello", beside = T)
@@ -173,7 +175,7 @@ dimnames(hec)[1]$Pelo[2]
 
 # notemos que unicamente el [1] señala el atributo
 
-names <- dimnames(hec)[1]
+names <- dimnames(hec)$Pelo
 for (x in names) {
 	print (x)
 }
