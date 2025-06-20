@@ -72,6 +72,18 @@ prop.table(TT, margin = 2)[, "H", ]
 sum(prop.table(TT, margin = 2)[, "H", ])
 ```
 
+
+```{r}
+prop.table(TT, margin = 1)["S", , ]
+sum(prop.table(TT, margin = 1)["S", , ])
+
+```
+
+
+
+
+
+
 # marginal con respecto a dos variables
 
 ```{r}
@@ -94,12 +106,25 @@ sum(prop.table(TT, margin = c(1,2))["S","H", ])
 
 ES IMPORTATE ver esto como subpoblaciones, es decir, en el ultimo caso, la poblacion que dijo que si siendo hombre, de estos que proporcion es de cada nacionalidad. No significa que los hombres chilenos sean precisamente mayoritarios al decir que NO con respecto a SI
 
-Para ello podriamos ver que las respuestas de hombres chilenos no es tan radicalmente distinta, pese a que si es mayoritariamente "NO"
+Para ello podriamos ver que las respuestas de hombres chilenos no es tan radicalmente distinta, pese a que si es mayoritariamente "NO", NTOA: ESTO CAMBIO POR SE GENERA ALEATORIAMENTE CADA QUE SE EJECUTA CODIGO.
 
 
 ```{r}
 prop.table(TT, margin = c(2,3))[ , "H", "Chile"]
 ```
+
+SI QUISIERAMOS VER LOS SI Y NO POR SEXO POR PAIS
+
+```{r}
+prop.table(TT, margin = c(2,3))
+
+```
+
+
+
+
+
+
 
 podemos hacerles un ftable a las prop.table para aplanarlas tambien, notemos que si hacemos col.vars(c())  eligiendo c() igual que el margin, entonces es mucho más facil de leer
 
@@ -109,17 +134,32 @@ f2 = ftable(prop.table(TT, margin = c(2,3)), col.vars = c(2,3))
 f2
 ```
 
+```{r}
+#la anterior solo con hombre
+
+f3 = ftable(prop.table(TT, margin = c(2,3))[, "H", ], col.vars = c(2))
+f3
+
+```
+
+
+
 tambien nos ayuda a entender mejor el caso con margin c(1,2)
 
 ```{r}
-f1 = ftable(prop.table(TT, margin = c(1,2)), col.vars = c(1,2))
+f1 = ftable(prop.table(TT, margin = c(1,2)), col.vars = c(2,1))
 f1
 ```
 
 accediendo a datos como si fuese matriz pero sin nombres de filas o columna, de forma que podemos ver si surge el caso que en un pais donde porvengan NO si que SI por parte de hombres o mujeres,  sucede que con respecto a su propio pais y su respuesta se de que hay mas SI que NO, y viceversa, lo cual creo que puede suceder
 
 ```{r}
+f1[,1]
+
 f1[,1] > f1[,3]
+
+f2[1, ]   #FILA COMPLETA DE LA f2
+f2[1, 1:4]  #subvector de la vila anterior
 
 f2[1, 1:4] > f2[2, 1:4]
 ```
@@ -140,7 +180,7 @@ o bien
 ```{r}
 tt_2 = ftable(prop.table(TT, margin = 2), col.vars = 2)
 tt_2
-rowSums(tt_2)
+colSums(tt_2)
  
 ```
 

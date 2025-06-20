@@ -52,10 +52,21 @@ names(which(table(x)==1))
 
 
 ```
+
+
+
 ```{r}
 r = factor( sample(c("Si",'No') , size = 12, replace = TRUE) ) 
 which(table(r)==max(table(r)))
 names(which(table(r)==max(table(r))))
+```
+
+
+
+```{r}
+
+which(table(r)==max(table(r)))[1]*2
+
 ```
 
 

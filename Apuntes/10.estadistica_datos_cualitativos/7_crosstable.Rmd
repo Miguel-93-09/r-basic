@@ -4,7 +4,7 @@ output: html_document
 date: "2024-08-09"
 ---
 
-La funcion CrossTable() permite producir, haciendo el parametro prop.chisq = FALSE, resument de tabla de frecencuais absolutas y las tres de frec relativas d eun solo golpe con dos variables.
+La funcion CrossTable() permite producir, haciendo el parametro prop.chisq = FALSE, resumen de tabla de frecencuais absolutas y las tres de frec relativas d eun solo golpe con dos variables.
 
 usando help(CrossTAble) podemos ver que hay muchos parametros para modificar contneido de las celdas.
 
