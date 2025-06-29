@@ -128,3 +128,12 @@ añadiendo etiquetas como prevision
 ordered(notas, levels= c("b", "a", "d", "c", "f"), labels = c("min","med", "reg", "max", "super"))
 
 ```
+
+añadiendo como prevision
+
+```{r}
+ordered(notas, levels= c("x","b", "a", "d", "c", "f" ), labels = c("repr","min","med", "reg", "max", "super"))
+
+```
+
+
