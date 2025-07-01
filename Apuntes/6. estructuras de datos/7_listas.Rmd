@@ -51,3 +51,18 @@ str(l)
 names(l)
 ```
 
+
+
+```{r}
+mi_lista <- list("a", "b", "c", "d", "e", "f")
+mi_lista[seq(2, length(mi_lista), by = 2)]
+```
+
+
+
+
+
+
+
+
+
