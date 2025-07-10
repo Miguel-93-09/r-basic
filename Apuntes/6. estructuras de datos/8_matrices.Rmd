@@ -90,7 +90,9 @@ M[1:2,3:4]
 se puede incluso reordenar la matriz con dichos indices
 
 ```{r}
+M
 M[c(2,1,3),]
+# En el siguiente es como si primero se ordenaran los renglones, y luego se seleccionaran columnas en el orden dado
 M[c(2,1,3),c(3,2,1)]
 ```
 
@@ -145,7 +147,7 @@ apply(M, MARGIN = 2, FUN = function(x){sqrt(sum((x^2)))})
 
 
 
-importante, si la funcion que se aplica no es de tipo reduce, entonces se aplicara elemento a elemento como si fuera tipo c(1,2)
+importante, si la funcion que se aplica no es de tipo reduce, entonces se aplicara elemento a elemento como si fuera tipo c(1,2), notemos que en margin 1 solo cambio la forma de la matriz.
 
 ```{r}
 M
