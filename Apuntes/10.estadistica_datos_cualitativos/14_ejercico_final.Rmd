@@ -171,9 +171,17 @@ dimnames(hec)[1]$Pelo[2]
 
 # se puede recorrer elementos de una lista como en python
 
-# notemos que unicamente el [1] señala el atributo
+# notemos que unicamente el [1] señala el atributo, por lo que no se consigue lo que queremos
 
 names <- dimnames(hec)[1]
+for (x in names) {
+	print (x)
+}
+
+```
+```{r}
+# aqui si
+names <- dimnames(hec)[[1]]
 for (x in names) {
 	print (x)
 }
@@ -185,8 +193,11 @@ donde x se sustituye por hec
 
 se pretende a continuacion automatizar el juntado de tablas pero no parece muy util
 
+
+
 ```{r}
-# se observa que a las funciones si les entran "palabras", pero a los filtro no, entonces hay que hacerlo por posicion ver:  dimnames(x)[y]
+
+# ejemplo con los nombres ya pasados
 
 hec
 
@@ -198,61 +209,36 @@ simplificar <- function(x,y){
   } 
 }
 
+
 simplificar(hec, y = 3)
 
-
 ```
-
-
-No va a funcionar por que no podemos pasar los nombres al filtro ni despues de $, solo a funciones dentro de (), tenemos que buscar que se apor numero
-
 ```{r}
-# sirve para sacar por ejemplo, numero levels tercera variable : length(hec[1,1,])
+
+# un poco de abstraccion, ya lee nombresy los pasa a los filtros, pero solo sirve si posicionamos la "i" en el lugar adecuaco, tendriamos que hacer casos para que si y= a algo entonces se sumen acorde  a la dimension dada
 
 simplificar <- function(x,y){
-  if (y==3){
-      table = x[ , , 1]
-      t = length(x[1,1,])
-      for (i in 2:t){
-        table = table + x[ , ,i]
-      } 
-      return(table)
-  }
-  
-} 
+  names <- dimnames(x)[[y]] 
+  hec_2 = 0
+  for (i in names) {
+  	hec_2 = hec_2 + x[, i, ]
+  	print(hec_2)
+  } 
+}
 
-
-simplificar(hec, y = 3)
+simplificar(hec, y = 2)
 
 ```
- Es un borrador para que funcione hay que agregar casos y==1 y y==2, observando que solo funciona para df con 3 variables, se tendria que
- hacer uno para cada caso.
-
-si pudiesemos hacer que el acceso a la variable con $ fuese posible entonces tendriamos un paso más. No podemos acceder a varaibles con \$ ya que es una table
-
-OBSERVEMOS primero que como al aplicar names a una lista, esta nos devuelve el nombre de varaibles de la lista, en este caso de la table. Además de esta forma podemos obtener el numero de varaibles de la table.
 
 
-
-
-
-```{r}
-# primero bsucamos posicion de ka variable llamada "Hair" o cualquier otra
-a = which(names(dimnames(hec)) == "Pelo")
-a
-
-length(names(dimnames(hec)))
-
-#recrdemos que si solo hacemos L[2] entonces vemos otra lista en caso de que el vector tenga nombre, pero si hacemos L[[2]] accedemos a el vector mismo, de forma que podemos ver el numero de elementos de la variable en cuestion
-
-length(dimnames(hec)[[a]])
-
-
-```
 
 ### solucion mucho más facil
 
-como queremos sumar por axis 3, en relacion al genero, es mejor usar c(1,2) es decir, las varaibles restantes, 
+
+
+como queremos sumar por axis 3, en relacion al genero, es mejor usar c(1,2) es decir, las varaibles restantes,
+
+ya que al hacer este marque salen sub pobalciones por cada colo de pelo y ojos, dividades por genero, si se suman estas se unifican generos
 
 ```{r}
 

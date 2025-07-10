@@ -39,8 +39,11 @@ sqrt(2) - 2
 # parametros results
 
 results = hide    se ejecuta pero no muestra resultado
+
 = markup    muestra todo iniciado por ##, defecto
+
 =asis       formato como texto
+
 =hold       muestra resultados hasta el final
 
 
