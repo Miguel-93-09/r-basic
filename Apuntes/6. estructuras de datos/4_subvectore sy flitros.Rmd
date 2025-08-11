@@ -29,8 +29,8 @@ x[13:1]
 ```
 ir a los ultimos
 
-x[length(x)]  penultimo
-x[length(x)-1] antepenultimo
+x[length(x)]  pultimo
+x[length(x)-1] penultimo
 
 rescatar datos en orden inverso
 x[b:a] si v>a entonces va en sentido inverso
@@ -38,6 +38,7 @@ x[b:a] si v>a entonces va en sentido inverso
 de hecho se le pueden dar en cualquier orden
 
 ```{r}
+x[length(x)]
 x[c(5,7,2,3)]
 
 ```

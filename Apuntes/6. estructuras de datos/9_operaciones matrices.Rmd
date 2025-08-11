@@ -33,8 +33,14 @@ B = matrix(b,nrow=3, byrow = TRUE)
 A
 B
 
+print("A*B")
+
 A*B
 
+print("A%*%B")
+A%*%B
+
+print("A%*%A")
 A%*%A
 mtx.exp(A,2)
 
