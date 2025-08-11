@@ -54,17 +54,40 @@ py_to_r(sum)  #convierte a dato de R
 
 ```{r}
 help(py_to_r)  #se hace normal si es r, directamente accediento a la funcion que queremos
-py_help(os$chdir)  #se hace con py_ep si es un modulo de python, utilizando el modulo antes de la funcion o metodo pero sin el ()
+py_help(np$array)  #se hace con py_ep si es un modulo de python, utilizando el modulo antes de la funcion o metodo pero sin el ()
 
 
 
 
 ```
 
+# observar
+
+esto nos dara errror, porque py_to_r es una funcion propia del paquete reticulate de R, no de python
+en el segundo caso similar, np$array no es una funcion de r, sino de python
+```{r}
+help(np$array)
+
+
+```
+```{r}
+
+py_help(py_to_r)
+
+```
+
+
+
+
+
+
 
 ## arrays
 
 ```{r}
+
+# se usa _ como $ en r, mas comun $
+
 a = np_array(c(1:10),order = "C") #se trabaja en formato C en lugar de fortran por defecto
 a  # esta en formato py
 
