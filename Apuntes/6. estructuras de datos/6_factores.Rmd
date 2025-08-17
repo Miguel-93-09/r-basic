@@ -24,7 +24,7 @@ nombres_f
 ```
 tambien se puede usar "as.factor()"
 
-la diferencia esta en que esta ultima convierte el vector en factor, y toma lo que ya essta como factores, 
+la diferencia esta en que esta ultima convierte el vector en factor, y toma lo que ya esta como factores, 
 escomo factor() pero sin modificiaciones
 
 factor() admite parametros:
@@ -45,7 +45,7 @@ cambiar etiquetas, intercambiandolas por las de levels en el orden dado por el v
 ```{r}
 nombres_f3 = factor(nombres, levels= c("ad", "me", "lo", "as"), labels = c("adq", "meq", "lsq", "loq"))
 nombres_f3
-# notemos que esto de darle labels, cambia los nombre propiamente
+# notemos que esto de darle labels, cambia los nombre propiamente asi como levels
 
 ```
 
@@ -71,7 +71,7 @@ nombres_f3
 ``` 
 # nota
 
-es importante que los levels sean igual que los elementos del vecotor, o no los detectara.
+es importante que los levels sean igual que los elementos del vector, o no los detectara.
 
 ```{r}
 notas = rep(c("1","2","3") , 7)
@@ -108,13 +108,15 @@ en ambos casos, tanto factor como ordered, se etiquetan acorde al orden natural 
 ```{r}
 notas = c("d","a","b","c", "a")
 
+#notemos que los labels se asocian en orden natural de los elementos del vector, no usamos levels ya que queremos renombrar directamente
+
 ordered(notas, labels=c("min","med", "reg", "max"))
 
 factor(notas, labels=c("min","med", "reg", "max") )
 
 
 ```
-tambien se puede forzar el orden
+tambien se puede forzar el orden con levels
 
 ```{r}
 ordenado = ordered(notas, levels= c("b", "a", "d", "c"), labels = c("min","med", "reg", "max"))

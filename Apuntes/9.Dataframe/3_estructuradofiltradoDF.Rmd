@@ -26,7 +26,7 @@ colnames(df)
 list con dos vectores, identificador de fila y nombre de columas, es decir, ambos anteriores
 ```{r}
 dimnames(df)
-
+str(dimnames(df))
 dimnames(df)[1]
 dimnames(df)[[1]]
 ```

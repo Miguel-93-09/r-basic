@@ -54,7 +54,7 @@ library(vcdExtra)
 library(rgl)
 
 cotabplot(t, col = c("pink","lightblue"))
-mosaic3d(t)
+mosaic3d(t, rgl.printRglwidget = TRUE)
 
 
 ```

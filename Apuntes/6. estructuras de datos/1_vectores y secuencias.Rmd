@@ -56,6 +56,9 @@ seq(2,by =2,length.out=20)
 print(seq(17,98,length.out=30),digits = 4)
 ```
 
+```{r}
+2* (1:20)
+```
  
 
 

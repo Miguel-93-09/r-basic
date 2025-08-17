@@ -6,14 +6,14 @@ date: "2024-06-20"
 
 # list
 
-diferentes objetos, no del mismo necesariamente
+diferentes objetos, no del mismo tipo necesariamente
 
-list()  crea una lsita
+list()  crea una lista
 
 para componente concreta 
 list$componente
 
-tambien podemos obtener el bojeto usando dobles corchetes, se obtiene el objeto mismo
+tambien podemos obtener el objeto usando dobles corchetes, se obtiene el objeto mismo
 list[[]]
 
 ```{r}
@@ -55,9 +55,35 @@ names(l)
 
 ```{r}
 mi_lista <- list("a", "b", "c", "d", "e", "f")
-mi_lista[seq(2, length(mi_lista), by = 2)]
+mi_lista[seq(2, length(mi_lista), by = 2)] 
 ```
 
+```{r}
+# al menos asi, no se puede acceder a los "elementos" en si 
+
+mi_lista[[seq(2, length(mi_lista), by = 2)]]
+```
+
+```{r}
+filtrada = mi_lista[seq(2, length(mi_lista), by = 2)]
+
+for (i in 1:length(filtrada)){
+  print(filtrada[[i]])
+}
+
+
+
+```
+
+otra forma mas directa
+
+```{r}
+
+for (i in seq(2, length(mi_lista), by = 2)){
+  print(mi_lista[[i]])
+}
+
+```
 
 
 

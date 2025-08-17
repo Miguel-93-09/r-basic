@@ -69,7 +69,7 @@ aggregate(Sepal.Length  ~ Species, data = iris, FUN = sd)$Sepal.Length > 0.5
 
 iris
 
-iris[iris$Species == "setosa" | iris$Species  == "virginica" ]
+iris[iris$Species == "setosa" | iris$Species  == "virginica", ]
 
 
 
