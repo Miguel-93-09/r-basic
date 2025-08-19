@@ -10,6 +10,7 @@ date: "2024-07-23"
 segments(x_1,y_1,x_2,y_2)
 
 ```{r}
+x = 1:5
 plot(x^2, type = "l")
 segments(1,0,3,2, lwd=2, col ="red")
 

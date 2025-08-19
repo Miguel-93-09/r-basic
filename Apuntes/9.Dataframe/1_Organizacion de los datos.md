@@ -26,7 +26,8 @@ json rel con java, es mas legible por humanos, usado por cable valor, se usan ll
 
 para los datos relacionales, se usan lenguajes de datos, el mayor es SQL, o no relacionales como oracle.
 
-Las no relacionales se orientan a ficheros, recuperar datos que no sean necesariamente tablas rectangulares, los datos conviven de forma más libre, un ejemplo es mysql, permiten agregar datos sin redefinir estructura, partirlos, son más dinamicas. 
+Las no relacionales se orientan a ficheros, recuperar datos que no sean necesariamente tablas rectangulares, los datos conviven de forma más libre, un ejemplo es mysql, permiten agregar datos sin redefinir estructura, partirlos,
+son más dinamicas. 
 
 las relacionales son datos que tiene vinculos entre ellos,   primera cada fila puede identificarse con una clave, son univocas, la foranea son resto de filas a las que hace referencia una de otra.
 

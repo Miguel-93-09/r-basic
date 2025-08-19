@@ -61,7 +61,7 @@ df$Sepal.Length
 df$Sepal.Length[1:10]
 ```
 
-ademas las variables de DF no son varaibles propiamente por lo que no se puede aaceder a ellas, para ello deberian gaurdarse en una variable definida por nosotros, es decir, se trata de en DF como objeto completo, esto se conoce como variables internas.
+ademas las variables de DF no son variables propiamente por lo que no se puede acceder a ellas, para ello deberian guardarse en una variable definida por nosotros, es decir, se trata de en DF como objeto completo, esto se conoce como variables internas.
 
 # subdataframes
 df[n,m]
