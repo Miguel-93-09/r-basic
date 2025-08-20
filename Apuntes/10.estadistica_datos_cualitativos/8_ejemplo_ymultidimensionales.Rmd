@@ -40,6 +40,16 @@ TT["N", ,]
 ```
 Nota: no puedo hacer esto con ftable
 
+imaginemos como EJEMPLO en el caso anterior que queremos "normalizar" respecto a genero , para ver que proporcion es mas diferenciada respecto de los 4 paises
+```{r}
+prop.table(TT["N", ,], margin = 2)
+
+t2 = abs(prop.table(TT["N", ,], margin = 2)[1,] - prop.table(TT["N", ,], margin = 2)[2,])
+t2
+t2[t2 == max(t2)]  # aqui ya veriamos que en peru hay mas diferencia entre opiniones 
+
+```
+
 podemos tambien ver que se obtiene una table bidimensional con margin 1 = sexo por lo que podemos aplicar lo visto en anterior video
 
 ```{r}
@@ -89,7 +99,7 @@ sum(prop.table(TT, margin = 1)["S", , ])
 ```{r}
 prop.table(TT, margin = c(1,2)) #marginal por respuesta y sexo, por ejemplo, de los que dijeron no que son hombres son una submuestra, cuyo tamaño divide por pais a dicha entrada en cada matriz
 ```
- para entender 
+ para entender , muestra HOMBRES que dijeron que NO 
  
 ```{r}
 prop.table(TT, margin = c(1,2))["N","H", ]
@@ -108,12 +118,12 @@ ES IMPORTATE ver esto como subpoblaciones, es decir, en el ultimo caso, la pobla
 
 Para ello podriamos ver que las respuestas de hombres chilenos no es tan radicalmente distinta, pese a que si es mayoritariamente "NO", NTOA: ESTO CAMBIO POR SE GENERA ALEATORIAMENTE CADA QUE SE EJECUTA CODIGO.
 
+SI QUISIERAMOS VER LOS "SI" Y "NO" POR SEXO POR PAIS
 
 ```{r}
 prop.table(TT, margin = c(2,3))[ , "H", "Chile"]
 ```
 
-SI QUISIERAMOS VER LOS SI Y NO POR SEXO POR PAIS
 
 ```{r}
 prop.table(TT, margin = c(2,3))
@@ -157,6 +167,8 @@ accediendo a datos como si fuese matriz pero sin nombres de filas o columna, de 
 f1[,1]
 
 f1[,1] > f1[,3]
+
+f2
 
 f2[1, ]   #FILA COMPLETA DE LA f2
 f2[1, 1:4]  #subvector de la vila anterior

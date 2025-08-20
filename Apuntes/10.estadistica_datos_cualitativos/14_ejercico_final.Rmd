@@ -149,7 +149,7 @@ diagrama de barras
 
 data
 
-# aqui hay que hacer transpuesta porque se considera que segunda varaible es marginal de la primera
+# aqui hay que hacer transpuesta porque se considera que marginal es la segunda variable
 
 barplot(t(rel_pelo), col =c("brown","blue","orange","lightgreen"), legend.text = T, main = "Frec rel ojo en cada color de cabello", beside = T)
 
@@ -173,7 +173,7 @@ dimnames(hec)[1]$Pelo[2]
 
 # se puede recorrer elementos de una lista como en python
 
-# notemos que unicamente el [1] señala el atributo, por lo que no se consigue lo que queremos
+# notemos que unicamente el [1] señala el atributo, por lo que no se consiguiria lo que queremos, e smejor así:
 
 names <- dimnames(hec)$Pelo
 for (x in names) {
@@ -204,7 +204,7 @@ se pretende a continuacion automatizar el juntado de tablas pero no parece muy u
 hec
 
 simplificar <- function(x,y){
-  names <- dimnames(x)[y] 
+  names <- dimnames(x)[[y]]   # nota que luego ni siquiera s eusa el i
   for (i in names) {
 	hec_2 = x[, , "Hombre"] + x[, , "Mujer"]
 	return(hec_2)

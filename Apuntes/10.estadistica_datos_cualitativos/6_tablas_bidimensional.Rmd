@@ -10,12 +10,12 @@ cuando hay dos o mas variables cualitativas puede ser usada, añadiendo mas para
 resp = sample(c("S","N"), size = 20, replace = TRUE )
 sexo = sample(c("H","M"), size = 20, replace = TRUE )
 
-t = table(sexo,resp)
+t1 = table(sexo,resp)
 
-table(resp,sexo)
+t1
 
 #transponiendo
-t(table(resp,sexo))
+t(t1)
 
 ```
 
@@ -35,7 +35,6 @@ t[,"S"]
 
 ```
 
-
 # prop.table
 
 globales son cada fracuencia con respecto a toda la muestra
@@ -44,12 +43,9 @@ globales son cada fracuencia con respecto a toda la muestra
 prop.table(table(sexo,resp))
 ```
 
-
-
 marginales, si se elige una varaible dada, entonces la muestra se divide acorde a dicha varaible, y entonces la frencuecia relativa resulta respecto al tamaño del level
 
 el margin igual a 1 signfica respecto a primera varaible dada en table
-
 
 ```{r}
 
@@ -62,5 +58,3 @@ prop.table(table(sexo,resp), margin = 2)
 
 
 ```
-
-

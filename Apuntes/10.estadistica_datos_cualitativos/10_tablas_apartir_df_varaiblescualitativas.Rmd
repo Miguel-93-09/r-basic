@@ -56,16 +56,18 @@ table(BE)
 tambien podemos hacer tabla de ciertas variables, pe: 
 
 ```{r}
-table(BE[c(1,3)])
+
+table(BE[, c(1,3)])
 ```
 
+# nota importante
+
+tenemos que ponerle el coma si queremos que sea para extraer filas, si no se lo ponemos sera por columnas por default, es decir
+BE[c(1,3)] = BE[ , c(1,3)]
 
 ```{r}
+BE[c(1,3)]
+BE[c(1,3) , ]
 
 ```
-
-
-
-
-
 

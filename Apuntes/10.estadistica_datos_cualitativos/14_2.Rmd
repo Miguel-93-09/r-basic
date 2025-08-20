@@ -3,7 +3,7 @@ title: "entendiento apply MARGIN"
 output: html_document
 date: "2024-08-14"
 ---
-
+... continuacion
 
 ```{r}
 hec = HairEyeColor

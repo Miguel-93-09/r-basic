@@ -18,7 +18,7 @@ plot(t)
 ```
 
 
-las de tres dimensiones son mas dificles de leer, pero pueden hacerse, nota que las primeras dos variable se comportan como anteriormente, pero la tercera es como si fuese marginal
+las de tres dimensiones son mas dificles de leer, pero pueden hacerse, la primera es como si fuese marginal
 
 
 
@@ -63,7 +63,7 @@ no funciona :c
 
 
 ```{r}
-mosaic3d(t, type = "expected", box = TRUE, col = c("pink","lightblue"))
+mosaic3d(t, type = "expected", box = TRUE, col = c("pink","lightblue", "blue"))
 
 ```
 

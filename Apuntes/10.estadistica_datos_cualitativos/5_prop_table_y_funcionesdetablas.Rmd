@@ -45,8 +45,8 @@ table(x)
 
 which(table(x)==1)
 
-# con esto alimentamos a names para que muestre el nombre de dicho level
-
+# con esto alimentamos a names para que muestre el nombre de dicho level, notemos que en si which(table(x)==1) es otra table pero filtrada
+ 
 names(which(table(x)==1))
 
 
@@ -106,12 +106,17 @@ moda <- function(m){
 moda(x)
 ```
 
-aqui filtramos la tabla, notemos que la tabla n ose peude filtrar directamente
+aqui filtramos la tabla, notemos que la tabla se peude filtrar directamente, la tabla al filtrar es como un vector unico solo de la segunda fila
+
+```{r}
+table(y)
+table(y)==max(table(y))
+table(y)[table(y)==max(table(y))]
+```
 
 ```{r}
 table(y)[which(table(y)==max(table(y)))]
 ```
-
 
 
 
