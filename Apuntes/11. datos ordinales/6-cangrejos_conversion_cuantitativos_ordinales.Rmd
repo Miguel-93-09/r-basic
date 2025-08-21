@@ -62,7 +62,7 @@ t_1r
 
 ```
 
-ahroa hacemos la acumula
+ahroa hacemos la acumulada
 ```{r}
 t_1ra = round(
   apply(t_1r , MARGIN = 1, FUN = cumsum) ,
