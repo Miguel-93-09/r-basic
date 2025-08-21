@@ -64,14 +64,28 @@ t(apply( prop.table(table(jirafas), margin = 1) , MARGIN = 1, FUN = cumsum))
 ```{r}
 #otra forma de calcular marginal , primero accedemos ultima columna
 t(apply(table(jirafas) , MARGIN = 1, FUN = cumsum))
-t(apply(table(jirafas) , MARGIN = 1, FUN = cumsum))[, 5]
+apply(table(jirafas) , MARGIN = 1, FUN = cumsum)[5,]
 
 #ahora dividimos la table entre dicha columna
 
-t(apply(table(jirafas) , MARGIN = 1, FUN = cumsum)) / t(apply(table(jirafas) , MARGIN = 1, FUN = cumsum))[, 5]
+t(apply(table(jirafas) , MARGIN = 1, FUN = cumsum)) / apply(table(jirafas) , MARGIN = 1, FUN = cumsum)[5,]
 
 
 ```
+
+Notemos entonces que si se divide una matriz entre un vector, se dividira por columna de arriba abajo de forma ciclica, es decir en el siguiente caso el elemento (1,1) primero sera dividio entre el primer elemento del vector, el (2,1) entre el segundo y asi hasta que se temrinen y vuelva a empezar con el primero. 
+
+```{r}
+A = matrix(sample(1:4 , size = 16 , replace = T) ,nrow = 8)
+A
+ci = c(2,1,1)
+
+A/ci
+
+```
+
+
+
 
 para graficar recordar que la primera variable esta en funcion de la segunda, por lo que para que se muestre por zonas nuestra barra, hay que usar la primera table sin transponer
 

@@ -30,9 +30,25 @@ cumsum(prop.table(table(jir)))
 
 ```{r}
 
-barplot(cumsum(prop.table(table(jir))), main = "diagrama frec rel")
+barplot(cumsum(prop.table(table(jir))), main = "diagrama frec rel acumuladas")
 
 ```
 
 
+```{r}
 
+barplot(cumsum(table(jir)), main = "diagrama frec acumuladas")
+
+```
+
+
+```{r}
+
+barplot((table(jir)), main = "diagrama frec absolutas")
+
+```
+```{r}
+
+barplot(prop.table(table(jir)), main = "diagrama frec absolutas relativas")
+
+```
