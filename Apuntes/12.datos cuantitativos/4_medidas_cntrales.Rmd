@@ -69,8 +69,10 @@ sort(resultados)[length(resultados)/2]
 moda
 
 ```{r}
+names(which(table(resultados) == max(table(resultados))))
+
 table(resultados)
-# no recuerdo como extrae la etiquta, que en este caso es uno
+
 ```
 
 

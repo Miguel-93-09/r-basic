@@ -18,7 +18,7 @@ la fr rel, rel acum, y absoluta acum es como en cualitativos
 
 **recordando latex**
 
-$$\sum_{j=1}^{i}n_j$$
+$$N_i = \sum_{j=1}^{i}n_j$$
 
 # ejemplo dados
 
@@ -97,7 +97,7 @@ t_a <- function(x){
 
 df_frecuencia <- function(x){
   df <- data.frame(
-  Puntuacion = 1:6 ,
+  Puntuacion = 1:length(x) ,
   Fr.abs = as.vector(table(x)) ,
   Fr.acu = as.vector(t_a(x)) ,
   Fr.rel = as.vector(t_r(x)) ,

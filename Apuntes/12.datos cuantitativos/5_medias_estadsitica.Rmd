@@ -21,15 +21,18 @@ la mdia ponderada arimetica, se usa asignado pesos y dividiendoentre esto, puede
 $$\frac{\sum_{i=i}^n w_i\cdot X_i}{\sum_{i=i}^n w_i} $$
 
 ```{r}
-#para calcularla con fr absolutas
+# w_i seran los pesos, imaginemos que son porcentajes de calificiaciones de una materia, con 5 examenes, que suman 100
+w_i = c(10,20,20,30,20)
+# x_i son las calificaciones en cada examen
+x_i = c(9,7,8,5,6)
 
-# primero realizamos la multiplicacion
-m_1 = as.numeric(names(table(dato))) * table(dato)
-m_1
+sum(w_i * x_i) /  sum(w_i)
 
-sum(m_1)/sum(table(dato))
+
 
 ```
+notar que si todos los w_i valen lo mismo , entonces sera la media aritemtica, 
+
 
 # media geometrica
 

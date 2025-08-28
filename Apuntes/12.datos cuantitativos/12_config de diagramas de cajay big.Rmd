@@ -9,7 +9,7 @@ observacion: notemos que al extraer info de df, para las columnas se puede hacer
 - df[#va]
 
 ```{r}
-body = read.table("data/bodyfat.txt", header = T)
+body = read.table("~/Documentos/GitHub/r-basic/data/bodyfat.txt", header = T)
 head(body)
 
 body[2]
@@ -36,6 +36,9 @@ finalmente, notemos la igualdad a la hora de filtrar df por columnas en la sigue
 ```{r}
 body[,c(2,1)]
 body[c(2,1)]
+
+#pero es distinto de 
+body[c(2,1),]
 
 ```
 

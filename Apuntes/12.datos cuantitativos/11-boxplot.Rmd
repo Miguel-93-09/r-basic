@@ -43,7 +43,7 @@ boxplot(dados, dados1, dados2)
 si se hace una df entonces lo hara de cada variable porl oque hay que modificarlo un poco 
 
 ```{r}
-body = read.table("data/bodyfat.txt", header = T)
+body = read.table("~/Documentos/GitHub/r-basic/data/bodyfat.txt", header = T)
 boxplot(body)
 
 ```

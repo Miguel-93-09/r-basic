@@ -12,7 +12,7 @@ todos los valores a la izquierda del mismo sean menores, por lo que puede haber 
 
 Imaginemos una var cuantitativa en que todos los numeros son iguales, para ver más claramente.
 
-ESto solo implica que si tenemos 50 variables, entonces en la posicion 25+26/2 esta la mediana, esto nos da otra forma de calularlo como %bar[p * n]
+ESto solo implica que si tenemos 50 variables, entonces en la posicion 25+26/2 esta la mediana, esto nos da otra forma de calularlo como %var[p * n]
 
 ```{r}
 set.seed(260798)
@@ -35,8 +35,8 @@ si piden 0.3, entonces es 2
 
 otra forma de calcularlo estos
 ```{r}
-dado[50 * 0.1]
-dado[50* 0.3]
+sort(dado)[50 * 0.1]
+sort(dado)[50* 0.3]
 ```
 
 esto es posible porque las numeraciones dan enteros dentro de los filtros
@@ -45,6 +45,9 @@ hay muchas formas de hacer el calculo de cuantiles, por deffecto la funcion quan
 
 ```{r}
 quantile(dado, 0.1)
+```
+```{r}
+sort(dado)
 ```
 
 
