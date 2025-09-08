@@ -20,7 +20,7 @@ tabla_frecuencias <- function(x , k , p){
 
    L1 = min(x) - 1/2 * 10 ^ (-p)
    L = L1 + A * c(0:k)
-   
+
 # marcas de clase
    
    X1 = (L[1]+L[2])/2
@@ -29,6 +29,7 @@ tabla_frecuencias <- function(x , k , p){
 # estalbecemos como ordinal la variable cuantitativa
    
    x_cut = cut(x, breaks = L, right = F)
+
    
 #obtenemos los intervalos para df
    intervals = levels(x_cut)
@@ -40,16 +41,17 @@ tabla_frecuencias <- function(x , k , p){
    Fr_rel_acum = cumsum(Fr_rel)
    
    tabla = data.frame(intervalos = intervals, mc = X , Fr.abs = Fr_abs, Fr_acum, Fr_rel, Fr_rel_acum)
-   
+  
    return(tabla)
 }
 ```
 
 con cangrejos
 
+al parecer el cut, redondea 
 
 ```{r}
-crab = read.table("data/datacrab.txt", header= T)
+crab = read.table("~/Documentos/GitHub/r-basic/data/datacrab.txt", header= T)
 cw = crab$width
 
 tabla_frecuencias(cw,10,1)

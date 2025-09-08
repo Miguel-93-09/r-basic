@@ -5,7 +5,7 @@ date: "2024-09-01"
 ---
 
 
-ala gurpar datos, lo que s eahce es convertir la variable cuantitativa en un factor, sus niveles son las clases en que s eha dividido, e identificamos cada datos con su clase
+al agrupar datos, lo que se hace es convertir la variable cuantitativa en un factor, sus niveles son las clases en que se ha dividido, e identificamos cada dato con su clase
 
 podemos elegir 3 codificacion para etiquetar niveles
 
@@ -55,6 +55,7 @@ agrupar_cuantitativos <- function(x , k , p){
 usemos petals
 ```{r}
 petals = iris$Petal.Length
+petals
 #dividamos en 5 intervalos
 cut(petals, breaks = 5)
 str(cut(petals, breaks = 5))
@@ -94,6 +95,14 @@ iris_2 = iris
 iris_2$div1 = cut(petals, breaks = c(1,2,3,4,5,6,7), right = F , labels = c("PEQ", "MED", "NORM", "GRAN", "MUYGRAN","SUPERGRAN") )
 
 iris_2
+
+```
+```{r}
+#Usando nuestra funcion anterior
+agrupar_cuantitativos(petals, 5 , 1)$Intervalos
+
+cut(petals, breaks = agrupar_cuantitativos(petals, 5 , 1)$Intervalos , right = F)
+
 
 ```
 

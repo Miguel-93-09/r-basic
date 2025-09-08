@@ -1,4 +1,4 @@
-# Datos cuantitativos agrupados
+ # Datos cuantitativos agrupados
 
 los datos cuantitativos agrupados son un concepto relativamente natural, como cuando agrupamos la edad, decimos que algein tiene 20 años cuando esta en el rango de [20,21)
 

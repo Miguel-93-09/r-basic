@@ -88,13 +88,19 @@ redondeo_amplitud <- function(x,d){
   y = ceiling (x * 10 ^ d)
   y = y *  10 ^ (-d) 
   if (y==x){
-    return(x + 1 * ( 10 ^ (-d) ))
+    return(x + ( 10 ^ (-d) ))
   }
   return(y)
 }
 ```
 
-prueba:
+pruebas:
+
+```{r}
+A_1 = 1.25
+redondeo_amplitud(A_1,1)
+```
+
 
 
 ```{r}
@@ -117,12 +123,15 @@ redondeo_amplitud <- function(x,k,p){
   y = ceiling (x * 10 ^ p)
   y = y *  10 ^ (-p) 
   if (y==x){
-    return(x + 1 * ( 10 ^ (-p) ))
+    return(x + ( 10 ^ (-p) ))
   }
   return(y)
 }
 
-redondeo_amplitud(cw,10,1)
+#caso con 10 clases
+
+ A = redondeo_amplitud(cw,10,1)
+ A
 
 ```
 
@@ -174,7 +183,7 @@ agrupar_cuantitativos <- function(x , k , p){
    y = ceiling (z * 10 ^ p)
    y = y *  10 ^ (-p) 
     if (y==z){
-      A = (z + 1 * ( 10 ^ (-p) ))
+      A = (z + ( 10 ^ (-p) ))
     }
    A = y
 
