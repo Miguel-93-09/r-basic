@@ -77,6 +77,6 @@ tabla_frecuencias_2 <- function(x , L , p, V = F){
 
 
 ```{r}
-tabla_frecuencias_2(notas,L, 1, V =T)
+tabla_frecuencias_2(notas,L, 1, T)
 ```
 

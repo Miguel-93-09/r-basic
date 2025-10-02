@@ -48,7 +48,7 @@ tabla_frecuencias <- function(x , k , p){
 
 con cangrejos
 
-al parecer el cut, redondea 
+al parecer el cut, redondea los intervalos, pero no da problema ya que el cut en si, no se redondea
 
 ```{r}
 crab = read.table("~/Documentos/GitHub/r-basic/data/datacrab.txt", header= T)

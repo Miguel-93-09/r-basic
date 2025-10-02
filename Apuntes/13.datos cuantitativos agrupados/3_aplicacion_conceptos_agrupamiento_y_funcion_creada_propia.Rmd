@@ -160,7 +160,7 @@ X
 
 ```
 
-otra forma, es tomar dos vectores donde uno esta desfacado con otro por indice respecto a uno, sumarlos, y luego dividir entre 2
+otra forma, es tomar dos vectores donde uno esta desfasado con otro por indice respecto a uno, sumarlos, y luego dividir entre 2
 
 ```{r}
 li =L[1:(length(L)-1)]
