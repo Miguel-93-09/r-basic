@@ -13,6 +13,7 @@ math.log(x,n)= log_n(x)
 math.exp1p(x)= e^(x)+1
 math.sqrt()
 math.cos()
+
 ...
 
 

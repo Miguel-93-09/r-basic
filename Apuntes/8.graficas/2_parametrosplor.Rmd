@@ -11,6 +11,7 @@ date: "2024-07-19"
 -   expression() : expresion en forma latex
 -   xlab = "etiqueta": titulo eje x
 -   ylab = "etiqueta": titulo eje y
+
 -   pch=n : cambiar forma del puntito por otros del 1 al 25
 -   cex="" : cambiar tamaño de dichos puntitos 1/2 es la mitad, 2 el doble
 -   col="nombre de color en R" color de los simbolos, consultar html

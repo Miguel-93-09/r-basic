@@ -70,6 +70,7 @@ help(np$array)
 
 
 ```
+
 ```{r}
 
 py_help(py_to_r)

@@ -78,7 +78,7 @@ notas = rep(c("1","2","3") , 7)
 
 notas 
 
-ejemplo1 = factor(notas, levels = c("1","2","3"), labels = c("a","b", "c"))   
+ejemplo1 = factor(notas, levels = c("1","2","3"), labels = c("a","a", "c"))   
 
 ejemplo1
 

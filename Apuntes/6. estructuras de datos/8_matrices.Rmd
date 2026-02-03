@@ -144,6 +144,9 @@ apply(M, MARGIN = 1, FUN = function(x){sqrt(sum((x^2)))})
 apply(M, MARGIN = 2, FUN = function(x){sqrt(sum((x^2)))})
 
 ```
+```{r}
+apply(M, MARGIN = 2, FUN = function(x){sum(sqrt((x^2)))})
+```
 
 
 
